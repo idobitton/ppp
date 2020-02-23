@@ -20,7 +20,7 @@ namespace WpfApp50
             this.employee = new HashSet<employee>();
         }
     
-        public int Id { get; set; }
+        public int postal_c { get; set; }
         public string city { get; set; }
         public string street { get; set; }
         public string house_number { get; set; }

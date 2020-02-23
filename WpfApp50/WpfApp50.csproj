@@ -181,9 +181,6 @@
     <Compile Include="showShifts.xaml.cs">
       <DependentUpon>showShifts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Table.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Page Include="addShift.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

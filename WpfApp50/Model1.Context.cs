@@ -40,6 +40,5 @@ namespace WpfApp50
         public virtual DbSet<shift> shift { get; set; }
         public virtual DbSet<shift_day> shift_day { get; set; }
         public virtual DbSet<shift_time> shift_time { get; set; }
-        public virtual DbSet<Table> Table { get; set; }
     }
 }

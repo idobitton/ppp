@@ -35,9 +35,9 @@ namespace WpfApp50
                 try
                 {
                     price = Int32.Parse(price_add_product.Text);
-                    kind_product kp = db1.kind_product.ToArray()[kind_add_product.SelectedIndex-1];
-                    string kind = kind_add_product.Text;
-                    list_product lstp = new list_product { name = name, price = price, kind_product = kp, kind_product_id= kind_add_product.SelectedIndex};
+                    kind_product kp = db1.kind_product.ToArray()[kind_add_product.SelectedIndex];
+                    string kind = kind_add_product.Text+1;
+                    list_product lstp = new list_product { name = name, price = price, kind_product = kp, kind_product_id= kind_add_product.SelectedIndex+1};
                     db1.list_product.Add(lstp);
                     db1.SaveChanges();
                     this.Close();

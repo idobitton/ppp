@@ -94,15 +94,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="notes" Type="nvarchar" MaxLength="50" />
+          <Property Name="notes" Type="nvarchar(max)" />
           <Property Name="final_price_id" Type="int" Nullable="false" />
           <Property Name="c_or_s_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="postal_code">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="postal_c" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postal_c" Type="int" Nullable="false" />
           <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="street" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="house_number" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -115,7 +115,7 @@
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
-          <Property Name="details" Type="nvarchar" MaxLength="50" />
+          <Property Name="details" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="shift">
           <Key>
@@ -141,12 +141,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="time" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_employee_deleted">
           <End Role="deleted" Type="Self.deleted" Multiplicity="1" />
@@ -177,7 +171,7 @@
           <End Role="employee" Type="Self.employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="postal_code">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="postal_c" />
             </Principal>
             <Dependent Role="employee">
               <PropertyRef Name="postal_code_id" />
@@ -320,7 +314,6 @@
           <EntitySet Name="shift" EntityType="Self.shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shift_day" EntityType="Self.shift_day" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shift_time" EntityType="Self.shift_time" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_employee_deleted" Association="Self.FK_employee_deleted">
             <End Role="deleted" EntitySet="deleted" />
             <End Role="employee" EntitySet="employee" />
@@ -394,7 +387,6 @@
           <EntitySet Name="shift" EntityType="Database1Model.shift" />
           <EntitySet Name="shift_day" EntityType="Database1Model.shift_day" />
           <EntitySet Name="shift_time" EntityType="Database1Model.shift_time" />
-          <EntitySet Name="Table" EntityType="Database1Model.Table" />
           <AssociationSet Name="FK_order_client_or_supplier" Association="Database1Model.FK_order_client_or_supplier">
             <End Role="client_or_supplier" EntitySet="client_or_supplier" />
             <End Role="order" EntitySet="order" />
@@ -553,7 +545,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="final_price_id" Type="Int32" Nullable="false" />
           <Property Name="c_or_s_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="client_or_supplier" Relationship="Database1Model.FK_order_client_or_supplier" FromRole="order" ToRole="client_or_supplier" />
@@ -561,9 +553,9 @@
         </EntityType>
         <EntityType Name="postal_code">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="postal_c" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postal_c" Type="Int32" Nullable="false" />
           <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="street" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="house_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -577,7 +569,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <Property Name="details" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="final_price" Relationship="Database1Model.FK_final_price_products" FromRole="products" ToRole="final_price" />
         </EntityType>
         <EntityType Name="shift">
@@ -610,12 +602,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="shift" Relationship="Database1Model.FK_shift_shift_time" FromRole="shift_time" ToRole="shift" />
-        </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_order_client_or_supplier">
           <End Type="Database1Model.client_or_supplier" Role="client_or_supplier" Multiplicity="1" />
@@ -682,7 +668,7 @@
           <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="postal_code">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="postal_c" />
             </Principal>
             <Dependent Role="employee">
               <PropertyRef Name="postal_code_id" />
@@ -888,7 +874,7 @@
                 <ScalarProperty Name="house_number" ColumnName="house_number" />
                 <ScalarProperty Name="street" ColumnName="street" />
                 <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="postal_c" ColumnName="postal_c" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -927,13 +913,6 @@
             <EntityTypeMapping TypeName="Database1Model.shift_time">
               <MappingFragment StoreEntitySet="shift_time">
                 <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table">
-            <EntityTypeMapping TypeName="Database1Model.Table">
-              <MappingFragment StoreEntitySet="Table">
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

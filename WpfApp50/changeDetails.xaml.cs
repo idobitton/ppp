@@ -36,6 +36,7 @@ namespace WpfApp50
                 f_name_txb.Text = emp.first_name;
                 l_name_txb.Text = emp.last_name;
                 phne_txb.Text = emp.phone;
+                p_code_txb.Text = emp.postal_code.postal_c.ToString();
                 city_txb.Text = emp.postal_code.city;
                 strt_txb.Text = emp.postal_code.street;
                 house_num_txb.Text = emp.postal_code.house_number;
@@ -44,18 +45,19 @@ namespace WpfApp50
                     male_rdb.IsChecked = true;
                 else
                     female_rdb.IsChecked = true;
-                if (emp.employee_type.type == "Manager")
-                    emp_cmbbx.SelectedIndex = 0;
-                else if (emp.employee_type.type == "Chef")
-                    emp_cmbbx.SelectedIndex = 1;
-                else if (emp.employee_type.type == "Shift manager")
-                    emp_cmbbx.SelectedIndex = 2;
-                else if (emp.employee_type.type == "Cashier")
-                    emp_cmbbx.SelectedIndex = 3;
-                else if (emp.employee_type.type == "Delivery person")
-                    emp_cmbbx.SelectedIndex = 4;
-                else
-                    emp_cmbbx.SelectedItem = 5;
+                emp_cmbbx.Text = emp.employee_type.type;
+                //if (emp.employee_type.type == "Manager")
+                //    emp_cmbbx.SelectedIndex = 0;
+                //else if (emp.employee_type.type == "Chef")
+                //    emp_cmbbx.SelectedIndex = 1;
+                //else if (emp.employee_type.type == "Shift manager")
+                //    emp_cmbbx.SelectedIndex = 2;
+                //else if (emp.employee_type.type == "Cashier")
+                //    emp_cmbbx.SelectedIndex = 3;
+                //else if (emp.employee_type.type == "Delivery person")
+                //    emp_cmbbx.SelectedIndex = 4;
+                //else
+                //    emp_cmbbx.SelectedItem = 5;
                 if (emp.deleted_id == 1)
                     no_lsb.IsSelected = true;
                 else
@@ -88,6 +90,8 @@ namespace WpfApp50
                     msg_lsb.Items.Add("Failure! Enter the salary per hour");
                 else if (city_txb.Text == "")
                     msg_lsb.Items.Add("Failure! Enter the city");
+                else if (p_code_txb.Text == "")
+                    msg_lsb.Items.Add("Failure! Enter your postal code");
                 else if (strt_txb.Text == "")
                     msg_lsb.Items.Add("Failure! Enter the street");
                 else if (house_num_txb.Text == "")
@@ -112,22 +116,72 @@ namespace WpfApp50
                     emp.last_name = l_name_txb.Text;
                     emp.phone = phne_txb.Text;
                     emp.gender = gndr;
-                    emp.employee_type.type = emp_cmbbx.Text;
-                    emp.employee_type.salaryperhour = slryphour;
-                    emp.postal_code.city = city_txb.Text;
-                    emp.postal_code.street = strt_txb.Text;
-                    emp.postal_code.house_number = house_num_txb.Text;
+                    postal_code postal_Code =new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text };
+                    if (Checking_postal_code(postal_Code))
+                    {
+                        List<postal_code> pc = new List<postal_code>();
+                        pc = db1.postal_code.ToList();
+                        foreach (postal_code p in pc)
+                        {
+                            if (p.postal_c == postal_Code.postal_c)
+                            {
+                                emp.postal_code_id = p.postal_c;
+                                emp.postal_code = p;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        db1.postal_code.Add(postal_Code);
+                        emp.postal_code = postal_Code;
+                        emp.postal_code_id = Int32.Parse(p_code_txb.Text);
+                    }
+                    if (slryphour != emp.employee_type.salaryperhour)
+                    {
+                        employee_type emp_t = new employee_type { type = emp_cmbbx.Text, salaryperhour = slryphour };
+
+                        if (Checking_emp_t(emp_t))
+                        {
+                            List<employee_type> l_ept = new List<employee_type>();
+                            l_ept = db1.employee_type.ToList();
+                            foreach (employee_type ept in l_ept)
+                            {
+                                if (ept.salaryperhour == emp_t.salaryperhour && ept.type == emp_t.type)
+                                {
+                                    emp.employee_type_id = ept.Id;
+                                    emp.employee_type = ept;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            db1.employee_type.Add(emp_t);
+                            db1.SaveChanges();
+                            emp.employee_type_id = emp_t.Id;
+                            emp.employee_type = emp_t;
+                            db1.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        emp.employee_type = db1.employee_type.ToArray()[emp_cmbbx.SelectedIndex];
+                        emp.employee_type_id = emp_cmbbx.SelectedIndex + 1;
+                    }
+                    if (emp.postal_code_id != Int32.Parse(p_code_txb.Text))
+                    {
+                        emp.postal_code_id = Int32.Parse(p_code_txb.Text);
+                    }
                     deleted dlt = db1.deleted.ToArray()[deleted];
                     emp.deleted = dlt;
                     emp.deleted_id = deleted + 1;
-                    try
+                   try
                     {
                         this.db1.SaveChanges();
                         this.Close();
                     }
                     catch
                     {
-                        MessageBox.Show("Failure! the number id of the worker is already existent in the system", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                         MessageBox.Show("Failure! the number id of the worker is already existent in the system", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
             }
@@ -136,6 +190,31 @@ namespace WpfApp50
                 msg_lsb.Items.Add("Failure! Select the worker");
             }
         }
+
+        private bool Checking_emp_t(employee_type emp_t)
+        {
+            List<employee_type> l_ept = new List<employee_type>();
+            l_ept = db1.employee_type.ToList();
+            foreach (employee_type ept in l_ept)
+            {
+                if (ept.salaryperhour == emp_t.salaryperhour && ept.type == emp_t.type)
+                    return true;
+            }
+            return false;
+        }
+
+        private bool Checking_postal_code(postal_code postal_Code)
+        {
+            List<postal_code> pc = new List<postal_code>();
+            pc = db1.postal_code.ToList();
+            foreach (postal_code p in pc)
+            {
+                if (p.postal_c == postal_Code.postal_c)
+                    return true;
+            }
+            return false;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             emp_dtgrid.ItemsSource = db1.employee.ToList();
@@ -152,6 +231,17 @@ namespace WpfApp50
             ////pcode_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
             ////pcode_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
 
+        }
+        private void emp_cmbbx_DropDownClosed(object sender, EventArgs e)
+        {
+            if (emp_cmbbx.Text == "Manager")
+                slph_txb.Text = "120";
+            else if (emp_cmbbx.Text == "Chef")
+                slph_txb.Text = "32";
+            else if (emp_cmbbx.Text == "Shift manager")
+                slph_txb.Text = "38";
+            else
+                slph_txb.Text = "29";
         }
     }
 }

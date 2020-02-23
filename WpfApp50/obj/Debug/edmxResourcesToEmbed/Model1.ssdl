@@ -89,15 +89,15 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="50" />
-    <Property Name="notes" Type="nvarchar" MaxLength="50" />
+    <Property Name="notes" Type="nvarchar(max)" />
     <Property Name="final_price_id" Type="int" Nullable="false" />
     <Property Name="c_or_s_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="postal_code">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="postal_c" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="postal_c" Type="int" Nullable="false" />
     <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="street" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="house_number" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -110,7 +110,7 @@
     <Property Name="name" Type="nvarchar" MaxLength="50" />
     <Property Name="price" Type="int" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
-    <Property Name="details" Type="nvarchar" MaxLength="50" />
+    <Property Name="details" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="shift">
     <Key>
@@ -136,12 +136,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="time" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Table">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_employee_deleted">
     <End Role="deleted" Type="Self.deleted" Multiplicity="1" />
@@ -172,7 +166,7 @@
     <End Role="employee" Type="Self.employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="postal_code">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="postal_c" />
       </Principal>
       <Dependent Role="employee">
         <PropertyRef Name="postal_code_id" />
@@ -315,7 +309,6 @@
     <EntitySet Name="shift" EntityType="Self.shift" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift_day" EntityType="Self.shift_day" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift_time" EntityType="Self.shift_time" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_employee_deleted" Association="Self.FK_employee_deleted">
       <End Role="deleted" EntitySet="deleted" />
       <End Role="employee" EntitySet="employee" />

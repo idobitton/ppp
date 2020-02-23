@@ -127,6 +127,12 @@ namespace WpfApp50
             db1.kind_product.Add(new kind_product { Id = 1, kind = "Extra" });
             db1.deleted.Add(new deleted { Id = 1, remove = "No" });
             db1.deleted.Add(new deleted { Id = 2, remove = "Yes" });
+            db1.employee_type.Add(new employee_type { type = "Manager", salaryperhour = 120 });
+            db1.employee_type.Add(new employee_type { type = "Chef", salaryperhour = 32 });
+            db1.employee_type.Add(new employee_type { type = "Shift manager", salaryperhour = 38 });
+            db1.employee_type.Add(new employee_type { type = "Cashier", salaryperhour = 29 });
+            db1.employee_type.Add(new employee_type { type = "Delivery person", salaryperhour = 29 });
+            db1.employee_type.Add(new employee_type { type ="Dishwasher", salaryperhour = 29 });
             db1.SaveChanges();
             ////emp_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
             ////emp_dtgrid.Columns[6].Visibility = Visibility.Collapsed;

@@ -29,7 +29,6 @@ namespace WpfApp50
         {
             try
             {
-                int slryphour = 0;
                 string gndr = "";
                 if (num_id_txb.Text == "")
                     msg_lsb.Items.Add("Failure! Enter your id");
@@ -39,6 +38,8 @@ namespace WpfApp50
                     msg_lsb.Items.Add("Failure! Enter your last name");
                 else if (phne_txb.Text == "")
                     msg_lsb.Items.Add("Failure! Enter your phone");
+                else if (p_code_txb.Text == "")
+                    msg_lsb.Items.Add("Failure! Enter your postal code");
                 else if (city_txb.Text == "")
                     msg_lsb.Items.Add("Failure! Enter your city");
                 else if (strt_txb.Text == "")
@@ -55,24 +56,33 @@ namespace WpfApp50
                         gndr = "male";
                     else
                         gndr = "female";
-                    if (emp_cmbbx.Text == "Manager")
-                        slryphour = 120;
-                    else if (emp_cmbbx.Text == "Chef")
-                        slryphour = 32;
-                    else if (emp_cmbbx.Text == "Shift manager")
-                        slryphour = 38;
-                    else
-                        slryphour = 29;
-                    employee_type employee_Type = db1.employee_type.Add(new employee_type { type = emp_cmbbx.Text, salaryperhour = slryphour });
-                    postal_code postal_Code = db1.postal_code.Add(new postal_code { city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text });
-                    deleted dlt = db1.deleted.ToArray()[0];
-                    employee employ = new employee { deleted = dlt, deleted_id=1, id_number = num_id_txb.Text, first_name = f_name_txb.Text, last_name = l_name_txb.Text,  phone = phne_txb.Text, gender = gndr, employee_type = employee_Type, postal_code = postal_Code };
+                    employee_type employee_Type = db1.employee_type.ToArray()[emp_cmbbx.SelectedIndex];
+                postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text };
+                deleted dlt = db1.deleted.ToArray()[0];
+                employee employ = new employee { deleted = dlt, deleted_id = 1, id_number = num_id_txb.Text, first_name = f_name_txb.Text, last_name = l_name_txb.Text, phone = phne_txb.Text, gender = gndr, employee_type_id = emp_cmbbx.SelectedIndex + 1, employee_type = employee_Type };
+                db1.employee.Add(employ);
+                employ.Id = Organize_employee_id();
+                if (Checking_postal_code(postal_Code))
+                {
+                    List<postal_code> pc = new List<postal_code>();
+                    pc = db1.postal_code.ToList();
+                    foreach (postal_code p in pc)
+                    {
+                        if (p.postal_c == postal_Code.postal_c)
+                        {
+                            employ.postal_code_id = p.postal_c;
+                            employ.postal_code = p;
+                        }
+                    }
+                }
+                else
+                {
                     db1.postal_code.Add(postal_Code);
-                    db1.employee_type.Add(employee_Type);
-                    db1.employee.Add(employ);
-                    employ.Id = Organize_employee_id();
-                    this.db1.SaveChanges();
-                    this.Close();
+                    employ.postal_code = postal_Code;
+                    employ.postal_code_id = Int32.Parse(p_code_txb.Text);
+                }
+                this.db1.SaveChanges();
+                this.Close();
                 }
             }
             catch
@@ -80,6 +90,18 @@ namespace WpfApp50
                 MessageBox.Show("Failure! the number id of the worker is already existent in the system", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();
             }
+        }
+
+        private bool Checking_postal_code(postal_code postal_Code)
+        {
+            List<postal_code> pc= new List<postal_code>();
+            pc = db1.postal_code.ToList();
+            foreach (postal_code p in pc)
+            {
+                if (p.postal_c == postal_Code.postal_c)
+                    return true;
+            }
+            return false;
         }
 
         private int Organize_employee_id()

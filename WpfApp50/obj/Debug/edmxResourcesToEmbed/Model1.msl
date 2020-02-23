@@ -110,7 +110,7 @@
           <ScalarProperty Name="house_number" ColumnName="house_number" />
           <ScalarProperty Name="street" ColumnName="street" />
           <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="postal_c" ColumnName="postal_c" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -149,13 +149,6 @@
       <EntityTypeMapping TypeName="Database1Model.shift_time">
         <MappingFragment StoreEntitySet="shift_time">
           <ScalarProperty Name="time" ColumnName="time" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Table">
-      <EntityTypeMapping TypeName="Database1Model.Table">
-        <MappingFragment StoreEntitySet="Table">
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
