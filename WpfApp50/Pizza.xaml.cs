@@ -52,7 +52,7 @@ namespace WpfApp50
                         break;
                     }
                 }
-                products products = new products { name = name, price = price, quantity = quantity, details = details };
+                products products = new products { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text };
                 db1.products.Add(products);
                 dataGrid.ItemsSource = db1.products.ToList();
                 db1.SaveChanges();
@@ -77,13 +77,15 @@ namespace WpfApp50
                         break;
                     }
                 }
-                products products = new products { name = name, price = price, quantity = quantity, details = details };
+                products products = new products { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text};
                 db1.products.Add(products);
                 dataGrid.ItemsSource = db1.products.ToList();
                 db1.SaveChanges();
             }
             extra_cmbbx.SelectedIndex = -1;
             location_cmbbx.SelectedIndex = -1;
+            notes_txb.Text = "";
+            MessageBox.Show("The Extra was added", "Added", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

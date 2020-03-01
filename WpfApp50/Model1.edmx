@@ -39,8 +39,9 @@
           <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="gender" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="employee_type_id" Type="int" Nullable="false" />
-          <Property Name="postal_code_id" Type="int" Nullable="false" />
+          <Property Name="postal_code_id" Type="int" />
           <Property Name="deleted_id" Type="int" Nullable="false" />
+          <Property Name="is_working_now_id" Type="int" />
         </EntityType>
         <EntityType Name="employee_type">
           <Key>
@@ -141,6 +142,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="time" Type="nvarchar" MaxLength="50" />
+          <Property Name="entry time" Type="nvarchar" MaxLength="50" />
+          <Property Name="checkout time" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="y_or_n">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="situation" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_employee_deleted">
           <End Role="deleted" Type="Self.deleted" Multiplicity="1" />
@@ -167,7 +177,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_employee_postal_code">
-          <End Role="postal_code" Type="Self.postal_code" Multiplicity="1" />
+          <End Role="postal_code" Type="Self.postal_code" Multiplicity="0..1" />
           <End Role="employee" Type="Self.employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="postal_code">
@@ -175,6 +185,18 @@
             </Principal>
             <Dependent Role="employee">
               <PropertyRef Name="postal_code_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_y_or_n">
+          <End Role="y_or_n" Type="Self.y_or_n" Multiplicity="0..1" />
+          <End Role="employee" Type="Self.employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="y_or_n">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="employee">
+              <PropertyRef Name="is_working_now_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -314,6 +336,7 @@
           <EntitySet Name="shift" EntityType="Self.shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shift_day" EntityType="Self.shift_day" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shift_time" EntityType="Self.shift_time" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="y_or_n" EntityType="Self.y_or_n" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_employee_deleted" Association="Self.FK_employee_deleted">
             <End Role="deleted" EntitySet="deleted" />
             <End Role="employee" EntitySet="employee" />
@@ -324,6 +347,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_employee_postal_code" Association="Self.FK_employee_postal_code">
             <End Role="postal_code" EntitySet="postal_code" />
+            <End Role="employee" EntitySet="employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_y_or_n" Association="Self.FK_employee_y_or_n">
+            <End Role="y_or_n" EntitySet="y_or_n" />
             <End Role="employee" EntitySet="employee" />
           </AssociationSet>
           <AssociationSet Name="FK_expense_date" Association="Self.FK_expense_date">
@@ -387,6 +414,7 @@
           <EntitySet Name="shift" EntityType="Database1Model.shift" />
           <EntitySet Name="shift_day" EntityType="Database1Model.shift_day" />
           <EntitySet Name="shift_time" EntityType="Database1Model.shift_time" />
+          <EntitySet Name="y_or_n" EntityType="Database1Model.y_or_n" />
           <AssociationSet Name="FK_order_client_or_supplier" Association="Database1Model.FK_order_client_or_supplier">
             <End Role="client_or_supplier" EntitySet="client_or_supplier" />
             <End Role="order" EntitySet="order" />
@@ -409,6 +437,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_employee_postal_code" Association="Database1Model.FK_employee_postal_code">
             <End Role="postal_code" EntitySet="postal_code" />
+            <End Role="employee" EntitySet="employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employee_y_or_n" Association="Database1Model.FK_employee_y_or_n">
+            <End Role="y_or_n" EntitySet="y_or_n" />
             <End Role="employee" EntitySet="employee" />
           </AssociationSet>
           <AssociationSet Name="FK_expense_employee" Association="Database1Model.FK_expense_employee">
@@ -478,11 +510,13 @@
           <Property Name="phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="employee_type_id" Type="Int32" Nullable="false" />
-          <Property Name="postal_code_id" Type="Int32" Nullable="false" />
+          <Property Name="postal_code_id" Type="Int32" />
           <Property Name="deleted_id" Type="Int32" Nullable="false" />
+          <Property Name="is_working_now_id" Type="Int32" />
           <NavigationProperty Name="deleted" Relationship="Database1Model.FK_employee_deleted" FromRole="employee" ToRole="deleted" />
           <NavigationProperty Name="employee_type" Relationship="Database1Model.FK_employee_employee_type" FromRole="employee" ToRole="employee_type" />
           <NavigationProperty Name="postal_code" Relationship="Database1Model.FK_employee_postal_code" FromRole="employee" ToRole="postal_code" />
+          <NavigationProperty Name="y_or_n" Relationship="Database1Model.FK_employee_y_or_n" FromRole="employee" ToRole="y_or_n" />
           <NavigationProperty Name="expense" Relationship="Database1Model.FK_expense_employee" FromRole="employee" ToRole="expense" />
           <NavigationProperty Name="shift" Relationship="Database1Model.FK_shift_employee" FromRole="employee" ToRole="shift" />
         </EntityType>
@@ -601,7 +635,17 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="entry_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="checkout_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="shift" Relationship="Database1Model.FK_shift_shift_time" FromRole="shift_time" ToRole="shift" />
+        </EntityType>
+        <EntityType Name="y_or_n">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="situation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_y_or_n" FromRole="y_or_n" ToRole="employee" />
         </EntityType>
         <Association Name="FK_order_client_or_supplier">
           <End Type="Database1Model.client_or_supplier" Role="client_or_supplier" Multiplicity="1" />
@@ -664,7 +708,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_employee_postal_code">
-          <End Type="Database1Model.postal_code" Role="postal_code" Multiplicity="1" />
+          <End Type="Database1Model.postal_code" Role="postal_code" Multiplicity="0..1" />
           <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="postal_code">
@@ -672,6 +716,18 @@
             </Principal>
             <Dependent Role="employee">
               <PropertyRef Name="postal_code_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employee_y_or_n">
+          <End Type="Database1Model.y_or_n" Role="y_or_n" Multiplicity="0..1" />
+          <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="y_or_n">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="employee">
+              <PropertyRef Name="is_working_now_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -794,6 +850,7 @@
           <EntitySetMapping Name="employee">
             <EntityTypeMapping TypeName="Database1Model.employee">
               <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="is_working_now_id" ColumnName="is_working_now_id" />
                 <ScalarProperty Name="deleted_id" ColumnName="deleted_id" />
                 <ScalarProperty Name="postal_code_id" ColumnName="postal_code_id" />
                 <ScalarProperty Name="employee_type_id" ColumnName="employee_type_id" />
@@ -912,7 +969,17 @@
           <EntitySetMapping Name="shift_time">
             <EntityTypeMapping TypeName="Database1Model.shift_time">
               <MappingFragment StoreEntitySet="shift_time">
+                <ScalarProperty Name="checkout_time" ColumnName="checkout time" />
+                <ScalarProperty Name="entry_time" ColumnName="entry time" />
                 <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="y_or_n">
+            <EntityTypeMapping TypeName="Database1Model.y_or_n">
+              <MappingFragment StoreEntitySet="y_or_n">
+                <ScalarProperty Name="situation" ColumnName="situation" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

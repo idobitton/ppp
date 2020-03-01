@@ -37,11 +37,11 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="datetime_lbl" Grid.Row="0" Grid.ColumnSpan="3" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic"/>
         <Button x:Name ="manage_workers_btn" Content="Manage workers" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="manage_workers_btn_Click"/>
-        <Button x:Name ="_btn" Content="Lo yode" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold"/>
-        <Button x:Name ="new_ordr_btn" Content="New order" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="new_ordr_btn_Click"/>
-        <Button x:Name ="expenses_btn" Content="Expenses" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="expenses_btn_Click"/>
-        <Button x:Name ="ordr_supplier_btn" Content="Order from supplier" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="ordr_supplier_btn_Click"/>
-        <Button x:Name ="shifts_btn" Content="Shifts" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="shifts_btn_Click"/>
+        <Button x:Name ="entry_systm_btn" Content="Enter to the system" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="entry_systm_btn_Click"/>
+        <Button x:Name ="new_ordr_btn" Content="New order" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="new_ordr_btn_Click"/>
+        <Button x:Name ="expenses_btn" Content="Expenses" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="expenses_btn_Click"/>
+        <Button x:Name ="ordr_supplier_btn" Content="Order from supplier" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="ordr_supplier_btn_Click"/>
+        <Button x:Name ="exit_systm_btn" Content="Exit from the system" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="exit_systm_btn_Click"/>
         <Button x:Name="products_btn"  Content="Products" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="products_btn_Click"/>
         <Button  x:Name="Managing_products_btn" Content="Managing products" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="5" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="Managing_products_btn_Click"/>
         <Button  Content="Shifts" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="5" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="shifts_btn_Click"/>

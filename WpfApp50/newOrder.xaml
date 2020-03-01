@@ -54,7 +54,7 @@
         <Label x:Name="food_lbl"  Content="Food:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"/>
         <Label x:Name="beverage_lbl"  Content="Beverages:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="3"/>
         <ComboBox x:Name="food_cmbbx" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" SelectionChanged="food_cmbbx_SelectionChanged">
-            <ComboBoxItem x:Name="pizza" Content="Pizza"/>
+            <!--<ComboBoxItem x:Name="pizza" Content="Pizza"/>
             <ComboBoxItem Content="Penne cream sauce"/>
             <ComboBoxItem Content="Penne Alfredo"/>
             <ComboBoxItem Content="Penne Roze"/>
@@ -65,10 +65,10 @@
             <ComboBoxItem Content="Onion rings"/>
             <ComboBoxItem Content="Personal garlic bread"/>
             <ComboBoxItem Content="Family garlic bread"/>
-            <ComboBoxItem Content="Ziva"/>
+            <ComboBoxItem Content="Ziva"/>-->
         </ComboBox>
         <ComboBox x:Name="beverage_cmbbx" FontSize="15" FontStyle="Italic" FontWeight="Bold" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="4">
-            <ComboBoxItem Content="Water+"/>
+            <!--<ComboBoxItem Content="Water+"/>
             <ComboBoxItem Content="Water-"/>
             <ComboBoxItem Content="B_Oranges"/>
             <ComboBoxItem Content="B_Grapes"/>
@@ -87,19 +87,19 @@
             <ComboBoxItem Content="Grapes-"/>
             <ComboBoxItem Content="Sprite-"/>
             <ComboBoxItem Content="Zero Sprite-"/>
-            <ComboBoxItem Content="Fuze Tea-"/>
+            <ComboBoxItem Content="Fuze Tea-"/>-->
         </ComboBox>
         <Label x:Name="dgh_type_lbl" Content="Dough type:" FontSize="20" FontWeight="ExtraBold" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Visibility="Hidden"/>
-        <Label x:Name="size_lbl" Content="Size:" FontSize="20" FontWeight="ExtraBold" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <!--<Label x:Name="size_lbl" Content="Size:" FontSize="20" FontWeight="ExtraBold" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Hidden"/>-->
         <ComboBox x:Name="dgh_type_cmbbx" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" Grid.Row= "9" Grid.ColumnSpan="3" Visibility="Hidden">
             <ComboBoxItem Content="Thin crust"/>
             <ComboBoxItem Content="Thick crust"/>
         </ComboBox>
-        <ComboBox x:Name="size_cmbbx" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="3" Visibility="Hidden">
+        <!--<ComboBox x:Name="size_cmbbx" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="3" Visibility="Hidden">
             <ComboBoxItem Content="Small"/>
             <ComboBoxItem Content="Large"/>
             <ComboBoxItem Content="Extra large"/>
-        </ComboBox>
+        </ComboBox>-->
         <Button x:Name="dlt_btn"  Content="Select the product you want to delete" FontSize="10" FontWeight="Bold" FontStyle="Italic" Grid.Column="12" Grid.Row="1" Grid.ColumnSpan="4" Click="dlt_btn_Click"/>
         <Button x:Name="fd_aply_btn"  Content="Apply(Food)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="4" Click="fd_aply_btn_Click"/>
         <Button x:Name="bvg_aply_btn"  Content="Apply(Drink)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="4" Click="bvg_aply_btn_Click"/>
@@ -118,7 +118,7 @@
         </ComboBox>
         <Label Content="Notes:" FontSize="20" Grid.Row="10"  FontWeight="ExtraBold" Grid.Column="5" Grid.ColumnSpan="2"/>
         <TextBox x:Name="notes_txb" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="4" Grid.RowSpan="4" TextWrapping="Wrap"/>
-        <ComboBox x:Name="extra_cmbbx" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="3" Visibility="Collapsed">
+        <!--<ComboBox x:Name="extra_cmbbx" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="3" Visibility="Collapsed">
             <ComboBoxItem Content="Nothing"/>
             <ComboBoxItem Content="Green olives"/>
             <ComboBoxItem Content="Black olives"/>
@@ -131,7 +131,7 @@
             <ComboBoxItem Content="Pineapple"/>
             <ComboBoxItem Content="Mozzarella"/>
             <ComboBoxItem Content="Green pepper"/>
-        </ComboBox>
+        </ComboBox>-->
 
     </Grid>
 </Window>

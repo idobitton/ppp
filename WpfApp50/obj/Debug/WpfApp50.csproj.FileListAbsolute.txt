@@ -60,3 +60,9 @@ C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\showShifts.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\showShifts.baml
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\editShift.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\editShift.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\entrySystem.g.cs
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\exitSystem.g.cs
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\entrySystem.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\exitSystem.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\deletePostalCode.g.cs
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\deletePostalCode.baml

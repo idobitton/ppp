@@ -54,14 +54,16 @@
         <Label Content="Extras:" FontSize="12" FontWeight="ExtraBold" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="4"/>
         <Label Content="Location:" FontSize="12" FontWeight="ExtraBold" Grid.Column="12" Grid.ColumnSpan="3" Grid.Row="4"/>
 
-        <ComboBox x:Name="extra_cmbbx" Text="extra" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="3">
+        <ComboBox x:Name="extra_cmbbx" Text="extra" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="3" Height="25" VerticalAlignment="Bottom">
         </ComboBox>
         <ComboBox x:Name="location_cmbbx" FontSize="15" FontWeight="Bold" FontStyle="Italic" Grid.Column="12" Grid.Row="6" Grid.ColumnSpan="3">
             <ComboBoxItem Content="First half"/>
             <ComboBoxItem Content="Second half"/>
             <ComboBoxItem Content="Whole"/>
         </ComboBox>
-        <Button x:Name="finish" Content="Finish" FontSize="15" FontWeight="Bold" Grid.Column="4" Grid.Row="15" Grid.ColumnSpan="4" Click="finish_Click"/>
+        <Button x:Name="finish" Content="Finish (final extra)" FontSize="15" FontWeight="Bold" Grid.Column="4" Grid.Row="15" Grid.ColumnSpan="4" Click="finish_Click"/>
         <Button x:Name="add_extra" Content="Add extra" FontSize="15" FontWeight="Bold" Grid.Column="12" Grid.Row="15" Grid.ColumnSpan="4" Click="add_extra_Click"/>
+        <Label Content="Notes:" FontSize="12" FontWeight="ExtraBold" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="9"/>
+        <TextBox x:Name="notes_txb" Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="6" Grid.RowSpan="3" FontWeight="ExtraBold" FontSize="15"/>
     </Grid>
 </Window>

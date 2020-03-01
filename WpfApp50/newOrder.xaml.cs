@@ -23,46 +23,12 @@ namespace WpfApp50
         employee emp = new employee();
         order ordr;
         products prod = new products();
-        private int price = 10;
-        public newOrder(Database1Entities db1, employee emp,order ordr)
+        public newOrder(Database1Entities db1, employee emp, order ordr)
         {
             this.db1 = db1;
             this.ordr = ordr;
             this.emp = emp;
             InitializeComponent();
-        }
-        private int Calculating_price(string name, int i)
-        {
-            if (name.Contains("Penne"))
-                return 37;
-            else if (name.Contains("Quiche"))
-                return 35;
-            else if (name.Contains("Salad"))
-                return 40;
-            else if (name.Contains("rings"))
-                return 20;
-            else if (name.Contains("Personal"))
-                return 22;
-            else if (name.Contains("Family"))
-                return 32;
-            else if (name.Contains("Ziva"))
-                return 22;
-            else if (name.Contains("B_"))
-                return 13;
-            else if (name.Contains("-"))
-                return 9;
-            else if (name.Contains("+"))
-                return 10;
-            else if (name.Contains("Small"))
-                return 55;
-            else if (name.Contains("Large"))
-                return 65 ;
-            else if (name.Contains("Extra"))
-                return 75;
-            List<list_product> lstp =db1.list_product.ToList();
-            int price = lstp[i].price;
-            return price;
-
         }
         private void fd_aply_btn_Click(object sender, RoutedEventArgs e)
         {
@@ -73,86 +39,73 @@ namespace WpfApp50
             int prc = 0;
             if (nm != "")
             {
-                    if (nm == "Pizza")
+                if (nm.Contains("Pizza"))
+                {
+                    if (dgh_type_cmbbx.Text != "")
                     {
-                        if (dgh_type_cmbbx.Text != "" && size_cmbbx.Text != "")
+                    List<list_product> lst_p = db1.list_product.ToList();
+                    foreach (list_product lp in lst_p)
+                    {
+                        if (lp.name == nm)
                         {
-                            string size = size_cmbbx.Text;
-                            size = nm + " " + size;
-                        List<list_product> lst_p = db1.list_product.ToList();
-                        foreach (list_product lp in lst_p)
-                        {
-                            if (lp.name == size)
-                            {
-                                prc = lp.price;
-                                break;
-                            }
+                            prc = lp.price;
+                            break;
                         }
-                            products products = new products { name = size, price = prc, quantity = qn, details = dgh_type_cmbbx.Text };
-                            db1.products.Add(products);
-                            db1.SaveChanges();
-                            Pizza pz = new Pizza(qn, db1, order_dtgrid);
-                            pz.ShowDialog();
-                            order_dtgrid.ItemsSource = db1.products.ToList();
-                            ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-
+                    }
+                    products products = new products { name = nm, price = prc, quantity = qn, details = dgh_type_cmbbx.Text + ", " + notes_txb.Text };
+                    db1.products.Add(products);
+                    db1.SaveChanges();
+                    Pizza pz = new Pizza(qn, db1, order_dtgrid);
+                    pz.ShowDialog();
+                    order_dtgrid.ItemsSource = db1.products.ToList();
+                           ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                     }
                 }
-                    else
+                else
+                {
+                    List<list_product> lst_p = db1.list_product.ToList();
+                    foreach (list_product lp in lst_p) 
                     {
-                        List<list_product> lst_p = db1.list_product.ToList();
-                        foreach (list_product lp in lst_p)
+                        if (lp.name == nm)
                         {
-                            if (lp.name == nm)
-                            {
-                                prc = lp.price;
-                                break;
-                            }
+                            prc = lp.price;
+                            break;
                         }
-
-                        products p = new products { name = nm, quantity = qn, price = prc };
-                        db1.products.Add(p);
-                        db1.SaveChanges();
-                        order_dtgrid.ItemsSource = db1.products.ToList();
+                    }
+                    products p = new products { name = nm, quantity = qn, price = prc };
+                    db1.products.Add(p);
+                    db1.SaveChanges();
+                    order_dtgrid.ItemsSource = db1.products.ToList();
                         ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                    
                 }
             }
             dgh_type_cmbbx.Visibility = Visibility.Hidden;
             dgh_type_cmbbx.SelectedIndex = -1;
-            size_cmbbx.Visibility = Visibility.Hidden;
-            size_cmbbx.SelectedIndex = -1;
-            size_lbl.Visibility = Visibility.Hidden;
             dgh_type_lbl.Visibility = Visibility.Hidden;
             food_cmbbx.SelectedIndex = -1;
             qnty_cmbbx.SelectedIndex = 0;
-
+            notes_txb.Text = "";
         }
 
         private void food_cmbbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(food_cmbbx.SelectedItem== pizza)
+            if(food_cmbbx.SelectedIndex != -1)
             {
-                dgh_type_cmbbx.Visibility = Visibility.Visible;
-                size_cmbbx.Visibility = Visibility.Visible;
-                size_lbl.Visibility = Visibility.Visible;
-                dgh_type_lbl.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                dgh_type_cmbbx.Visibility = Visibility.Hidden;
-                size_cmbbx.Visibility = Visibility.Hidden;
-                size_lbl.Visibility = Visibility.Hidden;
-                dgh_type_lbl.Visibility = Visibility.Hidden;
-
+                if (food_cmbbx.SelectedItem.ToString().Contains("Pizza"))
+                {
+                    dgh_type_cmbbx.Visibility = Visibility.Visible;
+                    dgh_type_lbl.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    dgh_type_cmbbx.Visibility = Visibility.Hidden;
+                    dgh_type_lbl.Visibility = Visibility.Hidden;
+                }
             }
         }
 
         private void bvg_aply_btn_Click(object sender, RoutedEventArgs e)
         {
-            
-            List<products> lstp = db1.products.ToList();
-            order_dtgrid.ItemsSource = lstp;
             string nm = beverage_cmbbx.Text;
             if (nm != "")
             {
@@ -167,7 +120,7 @@ namespace WpfApp50
                         break;
                     }
                 }
-                products p = new products { name = nm, quantity = qn, price = prc };
+                products p = new products { name = nm, quantity = qn, price = prc, details = notes_txb.Text };
                 db1.products.Add(p);
                 db1.SaveChanges();
                 order_dtgrid.ItemsSource = db1.products.ToList();
@@ -175,6 +128,7 @@ namespace WpfApp50
             }
             beverage_cmbbx.SelectedIndex = -1;
             qnty_cmbbx.SelectedIndex = 0;
+            notes_txb.Text = "";
         }
 
         private void order_aply_btn_Click(object sender, RoutedEventArgs e)
@@ -186,7 +140,6 @@ namespace WpfApp50
                 ordr.notes = notes;
                 invoice invc = new invoice(db1, order_dtgrid, emp,ordr, discount);
                 invc.ShowDialog();
-                
             }
         }
 
@@ -212,135 +165,26 @@ namespace WpfApp50
                     db1.products.Remove(prod);
                     db1.SaveChanges();
                     order_dtgrid.ItemsSource = db1.products.ToList();
-
                 }
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-                for (int i = 0; i < food_cmbbx.Items.Count; i++)
-                {
-                    string name = food_cmbbx.Items[i].ToString();
-                    name = name.Substring(38);
-                    if (name == "Pizza")
-                    {
-                        for (int j = 0; j < size_cmbbx.Items.Count; j++)
-                        {
-                            name += " " + size_cmbbx.Items[j].ToString();
-                            name = name.Remove(6,38);
-                            List<list_product> lstp = new List<list_product>();
-                            lstp = db1.list_product.ToList();
-                            bool flg = true;
-                            foreach (list_product lprod in lstp)
-                            {
-                                if (lprod.name == name)
-                                    flg = false;
-
-                            }
-                            int pr = Calculating_price(name, i);
-                            if (flg)
-                            {
-                            kind_product kp = db1.kind_product.ToArray()[0];
-                           
-                            list_product lp = new list_product { name = name, price = pr, kind_product_id=1,kind_product=kp};
-                            lp.kind_product_id = 1;
-                                db1.list_product.Add(lp);
-                                db1.SaveChanges();
-                            }
-                            name = food_cmbbx.Items[i].ToString();
-                            name = name.Substring(38);
-                        }
-                    i++;
-                    }
-                    name = food_cmbbx.Items[i].ToString();
-                    name = name.Substring(38);
-                List<list_product> lst_p = new List<list_product>();
-                    lst_p = db1.list_product.ToList();
-                    bool flag = true;
-                    foreach (list_product lprod in lst_p)
-                    {
-                        if (lprod.name == name)
-                            flag = false;
-
-                    }
-                    int prc = Calculating_price(name, i);
-                    if (flag)
-                    {
-                    kind_product kp = db1.kind_product.ToArray()[0];
-                    list_product lp = new list_product { name = name, price = prc, kind_product_id = 1,kind_product =kp };
-                        db1.list_product.Add(lp);
-                        db1.SaveChanges();
-                    }
-                }
-                for (int i = 0; i < beverage_cmbbx.Items.Count; i++)
-                {
-                    string name = beverage_cmbbx.Items[i].ToString();
-                    name = name.Substring(38);
-                List<list_product> lst_p = new List<list_product>();
-                    lst_p = db1.list_product.ToList();
-                    bool flag = true;
-                    foreach (list_product lprod in lst_p)
-                    {
-                        if (lprod.name == name)
-                            flag = false;
-
-                    }
-                    int prc = Calculating_price(name, i);
-                    if (flag)
-                    {
-                    kind_product kp = db1.kind_product.ToArray()[1];
-                        list_product lp = new list_product { name = name, price = prc, kind_product_id=2, kind_product=kp };
-                        db1.list_product.Add(lp);
-                        db1.SaveChanges();
-                    }
-                }
             List<list_product> lsp = new List<list_product>();
             lsp = db1.list_product.ToList();
-            if (lsp.Count > 45)
+            for (int i = 0; i < lsp.Count; i++)
             {
-                for (int i = 45; i < lsp.Count; i++)
+                if (lsp[i].kind_product_id == 1)
                 {
-                    if(lsp[i].kind_product_id == 1)
-                    {
-                        food_cmbbx.Items.Add(lsp[i].name);
-                    }
-                    if(lsp[i].kind_product_id == 2)
-                    {
-                        beverage_cmbbx.Items.Add(lsp[i].name);
-                    }
+                    food_cmbbx.Items.Add(lsp[i].name);
                 }
             }
-            for (int i = 1; i < extra_cmbbx.Items.Count; i++)
+            for (int i = 0; i<lsp.Count; i++)
             {
-                string name = extra_cmbbx.Items[i].ToString();
-                name = name.Substring(38);
-                List<list_product> lst_p = new List<list_product>();
-                lst_p = db1.list_product.ToList();
-                bool flag = true;
-                foreach (list_product lprod in lst_p)
-                {
-                    if (lprod.name == name)
-                        flag = false;
-                }
-                if (flag)
-                {
-                    kind_product kp = db1.kind_product.ToArray()[2];
-                    list_product lp = new list_product { name = name, price = price, kind_product=kp, kind_product_id=3 };
-                    db1.list_product.Add(lp);
-                    db1.SaveChanges();
-                }
-            }
-            List<list_product> lspro = new List<list_product>();
-            lspro = db1.list_product.ToList();
-            if (lspro.Count > 45)
-            {
-                for (int i = 45; i < lspro.Count; i++)
-                {
-                    if (lspro[i].kind_product_id == 3)
-                    {
-                        extra_cmbbx.Items.Add(lspro[i].name);
-                    }
-                }
+               if (lsp[i].kind_product_id == 2)
+               {
+                   beverage_cmbbx.Items.Add(lsp[i].name);
+               }
             }
         }
     }

@@ -59,7 +59,7 @@ namespace WpfApp50
                     employee_type employee_Type = db1.employee_type.ToArray()[emp_cmbbx.SelectedIndex];
                 postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text };
                 deleted dlt = db1.deleted.ToArray()[0];
-                employee employ = new employee { deleted = dlt, deleted_id = 1, id_number = num_id_txb.Text, first_name = f_name_txb.Text, last_name = l_name_txb.Text, phone = phne_txb.Text, gender = gndr, employee_type_id = emp_cmbbx.SelectedIndex + 1, employee_type = employee_Type };
+                employee employ = new employee {is_working_now_id =2 ,deleted = dlt, deleted_id = 1, id_number = num_id_txb.Text, first_name = f_name_txb.Text, last_name = l_name_txb.Text, phone = phne_txb.Text, gender = gndr, employee_type_id = emp_cmbbx.SelectedIndex + 1, employee_type = employee_Type };
                 db1.employee.Add(employ);
                 employ.Id = Organize_employee_id();
                 if (Checking_postal_code(postal_Code))

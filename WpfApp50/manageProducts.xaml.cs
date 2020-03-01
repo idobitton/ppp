@@ -19,6 +19,7 @@ namespace WpfApp50
     /// </summary>
     public partial class manageProducts : Window
     {
+        list_product pro;
         Database1Entities db1 = new Database1Entities();
         public manageProducts(Database1Entities db1)
         {
@@ -36,7 +37,6 @@ namespace WpfApp50
                 {
                     price = Int32.Parse(price_add_product.Text);
                     kind_product kp = db1.kind_product.ToArray()[kind_add_product.SelectedIndex];
-                    string kind = kind_add_product.Text+1;
                     list_product lstp = new list_product { name = name, price = price, kind_product = kp, kind_product_id= kind_add_product.SelectedIndex+1};
                     db1.list_product.Add(lstp);
                     db1.SaveChanges();
@@ -48,38 +48,42 @@ namespace WpfApp50
                 }
             }
         }
-
-        private void price_change_btn_Click(object sender, RoutedEventArgs e)
+        private void product_change_btn_Click(object sender, RoutedEventArgs e)
         {
-            bool flg = false;
             int price = 0;
-            if (name_chnge_price.Text != "" && price_chnge_price.Text != "")
+            if (name_chnge_product.Text != "" && price_chnge_product.Text != "")
             {
-                string name = name_chnge_price.Text;
-                try
-                {
-                     price = Int32.Parse(price_chnge_price.Text);
-                    List<list_product> lst_p = new List<list_product>();
-                    lst_p = db1.list_product.ToList();
-                    foreach (list_product p in lst_p)
-                    {
-                        if (p.name == name)
-                        {
-                            flg = true;
-                            p.price = price;
-                            db1.SaveChanges();
-                            this.Close();
-                        }
-                    }
-                    if(!flg)
-                        MessageBox.Show("you wrote a non-existent product ", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                catch
-                {
-                    MessageBox.Show("enter the price", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                
+                string name = name_chnge_product.Text;
+                price = Int32.Parse(price_chnge_product.Text);
+                pro.name = name;
+                pro.price = price;
+                db1.SaveChanges();
+                this.Close();
             }
+            else
+            {
+                MessageBox.Show("Fill all the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            product_dtgrid.ItemsSource = db1.list_product.ToList();
+        }
+
+        private void product_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                pro = (list_product) product_dtgrid.SelectedItem;
+
+            }
+            catch
+            {
+                MessageBox.Show("you selected a non-existent product", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            name_chnge_product.Text = pro.name;
+            price_chnge_product.Text = pro.price.ToString();
         }
     }
 }

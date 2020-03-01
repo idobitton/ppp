@@ -27,8 +27,9 @@
             <RowDefinition Height="100*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-        <Button x:Name ="add_worker_btn" Content="Add worker" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="add_worker_btn_Click"/>
-        <Button x:Name ="delete_worker_btn" Content="Delete worker" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="delete_worker_btn_Click"/>
-        <Button x:Name ="change_details_btn" Content="Change details" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="5" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="change_details_btn_Click"/>
+        <Button x:Name ="add_worker_btn" Content="Add worker" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="add_worker_btn_Click"/>
+        <Button x:Name ="delete_worker_btn" Content="Delete worker" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="delete_worker_btn_Click"/>
+        <Button x:Name ="change_details_btn" Content="Change details" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="5" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="change_details_btn_Click"/>
+        <Button x:Name ="delete_pc_btn" Content="Delete postal code" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="delete_pc_btn_Click"/>
     </Grid>
 </Window>

@@ -109,6 +109,9 @@
     <Compile Include="deleted.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="deletePostalCode.xaml.cs">
+      <DependentUpon>deletePostalCode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="editShift.xaml.cs">
       <DependentUpon>editShift.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,12 @@
     </Compile>
     <Compile Include="employee_type.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="entrySystem.xaml.cs">
+      <DependentUpon>entrySystem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="exitSystem.xaml.cs">
+      <DependentUpon>exitSystem.xaml</DependentUpon>
     </Compile>
     <Compile Include="expense.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -181,6 +190,9 @@
     <Compile Include="showShifts.xaml.cs">
       <DependentUpon>showShifts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="y_or_n.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Page Include="addShift.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,11 +221,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="deletePostalCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DeleteWorker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="editShift.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="entrySystem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="exitSystem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

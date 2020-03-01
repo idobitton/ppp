@@ -59,7 +59,7 @@ namespace WpfApp50
             lst_e = db1.employee.ToList();
             foreach (employee emp in lst_e)
             {
-                if(emp.deleted_id == 1)
+                if(emp.deleted_id== 1 && emp.is_working_now_id == 1)
                 {
                     employees.Add(emp);
                 }
@@ -75,11 +75,10 @@ namespace WpfApp50
 
         private void emp_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                try
-                {
-                     emp = (employee)emp_dtgrid.SelectedItem;
-
-                }
+            try
+            {
+                emp = (employee)emp_dtgrid.SelectedItem;
+            }
             catch
             {
                 MessageBox.Show("you selected a non-existent employee","Error", MessageBoxButton.OK, MessageBoxImage.Warning);

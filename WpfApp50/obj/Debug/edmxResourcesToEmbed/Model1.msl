@@ -30,6 +30,7 @@
     <EntitySetMapping Name="employee">
       <EntityTypeMapping TypeName="Database1Model.employee">
         <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="is_working_now_id" ColumnName="is_working_now_id" />
           <ScalarProperty Name="deleted_id" ColumnName="deleted_id" />
           <ScalarProperty Name="postal_code_id" ColumnName="postal_code_id" />
           <ScalarProperty Name="employee_type_id" ColumnName="employee_type_id" />
@@ -148,7 +149,17 @@
     <EntitySetMapping Name="shift_time">
       <EntityTypeMapping TypeName="Database1Model.shift_time">
         <MappingFragment StoreEntitySet="shift_time">
+          <ScalarProperty Name="checkout_time" ColumnName="checkout time" />
+          <ScalarProperty Name="entry_time" ColumnName="entry time" />
           <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="y_or_n">
+      <EntityTypeMapping TypeName="Database1Model.y_or_n">
+        <MappingFragment StoreEntitySet="y_or_n">
+          <ScalarProperty Name="situation" ColumnName="situation" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

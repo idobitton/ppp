@@ -34,8 +34,9 @@
     <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="gender" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="employee_type_id" Type="int" Nullable="false" />
-    <Property Name="postal_code_id" Type="int" Nullable="false" />
+    <Property Name="postal_code_id" Type="int" />
     <Property Name="deleted_id" Type="int" Nullable="false" />
+    <Property Name="is_working_now_id" Type="int" />
   </EntityType>
   <EntityType Name="employee_type">
     <Key>
@@ -136,6 +137,15 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="time" Type="nvarchar" MaxLength="50" />
+    <Property Name="entry time" Type="nvarchar" MaxLength="50" />
+    <Property Name="checkout time" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="y_or_n">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="situation" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_employee_deleted">
     <End Role="deleted" Type="Self.deleted" Multiplicity="1" />
@@ -162,7 +172,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_employee_postal_code">
-    <End Role="postal_code" Type="Self.postal_code" Multiplicity="1" />
+    <End Role="postal_code" Type="Self.postal_code" Multiplicity="0..1" />
     <End Role="employee" Type="Self.employee" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="postal_code">
@@ -170,6 +180,18 @@
       </Principal>
       <Dependent Role="employee">
         <PropertyRef Name="postal_code_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employee_y_or_n">
+    <End Role="y_or_n" Type="Self.y_or_n" Multiplicity="0..1" />
+    <End Role="employee" Type="Self.employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="y_or_n">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="is_working_now_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -309,6 +331,7 @@
     <EntitySet Name="shift" EntityType="Self.shift" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift_day" EntityType="Self.shift_day" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift_time" EntityType="Self.shift_time" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="y_or_n" EntityType="Self.y_or_n" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_employee_deleted" Association="Self.FK_employee_deleted">
       <End Role="deleted" EntitySet="deleted" />
       <End Role="employee" EntitySet="employee" />
@@ -319,6 +342,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_employee_postal_code" Association="Self.FK_employee_postal_code">
       <End Role="postal_code" EntitySet="postal_code" />
+      <End Role="employee" EntitySet="employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employee_y_or_n" Association="Self.FK_employee_y_or_n">
+      <End Role="y_or_n" EntitySet="y_or_n" />
       <End Role="employee" EntitySet="employee" />
     </AssociationSet>
     <AssociationSet Name="FK_expense_date" Association="Self.FK_expense_date">

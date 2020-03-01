@@ -36,10 +36,13 @@ namespace WpfApp50
                 f_name_txb.Text = emp.first_name;
                 l_name_txb.Text = emp.last_name;
                 phne_txb.Text = emp.phone;
-                p_code_txb.Text = emp.postal_code.postal_c.ToString();
-                city_txb.Text = emp.postal_code.city;
-                strt_txb.Text = emp.postal_code.street;
-                house_num_txb.Text = emp.postal_code.house_number;
+                if (emp.postal_code != null)
+                {
+                    p_code_txb.Text = emp.postal_code.postal_c.ToString();
+                    city_txb.Text = emp.postal_code.city;
+                    strt_txb.Text = emp.postal_code.street;
+                    house_num_txb.Text = emp.postal_code.house_number;
+                }
                 slph_txb.Text = emp.employee_type.salaryperhour.ToString();
                 if (emp.gender == "male")
                     male_rdb.IsChecked = true;
@@ -76,6 +79,13 @@ namespace WpfApp50
             if (emp != null)
             {
                 int deleted = 0;
+                if (yes_lsb.IsSelected == true)
+                {
+                    deleted = 2;
+                    emp.deleted_id = deleted;
+                    db1.SaveChanges();
+                    this.Close();
+                }
                 int slryphour = 0;
                 string gndr = "";
                 if (num_id_txb.Text == "")
@@ -107,10 +117,10 @@ namespace WpfApp50
                     else
                         gndr = "female";
                     slryphour = Int32.Parse(slph_txb.Text);
-                    if (yes_lsb.IsSelected == true)
-                    {
-                        deleted = 1;
-                    }
+                    //if (yes_lsb.IsSelected == true)
+                    //{
+                    //    deleted = 1;
+                    //}
                     emp.id_number = num_id_txb.Text;
                     emp.first_name = f_name_txb.Text;
                     emp.last_name = l_name_txb.Text;

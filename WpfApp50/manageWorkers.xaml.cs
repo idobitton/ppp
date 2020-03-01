@@ -46,5 +46,12 @@ namespace WpfApp50
             changeDetails cd = new changeDetails(db1);
             cd.ShowDialog();
         }
+
+        private void delete_pc_btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            deletePostalCode dpc = new deletePostalCode(db1);
+            dpc.ShowDialog();
+        }
     }
 }
