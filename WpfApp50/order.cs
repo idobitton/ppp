@@ -18,9 +18,12 @@ namespace WpfApp50
         public string name { get; set; }
         public string notes { get; set; }
         public int final_price_id { get; set; }
+        public int final_price_s_price_id { get; set; }
         public int c_or_s_id { get; set; }
+        public Nullable<int> products_id { get; set; }
     
         public virtual client_or_supplier client_or_supplier { get; set; }
         public virtual final_price final_price { get; set; }
+        public virtual products products { get; set; }
     }
 }

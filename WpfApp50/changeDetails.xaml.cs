@@ -83,115 +83,120 @@ namespace WpfApp50
                 {
                     deleted = 2;
                     emp.deleted_id = deleted;
+                    emp.is_working_now_id = null;
+                    emp.y_or_n = null;
                     db1.SaveChanges();
                     this.Close();
                 }
-                int slryphour = 0;
-                string gndr = "";
-                if (num_id_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter the id");
-                else if (f_name_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter your first name");
-                else if (l_name_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter your last name");
-                else if (phne_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter the phone");
-                else if (slph_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter the salary per hour");
-                else if (city_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter the city");
-                else if (p_code_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter your postal code");
-                else if (strt_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter the street");
-                else if (house_num_txb.Text == "")
-                    msg_lsb.Items.Add("Failure! Enter the house number");
-                else if (female_rdb.IsChecked == false && male_rdb.IsChecked == false)
-                    msg_lsb.Items.Add("Failure Enter the gender");
-                else if (emp_cmbbx.SelectedItem == null)
-                    msg_lsb.Items.Add("Failure! Select the Type");
                 else
                 {
-                    if (male_rdb.IsChecked == true)
-                        gndr = "male";
-                    else
-                        gndr = "female";
-                    slryphour = Int32.Parse(slph_txb.Text);
-                    //if (yes_lsb.IsSelected == true)
-                    //{
-                    //    deleted = 1;
-                    //}
-                    emp.id_number = num_id_txb.Text;
-                    emp.first_name = f_name_txb.Text;
-                    emp.last_name = l_name_txb.Text;
-                    emp.phone = phne_txb.Text;
-                    emp.gender = gndr;
-                    postal_code postal_Code =new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text };
-                    if (Checking_postal_code(postal_Code))
-                    {
-                        List<postal_code> pc = new List<postal_code>();
-                        pc = db1.postal_code.ToList();
-                        foreach (postal_code p in pc)
-                        {
-                            if (p.postal_c == postal_Code.postal_c)
-                            {
-                                emp.postal_code_id = p.postal_c;
-                                emp.postal_code = p;
-                            }
-                        }
-                    }
+                    int slryphour = 0;
+                    string gndr = "";
+                    if (num_id_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter the id");
+                    else if (f_name_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter your first name");
+                    else if (l_name_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter your last name");
+                    else if (phne_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter the phone");
+                    else if (slph_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter the salary per hour");
+                    else if (city_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter the city");
+                    else if (p_code_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter your postal code");
+                    else if (strt_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter the street");
+                    else if (house_num_txb.Text == "")
+                        msg_lsb.Items.Add("Failure! Enter the house number");
+                    else if (female_rdb.IsChecked == false && male_rdb.IsChecked == false)
+                        msg_lsb.Items.Add("Failure Enter the gender");
+                    else if (emp_cmbbx.SelectedItem == null)
+                        msg_lsb.Items.Add("Failure! Select the Type");
                     else
                     {
-                        db1.postal_code.Add(postal_Code);
-                        emp.postal_code = postal_Code;
-                        emp.postal_code_id = Int32.Parse(p_code_txb.Text);
-                    }
-                    if (slryphour != emp.employee_type.salaryperhour)
-                    {
-                        employee_type emp_t = new employee_type { type = emp_cmbbx.Text, salaryperhour = slryphour };
-
-                        if (Checking_emp_t(emp_t))
+                        if (male_rdb.IsChecked == true)
+                            gndr = "male";
+                        else
+                            gndr = "female";
+                        slryphour = Int32.Parse(slph_txb.Text);
+                        //if (yes_lsb.IsSelected == true)
+                        //{
+                        //    deleted = 1;
+                        //}
+                        emp.id_number = num_id_txb.Text;
+                        emp.first_name = f_name_txb.Text;
+                        emp.last_name = l_name_txb.Text;
+                        emp.phone = phne_txb.Text;
+                        emp.gender = gndr;
+                        postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text };
+                        if (Checking_postal_code(postal_Code))
                         {
-                            List<employee_type> l_ept = new List<employee_type>();
-                            l_ept = db1.employee_type.ToList();
-                            foreach (employee_type ept in l_ept)
+                            List<postal_code> pc = new List<postal_code>();
+                            pc = db1.postal_code.ToList();
+                            foreach (postal_code p in pc)
                             {
-                                if (ept.salaryperhour == emp_t.salaryperhour && ept.type == emp_t.type)
+                                if (p.postal_c == postal_Code.postal_c)
                                 {
-                                    emp.employee_type_id = ept.Id;
-                                    emp.employee_type = ept;
+                                    emp.postal_code_id = p.postal_c;
+                                    emp.postal_code = p;
                                 }
                             }
                         }
                         else
                         {
-                            db1.employee_type.Add(emp_t);
-                            db1.SaveChanges();
-                            emp.employee_type_id = emp_t.Id;
-                            emp.employee_type = emp_t;
-                            db1.SaveChanges();
+                            db1.postal_code.Add(postal_Code);
+                            emp.postal_code = postal_Code;
+                            emp.postal_code_id = Int32.Parse(p_code_txb.Text);
                         }
-                    }
-                    else
-                    {
-                        emp.employee_type = db1.employee_type.ToArray()[emp_cmbbx.SelectedIndex];
-                        emp.employee_type_id = emp_cmbbx.SelectedIndex + 1;
-                    }
-                    if (emp.postal_code_id != Int32.Parse(p_code_txb.Text))
-                    {
-                        emp.postal_code_id = Int32.Parse(p_code_txb.Text);
-                    }
-                    deleted dlt = db1.deleted.ToArray()[deleted];
-                    emp.deleted = dlt;
-                    emp.deleted_id = deleted + 1;
-                   try
-                    {
-                        this.db1.SaveChanges();
-                        this.Close();
-                    }
-                    catch
-                    {
-                         MessageBox.Show("Failure! the number id of the worker is already existent in the system", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        if (slryphour != emp.employee_type.salaryperhour)
+                        {
+                            employee_type emp_t = new employee_type { type = emp_cmbbx.Text, salaryperhour = slryphour };
+
+                            if (Checking_emp_t(emp_t))
+                            {
+                                List<employee_type> l_ept = new List<employee_type>();
+                                l_ept = db1.employee_type.ToList();
+                                foreach (employee_type ept in l_ept)
+                                {
+                                    if (ept.salaryperhour == emp_t.salaryperhour && ept.type == emp_t.type)
+                                    {
+                                        emp.employee_type_id = ept.Id;
+                                        emp.employee_type = ept;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                db1.employee_type.Add(emp_t);
+                                db1.SaveChanges();
+                                emp.employee_type_id = emp_t.Id;
+                                emp.employee_type = emp_t;
+                                db1.SaveChanges();
+                            }
+                        }
+                        else
+                        {
+                            emp.employee_type = db1.employee_type.ToArray()[emp_cmbbx.SelectedIndex];
+                            emp.employee_type_id = emp_cmbbx.SelectedIndex + 1;
+                        }
+                        if (emp.postal_code_id != Int32.Parse(p_code_txb.Text))
+                        {
+                            emp.postal_code_id = Int32.Parse(p_code_txb.Text);
+                        }
+                        deleted dlt = db1.deleted.ToArray()[deleted];
+                        emp.deleted = dlt;
+                        emp.deleted_id = deleted + 1;
+                        try
+                        {
+                            this.db1.SaveChanges();
+                            this.Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Failure! the number id of the worker is already existent in the system", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                 }
             }

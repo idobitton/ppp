@@ -61,12 +61,11 @@
   <EntityType Name="final_price">
     <Key>
       <PropertyRef Name="Id" />
+      <PropertyRef Name="s_price" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="discount" Type="int" />
-    <Property Name="f_price" Type="int" Nullable="false" />
-    <Property Name="products_id" Type="int" />
     <Property Name="s_price" Type="int" Nullable="false" />
+    <Property Name="f_price" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="kind_product">
     <Key>
@@ -92,7 +91,9 @@
     <Property Name="name" Type="nvarchar" MaxLength="50" />
     <Property Name="notes" Type="nvarchar(max)" />
     <Property Name="final_price_id" Type="int" Nullable="false" />
+    <Property Name="final_price_s_price_id" Type="int" Nullable="false" />
     <Property Name="c_or_s_id" Type="int" Nullable="false" />
+    <Property Name="products_id" Type="int" />
   </EntityType>
   <EntityType Name="postal_code">
     <Key>
@@ -219,18 +220,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_final_price_products">
-    <End Role="products" Type="Self.products" Multiplicity="0..1" />
-    <End Role="final_price" Type="Self.final_price" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="products">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="final_price">
-        <PropertyRef Name="products_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_list_product_kind_product">
     <End Role="kind_product" Type="Self.kind_product" Multiplicity="1" />
     <End Role="list_product" Type="Self.list_product" Multiplicity="*" />
@@ -261,9 +250,23 @@
     <ReferentialConstraint>
       <Principal Role="final_price">
         <PropertyRef Name="Id" />
+        <PropertyRef Name="s_price" />
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="final_price_id" />
+        <PropertyRef Name="final_price_s_price_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_products">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="products_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -356,10 +359,6 @@
       <End Role="employee" EntitySet="employee" />
       <End Role="expense" EntitySet="expense" />
     </AssociationSet>
-    <AssociationSet Name="FK_final_price_products" Association="Self.FK_final_price_products">
-      <End Role="products" EntitySet="products" />
-      <End Role="final_price" EntitySet="final_price" />
-    </AssociationSet>
     <AssociationSet Name="FK_list_product_kind_product" Association="Self.FK_list_product_kind_product">
       <End Role="kind_product" EntitySet="kind_product" />
       <End Role="list_product" EntitySet="list_product" />
@@ -370,6 +369,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_order_final_price" Association="Self.FK_order_final_price">
       <End Role="final_price" EntitySet="final_price" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_products" Association="Self.FK_order_products">
+      <End Role="products" EntitySet="products" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
     <AssociationSet Name="FK_shift_date" Association="Self.FK_shift_date">

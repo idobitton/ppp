@@ -74,5 +74,10 @@ namespace WpfApp50
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -21,12 +21,9 @@ namespace WpfApp50
         }
     
         public int Id { get; set; }
-        public Nullable<int> discount { get; set; }
-        public int f_price { get; set; }
-        public Nullable<int> products_id { get; set; }
         public int s_price { get; set; }
+        public int f_price { get; set; }
     
-        public virtual products products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> order { get; set; }
     }

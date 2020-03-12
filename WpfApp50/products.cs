@@ -17,7 +17,7 @@ namespace WpfApp50
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public products()
         {
-            this.final_price = new HashSet<final_price>();
+            this.order = new HashSet<order>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace WpfApp50
         public string details { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<final_price> final_price { get; set; }
+        public virtual ICollection<order> order { get; set; }
     }
 }

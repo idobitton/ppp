@@ -38,7 +38,7 @@ namespace WpfApp50
                 return 1 + CalculatingDigits(num / 10);
             return 1;
         }
-        private int CalculatingDiscount(int price, int quantity)
+        private int CalculatingDiscount(int price, int quantity)//...
         {
             int digits = CalculatingDigits(price);
             int r_num=1;
@@ -76,8 +76,10 @@ namespace WpfApp50
                     f_price = sp - (sp * discount)/100;
                 }
                 payment_name_lbl.Content += f_price.ToString() + "₪";
-                final_price fp = new final_price { s_price = sp, discount = discount, f_price = f_price };
+                dscnt_lbl.Content += discount.ToString() + "%";
+                final_price fp = new final_price { s_price = sp, f_price = f_price };
                 ordr.final_price = db1.final_price.Add(fp);
+                ordr.final_price_s_price_id = sp;
                 db1.order.Add(ordr);
                 db1.SaveChanges();
                 fprice_dtgrid.ItemsSource = db1.final_price.ToList();

@@ -68,10 +68,8 @@
     <EntitySetMapping Name="final_price">
       <EntityTypeMapping TypeName="Database1Model.final_price">
         <MappingFragment StoreEntitySet="final_price">
-          <ScalarProperty Name="s_price" ColumnName="s_price" />
-          <ScalarProperty Name="products_id" ColumnName="products_id" />
           <ScalarProperty Name="f_price" ColumnName="f_price" />
-          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="s_price" ColumnName="s_price" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -97,7 +95,9 @@
     <EntitySetMapping Name="order">
       <EntityTypeMapping TypeName="Database1Model.order">
         <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="products_id" ColumnName="products_id" />
           <ScalarProperty Name="c_or_s_id" ColumnName="c_or_s_id" />
+          <ScalarProperty Name="final_price_s_price_id" ColumnName="final_price_s_price_id" />
           <ScalarProperty Name="final_price_id" ColumnName="final_price_id" />
           <ScalarProperty Name="notes" ColumnName="notes" />
           <ScalarProperty Name="name" ColumnName="name" />

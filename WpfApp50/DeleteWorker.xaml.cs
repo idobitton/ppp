@@ -55,6 +55,8 @@ namespace WpfApp50
                             deleted dlt = db1.deleted.ToArray()[1];
                             employee.deleted = dlt;
                             employee.deleted_id = 2;
+                            employee.is_working_now_id = null;
+                            employee.y_or_n = null;
                             db1.SaveChanges();
                             this.Close();
                         }

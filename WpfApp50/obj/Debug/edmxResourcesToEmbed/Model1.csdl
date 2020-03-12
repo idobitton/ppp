@@ -53,10 +53,6 @@
       <End Role="employee" EntitySet="employee" />
       <End Role="shift" EntitySet="shift" />
     </AssociationSet>
-    <AssociationSet Name="FK_final_price_products" Association="Database1Model.FK_final_price_products">
-      <End Role="products" EntitySet="products" />
-      <End Role="final_price" EntitySet="final_price" />
-    </AssociationSet>
     <AssociationSet Name="FK_order_final_price" Association="Database1Model.FK_order_final_price">
       <End Role="final_price" EntitySet="final_price" />
       <End Role="order" EntitySet="order" />
@@ -64,6 +60,10 @@
     <AssociationSet Name="FK_list_product_kind_product" Association="Database1Model.FK_list_product_kind_product">
       <End Role="kind_product" EntitySet="kind_product" />
       <End Role="list_product" EntitySet="list_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_products" Association="Database1Model.FK_order_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="order" EntitySet="order" />
     </AssociationSet>
     <AssociationSet Name="FK_shift_shift_day" Association="Database1Model.FK_shift_shift_day">
       <End Role="shift_day" EntitySet="shift_day" />
@@ -148,13 +148,11 @@
   <EntityType Name="final_price">
     <Key>
       <PropertyRef Name="Id" />
+      <PropertyRef Name="s_price" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="discount" Type="Int32" />
-    <Property Name="f_price" Type="Int32" Nullable="false" />
-    <Property Name="products_id" Type="Int32" />
     <Property Name="s_price" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="products" Relationship="Database1Model.FK_final_price_products" FromRole="final_price" ToRole="products" />
+    <Property Name="f_price" Type="Int32" Nullable="false" />
     <NavigationProperty Name="order" Relationship="Database1Model.FK_order_final_price" FromRole="final_price" ToRole="order" />
   </EntityType>
   <EntityType Name="kind_product">
@@ -183,9 +181,12 @@
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="final_price_id" Type="Int32" Nullable="false" />
+    <Property Name="final_price_s_price_id" Type="Int32" Nullable="false" />
     <Property Name="c_or_s_id" Type="Int32" Nullable="false" />
+    <Property Name="products_id" Type="Int32" />
     <NavigationProperty Name="client_or_supplier" Relationship="Database1Model.FK_order_client_or_supplier" FromRole="order" ToRole="client_or_supplier" />
     <NavigationProperty Name="final_price" Relationship="Database1Model.FK_order_final_price" FromRole="order" ToRole="final_price" />
+    <NavigationProperty Name="products" Relationship="Database1Model.FK_order_products" FromRole="order" ToRole="products" />
   </EntityType>
   <EntityType Name="postal_code">
     <Key>
@@ -206,7 +207,7 @@
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="quantity" Type="Int32" Nullable="false" />
     <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="final_price" Relationship="Database1Model.FK_final_price_products" FromRole="products" ToRole="final_price" />
+    <NavigationProperty Name="order" Relationship="Database1Model.FK_order_products" FromRole="products" ToRole="order" />
   </EntityType>
   <EntityType Name="shift">
     <Key>
@@ -357,27 +358,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_final_price_products">
-    <End Type="Database1Model.products" Role="products" Multiplicity="0..1" />
-    <End Type="Database1Model.final_price" Role="final_price" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="products">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="final_price">
-        <PropertyRef Name="products_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_order_final_price">
     <End Type="Database1Model.final_price" Role="final_price" Multiplicity="1" />
     <End Type="Database1Model.order" Role="order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="final_price">
         <PropertyRef Name="Id" />
+        <PropertyRef Name="s_price" />
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="final_price_id" />
+        <PropertyRef Name="final_price_s_price_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -390,6 +381,18 @@
       </Principal>
       <Dependent Role="list_product">
         <PropertyRef Name="kind_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_products">
+    <End Type="Database1Model.products" Role="products" Multiplicity="0..1" />
+    <End Type="Database1Model.order" Role="order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="products_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

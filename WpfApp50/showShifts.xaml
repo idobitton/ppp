@@ -8,9 +8,10 @@
         Title="showShifts" Height="800" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
     <Grid ShowGridLines="True" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="200*"/>
-            <RowDefinition Height="200*"/>
+            <RowDefinition Height="81*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="307*"/>
+            <RowDefinition Height="308*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
@@ -20,24 +21,28 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Morning:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1"/>
-        <Label Content="Evening:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="2"/>
-        <Label Content="Sunday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="1"/>
-        <Label Content="Monday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="2"/>
-        <Label Content="Tuesday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="3"/>
-        <Label Content="Wednesday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="4"/>
-        <Label Content="Thursday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="5"/>
-        <ListBox x:Name="sun_mor_lsb" Grid.Row="1" Grid.Column="1" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="sun_eve_lsb" Grid.Row="2" Grid.Column="1" FontSize="20" FontWeight="ExtraBold" />
-        <ListBox x:Name="mon_mor_lsb" Grid.Row="1" Grid.Column="2" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="mon_eve_lsb" Grid.Row="2" Grid.Column="2" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="tue_mor_lsb" Grid.Row="1" Grid.Column="3" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="tue_eve_lsb" Grid.Row="2" Grid.Column="3" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="wed_mor_lsb" Grid.Row="1" Grid.Column="4" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="wed_eve_lsb" Grid.Row="2" Grid.Column="4" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="thu_mor_lsb" Grid.Row="1" Grid.Column="5" FontSize="20" FontWeight="ExtraBold"/>
-        <ListBox x:Name="thu_eve_lsb" Grid.Row="2" Grid.Column="5" FontSize="20" FontWeight="ExtraBold"/>
+        <Label Content="Year:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Week(of month):" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="5"/>
+        <Button Content="Apply" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="7" Click="Button_Click"/>
+        <Label Content="Morning:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="2"/>
+        <Label Content="Evening:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="3"/>
+        <Label x:Name="sunday_lbl" Content="Sunday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="1"/>
+        <Label x:Name="monday_lbl" Content="Monday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="2"/>
+        <Label x:Name="tuesday_lbl" Content="Tuesday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="3"/>
+        <Label x:Name="wednesday_lbl" Content="Wednesday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="4"/>
+        <Label x:Name="thursday_lbl" Content="Thursday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="5"/>
+        <ListBox x:Name="sun_mor_lsb" Grid.Row="2" Grid.Column="1" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="sun_eve_lsb" Grid.Row="3" Grid.Column="1" FontSize="20" FontWeight="ExtraBold" />
+        <ListBox x:Name="mon_mor_lsb" Grid.Row="2" Grid.Column="2" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="mon_eve_lsb" Grid.Row="3" Grid.Column="2" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="tue_mor_lsb" Grid.Row="2" Grid.Column="3" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="tue_eve_lsb" Grid.Row="3" Grid.Column="3" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="wed_mor_lsb" Grid.Row="2" Grid.Column="4" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="wed_eve_lsb" Grid.Row="3" Grid.Column="4" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="thu_mor_lsb" Grid.Row="2" Grid.Column="5" FontSize="20" FontWeight="ExtraBold"/>
+        <ListBox x:Name="thu_eve_lsb" Grid.Row="3" Grid.Column="5" FontSize="20" FontWeight="ExtraBold"/>
         <!--<DataGrid x:Name="shifts_dtgrid"/>-->
     </Grid>
 </Window>
