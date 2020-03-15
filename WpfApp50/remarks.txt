@@ -1,0 +1,16 @@
+remarks for your db design 
+
+postal_code: do not contains the code given from the Rashut Hdoar.
+
+date: why do you need this table, there is a special field type for this in SQL.
+
+list_products: you already have products table and sins it is a table then it is a list, can contain a lot of rows. so you should delete this table.
+
+order: you forgot to add a foreign key (FK) of employee , the person that actually perform the order.
+
+** you do not address the client issue in case of delivery, fetch phone and address into "notes" might not be good enough. i suggest a client table that contains name, phone address, etc. but the user must enter only name to move next. 
+
+** what about the suppliers, you sell all kind of stuff, you need to buy it first.
+
+
+Yofi keep the good work.

@@ -608,6 +608,26 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams>
+      <Diagram DiagramId="d97f7602abb845a59b3392fc0df9e412" Name="Diagram1">
+        <EntityTypeShape EntityType="Database1Model.date" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.employee" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.employee_type" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.expense" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.final_price" Width="1.5" PointX="10" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.list_product" Width="1.5" PointX="7.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.order" Width="1.5" PointX="12.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.postal_code" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.products" Width="1.5" PointX="7.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.shift" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK_expense_date" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_employee_employee_type" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_employee_postal_code" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_expense_employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_shift_employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_final_price_products" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_order_final_price" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
   </Designer>
 </edmx:Edmx>
