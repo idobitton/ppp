@@ -4,16 +4,16 @@
 exe
 C#
 .cs
-C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\
+C:\work\makif_yud_alef\project\ido_biton\ppp\obj\Debug\
 WpfApp50
 none
 false
 DEBUG;TRACE
-C:\Users\USER\source\repos\WpfApp50\WpfApp50\App.xaml
+C:\work\makif_yud_alef\project\ido_biton\ppp\App.xaml
 21-905159336
 4-244276754
-39-307314482
-18-2097346260
+39749914265
+18-141671532
 addShift.xaml;AddWorker.xaml;allOrder.xaml;allProducts.xaml;cash.xaml;changeDetails.xaml;credit.xaml;DeleteWorker.xaml;editShift.xaml;invoice.xaml;invoiceSupplier.xaml;MainWindow.xaml;manageProducts.xaml;manageShifts.xaml;manageWorkers.xaml;names.xaml;newExpenses.xaml;newOrder.xaml;orderSupplier.xaml;Pizza.xaml;showShifts.xaml;
 
 True
