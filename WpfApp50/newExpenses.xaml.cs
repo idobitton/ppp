@@ -34,8 +34,6 @@ namespace WpfApp50
                 msg_lsb.Items.Add("Failure! Enter the name of the expense");
             else if (price_txb.Text == "")
                 msg_lsb.Items.Add("Failure! Enter the price of the expense");
-            else if (calendar.SelectedDate == null)
-                msg_lsb.Items.Add("Failure! Select the date");
             else if (emp == null)
                 msg_lsb.Items.Add("Failure! Select your identity");
             else if (pay_mth_cmbbx.SelectedItem == null)
@@ -47,16 +45,12 @@ namespace WpfApp50
                 else
                     p_method = "cash";
 
-                date dt = new date { year = calendar.SelectedDate.Value.Year, month = calendar.SelectedDate.Value.Month, day = calendar.SelectedDate.Value.Day};
-                expense expnse = new expense { date = dt, employee= emp, name = name_txb.Text, pay_method = p_method, price = Int32.Parse(price_txb.Text), employee_name = emp.first_name +" "+ emp.last_name};
-                db1.date.Add(dt);
+                DateTime dt = DateTime.Now;
+                expense expnse = new expense { date = dt, employee= emp, name = name_txb.Text, pay_method = p_method, price = Int32.Parse(price_txb.Text)};
                 db1.expense.Add(expnse);
                 db1.SaveChanges();
                 expense_dtgrid.Visibility = Visibility.Visible;
-                date_dtgrid.Visibility = Visibility.Visible;
-                date_dtgrid.ItemsSource = db1.date.ToList();
                 expense_dtgrid.ItemsSource = db1.expense.ToList();
-               ////date_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
                 ////expense_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
                 ////expense_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                 ////expense_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
@@ -65,7 +59,6 @@ namespace WpfApp50
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            date_dtgrid.Visibility = Visibility.Collapsed;
             expense_dtgrid.Visibility = Visibility.Collapsed;
             emp_dtgrid.ItemsSource = db1.employee.ToList();
             List<employee> lst_e;

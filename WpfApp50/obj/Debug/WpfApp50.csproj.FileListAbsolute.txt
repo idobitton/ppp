@@ -66,3 +66,6 @@ C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\entrySystem.baml
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\exitSystem.baml
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\deletePostalCode.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\deletePostalCode.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\WpfApp50.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\client_info.g.cs
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\client_info.baml

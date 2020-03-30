@@ -20,7 +20,7 @@ namespace WpfApp50
     public partial class orderSupplier : Window
     {
         Database1Entities db1 = new Database1Entities();
-        products prod;
+        order_details prod;
         order ordr = new order();
         public orderSupplier(Database1Entities db1)
         {
@@ -67,7 +67,7 @@ namespace WpfApp50
         }
         private void fd_aply_btn_Click(object sender, RoutedEventArgs e)
         {
-            List<products> lstp = db1.products.ToList();
+            List<order_details> lstp = db1.order_details.ToList();
             order_dtgrid.ItemsSource = lstp;
             string nm = food_cmbbx.Text;
             int qn = qnty_cmbbx.SelectedIndex + 1;
@@ -84,10 +84,10 @@ namespace WpfApp50
             if (nm != "")
             {
                 prc += Calculating_price(nm);
-                products p = new products { name = nm, quantity = qn, price = prc };
-                db1.products.Add(p);
+                order_details p = new order_details { name = nm, quantity = qn, price = prc };
+                db1.order_details.Add(p);
                 db1.SaveChanges();
-                order_dtgrid.ItemsSource = db1.products.ToList();
+                order_dtgrid.ItemsSource = db1.order_details.ToList();
                 ////order_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
                 ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
 
@@ -117,7 +117,7 @@ namespace WpfApp50
 
         private void bvg_aply_btn_Click(object sender, RoutedEventArgs e)
         {
-            List<products> lstp = db1.products.ToList();
+            List<order_details> lstp = db1.order_details.ToList();
             order_dtgrid.ItemsSource = lstp;
             string nm = beverage_cmbbx.Text;
             if (nm != "")
@@ -125,10 +125,10 @@ namespace WpfApp50
                 int qn = (qnty_cmbbx.SelectedIndex + 1)*24;
                 int prc = 0;
                 prc += Calculating_price(nm);
-                products p = new products { name = nm, quantity = qn, price = prc };
-                db1.products.Add(p);
+                order_details p = new order_details { name = nm, quantity = qn, price = prc };
+                db1.order_details.Add(p);
                 db1.SaveChanges();
-                order_dtgrid.ItemsSource = db1.products.ToList();
+                order_dtgrid.ItemsSource = db1.order_details.ToList();
                 ////order_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
                 ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
             }
@@ -141,7 +141,8 @@ namespace WpfApp50
         {
             string notes = notes_txb.Text;
             ordr.notes = notes;
-            ordr.name = supplier_name_txb.Text;
+            ordr.company_name = supplier_name_txb.Text;
+            ordr.date = DateTime.Now;
             client_or_supplier client_Or_Supplier = db1.client_or_supplier.ToArray()[1];
             ordr.c_or_s_id = 2;
             ordr.client_or_supplier = client_Or_Supplier;
@@ -153,7 +154,7 @@ namespace WpfApp50
         {
             try
             {
-                prod = (products)order_dtgrid.SelectedItem;
+                prod = (order_details)order_dtgrid.SelectedItem;
 
             }
             catch
@@ -168,9 +169,9 @@ namespace WpfApp50
             {
                 if (prod.name != null)
                 {
-                    db1.products.Remove(prod);
+                    db1.order_details.Remove(prod);
                     db1.SaveChanges();
-                    order_dtgrid.ItemsSource = db1.products.ToList();
+                    order_dtgrid.ItemsSource = db1.order_details.ToList();
                 }
             }
         }

@@ -18,6 +18,7 @@ namespace WpfApp50
         public employee()
         {
             this.expense = new HashSet<expense>();
+            this.order = new HashSet<order>();
             this.shift = new HashSet<shift>();
         }
     
@@ -38,6 +39,8 @@ namespace WpfApp50
         public virtual y_or_n y_or_n { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<expense> expense { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<order> order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<shift> shift { get; set; }
     }

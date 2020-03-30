@@ -97,14 +97,17 @@
     <Compile Include="changeDetails.xaml.cs">
       <DependentUpon>changeDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="client_details.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="client_info.xaml.cs">
+      <DependentUpon>client_info.xaml</DependentUpon>
+    </Compile>
     <Compile Include="client_or_supplier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="credit.xaml.cs">
       <DependentUpon>credit.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="date.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="deleted.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -169,13 +172,13 @@
     <Compile Include="orderSupplier.xaml.cs">
       <DependentUpon>orderSupplier.xaml</DependentUpon>
     </Compile>
+    <Compile Include="order_details.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pizza.xaml.cs">
       <DependentUpon>Pizza.xaml</DependentUpon>
     </Compile>
     <Compile Include="postal_code.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="products.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="shift.cs">
@@ -214,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="changeDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="client_info.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

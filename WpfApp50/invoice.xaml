@@ -18,6 +18,7 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="25*"/>
+            <RowDefinition Height="25*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,13 +35,14 @@
         <Label x:Name="notes_lbl" Content="Notes: " FontSize="15" FontWeight="Bold" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="5"/>
         <Label x:Name="worker_name_lbl" Content="Worker name: " FontSize="15" FontWeight="Bold" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"/>
         <Label x:Name="payment_name_lbl" Content="The payment: " FontSize="15" FontWeight="Bold" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"/>
-        <Label x:Name="gdbye_lbl" Content="Goodbye! Have a nice day!☺☺☺" FontSize="15" FontWeight="Bold" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="6"/>
+        <Label x:Name="gdbye_lbl" Content="Goodbye! Have a nice day!☺☺☺" FontSize="15" FontWeight="Bold" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="6"/>
         <Label x:Name="dscnt_lbl" Content="Discount:" FontSize="15" FontWeight="Bold" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2"/>
+        <Label x:Name="dlvr_lbl" Content="Delivery: 15%" FontSize="15" FontWeight="Bold" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Visibility="Collapsed"/>
         <DataGrid x:Name="fprice_dtgrid1" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5"/>
         <DataGrid x:Name="fprice_dtgrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5"/>
         <DataGrid x:Name="product_dtgrid" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6"/>
-        <Button x:Name="credit_btn" Content="Credit" FontSize="15" FontWeight="Bold" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2" Click="credit_btn_Click" Grid.RowSpan="2"/>
-        <Button x:Name="cash_btn" Content="Cash" FontSize="15" FontWeight="Bold" Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="2" Click="cash_btn_Click" Grid.RowSpan="2"/>
+        <Button x:Name="credit_btn" Content="Credit" FontSize="15" FontWeight="Bold" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2" Click="credit_btn_Click" Grid.RowSpan="3"/>
+        <Button x:Name="cash_btn" Content="Cash" FontSize="15" FontWeight="Bold" Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="2" Click="cash_btn_Click" Grid.RowSpan="3"/>
 
     </Grid>
 </Window>

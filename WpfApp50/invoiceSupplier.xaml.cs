@@ -56,14 +56,14 @@ namespace WpfApp50
             {
                 int sum_qnty = 0;
                 int sp = 0;
-                supplier_name_lbl.Content += ordr.name;
+                supplier_name_lbl.Content += ordr.company_name;
                 notes_lbl.Content += ordr.notes;
-                product_dtgrid.ItemsSource = db1.products.ToList();
+                product_dtgrid.ItemsSource = db1.order_details.ToList();
                 ////product_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
                 ////product_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
                 ////product_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                List<products> lstp = db1.products.ToList();
-                foreach (products p in lstp)
+                List<order_details> lstp = db1.order_details.ToList();
+                foreach (order_details p in lstp)
                 {
                     sp += (p.price * p.quantity);
                     sum_qnty += p.quantity;

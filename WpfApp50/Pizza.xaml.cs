@@ -52,9 +52,9 @@ namespace WpfApp50
                         break;
                     }
                 }
-                products products = new products { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text };
-                db1.products.Add(products);
-                dataGrid.ItemsSource = db1.products.ToList();
+                order_details order_details = new order_details { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text };
+                db1.order_details.Add(order_details);
+                dataGrid.ItemsSource = db1.order_details.ToList();
                 db1.SaveChanges();
                 this.Close();
             }
@@ -77,9 +77,9 @@ namespace WpfApp50
                         break;
                     }
                 }
-                products products = new products { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text};
-                db1.products.Add(products);
-                dataGrid.ItemsSource = db1.products.ToList();
+                order_details order_details = new order_details { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text};
+                db1.order_details.Add(order_details);
+                dataGrid.ItemsSource = db1.order_details.ToList();
                 db1.SaveChanges();
             }
             extra_cmbbx.SelectedIndex = -1;

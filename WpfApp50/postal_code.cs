@@ -17,6 +17,7 @@ namespace WpfApp50
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public postal_code()
         {
+            this.client_details = new HashSet<client_details>();
             this.employee = new HashSet<employee>();
         }
     
@@ -25,6 +26,8 @@ namespace WpfApp50
         public string street { get; set; }
         public string house_number { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<client_details> client_details { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employee> employee { get; set; }
     }

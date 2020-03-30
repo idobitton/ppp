@@ -35,7 +35,7 @@ namespace WpfApp50
             {
                 sh = (shift)shift_dtgrid.SelectedItem;
 
-                calendar.SelectedDate = new DateTime(Int32.Parse(sh.date.year.ToString()),Int32.Parse(sh.date.month.ToString()),Int32.Parse(sh.date.day.ToString()));
+                calendar.SelectedDate = new DateTime(Int32.Parse(sh.date.ToString().Substring(7,4)),Int32.Parse(sh.date.ToString().Substring(3,2)),Int32.Parse(sh.date.ToString().Substring(0,2)));
                 no_lsb.IsSelected = true;
                 id_num_txb.Text = sh.employee.id_number;
                 name_txb.Text = sh.employee.first_name +" "+ sh.employee.last_name;
@@ -56,6 +56,7 @@ namespace WpfApp50
             int day_id;
             string num_id;
             string day_of_week = calendar.SelectedDate.Value.DayOfWeek.ToString();
+            DateTime dt = calendar.SelectedDate.Value;
             day_id = find_id_of_day(day_of_week);
             if (sh != null)
             {
@@ -74,12 +75,20 @@ namespace WpfApp50
                 else
                 {
                     if (mornng_rdb.IsChecked == true)
+                    {
+                        //if (dt.Hour != 8)
+                            //dt.AddHours(-8);
                         time_id = 1;
+
+                    }
                     else
+                    {
+                        //if (dt.Hour != 16)
+                            //dt.AddHours(8);
                         time_id = 2;
+                    }
                     shift_day shd = db1.shift_day.ToArray()[day_id - 1];
                     shift_time sht = db1.shift_time.ToArray()[time_id - 1];
-                    date dt = new date { year = calendar.SelectedDate.Value.Year, month = calendar.SelectedDate.Value.Month, day = calendar.SelectedDate.Value.Day };
                     num_id = id_num_txb.Text;
                     sh.date = dt;
                     sh.shift_day = shd;

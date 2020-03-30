@@ -19,10 +19,8 @@ namespace WpfApp50
         public int price { get; set; }
         public string pay_method { get; set; }
         public Nullable<int> employee_id { get; set; }
-        public Nullable<int> date_id { get; set; }
-        public string employee_name { get; set; }
+        public System.DateTime date { get; set; }
     
-        public virtual date date { get; set; }
         public virtual employee employee { get; set; }
     }
 }

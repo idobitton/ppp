@@ -27,5 +27,6 @@
         <DataGrid x:Name="emp_dtgrid"  Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="3" SelectionChanged="emp_dtgrid_SelectionChanged"/>
         <Button x:Name="cntue" Content="Continue" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Column="4" Grid.Row="4" FontSize="15" FontWeight="Bold" Click="cntue_Click"/>
         <Button x:Name="load_table" Content="Load table" Grid.RowSpan="1" Grid.Column="4" Grid.Row="2" FontSize="15" FontWeight="Bold" Click="load_table_Click" />
+        <RadioButton x:Name="dlvr" Content="delivery" FontSize="15" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="1"/>
     </Grid>
 </Window>

@@ -21,7 +21,7 @@ namespace WpfApp50
     {
         Database1Entities db1 = new Database1Entities();
         employee emp = new employee();
-
+        client_details cd = new client_details();
         public names(DataGrid emp_dtgrid, Database1Entities db1)
         {
             this.emp_dtgrid = emp_dtgrid;
@@ -33,22 +33,30 @@ namespace WpfApp50
 
         private void cntue_Click(object sender, RoutedEventArgs e)
         {
+           
             if (client_name_txb.Text != "" && emp.Id != 0)
             {
-                List<products> lst_p = new List<products>();
-                lst_p = db1.products.ToList();
-                foreach (products p in lst_p)
+                List<order_details> lst_p = new List<order_details>();
+                lst_p = db1.order_details.ToList();
+                foreach (order_details p in lst_p)
                 {
-                    db1.products.Remove(p);
+                    db1.order_details.Remove(p);
                     db1.SaveChanges();
                 }
-                string client_name = client_name_txb.Text;
+                string c_name = client_name_txb.Text;
+                cd.first_name = c_name.Substring(0, c_name.IndexOf(' ') + 1);
+                cd.last_name = c_name.Remove(0, c_name.IndexOf(' ') + 1);
+                if (dlvr.IsChecked == true)
+                {
+                    client_info clinf = new client_info(db1,cd );
+                    clinf.ShowDialog();
+                }
                 client_or_supplier client_Or_Supplier = db1.client_or_supplier.ToArray()[0];
-                order ordr = new order { name = client_name , c_or_s_id = 1, client_or_supplier = client_Or_Supplier};
-                newOrder newOrder = new newOrder(db1, emp, ordr);
+                order ordr = new order {c_or_s_id = 1, client_or_supplier = client_Or_Supplier, employee=emp, client_details=cd};
+                newOrder newOrder = new newOrder(db1, ordr,dlvr.IsChecked==true );
                 this.Close();
                 newOrder.ShowDialog();
-                lst_p = db1.products.ToList();
+                lst_p = db1.order_details.ToList();
             }
         }
         private void load_table_Click(object sender, RoutedEventArgs e)

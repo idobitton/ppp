@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="client_details" EntityType="Database1Model.client_details" />
     <EntitySet Name="client_or_supplier" EntityType="Database1Model.client_or_supplier" />
-    <EntitySet Name="date" EntityType="Database1Model.date" />
     <EntitySet Name="deleted" EntityType="Database1Model.deleted" />
     <EntitySet Name="employee" EntityType="Database1Model.employee" />
     <EntitySet Name="employee_type" EntityType="Database1Model.employee_type" />
@@ -11,23 +11,23 @@
     <EntitySet Name="kind_product" EntityType="Database1Model.kind_product" />
     <EntitySet Name="list_product" EntityType="Database1Model.list_product" />
     <EntitySet Name="order" EntityType="Database1Model.order" />
+    <EntitySet Name="order_details" EntityType="Database1Model.order_details" />
     <EntitySet Name="postal_code" EntityType="Database1Model.postal_code" />
-    <EntitySet Name="products" EntityType="Database1Model.products" />
     <EntitySet Name="shift" EntityType="Database1Model.shift" />
     <EntitySet Name="shift_day" EntityType="Database1Model.shift_day" />
     <EntitySet Name="shift_time" EntityType="Database1Model.shift_time" />
     <EntitySet Name="y_or_n" EntityType="Database1Model.y_or_n" />
+    <AssociationSet Name="FK_client_postal_code" Association="Database1Model.FK_client_postal_code">
+      <End Role="postal_code" EntitySet="postal_code" />
+      <End Role="client_details" EntitySet="client_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_client_details" Association="Database1Model.FK_order_client_details">
+      <End Role="client_details" EntitySet="client_details" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
     <AssociationSet Name="FK_order_client_or_supplier" Association="Database1Model.FK_order_client_or_supplier">
       <End Role="client_or_supplier" EntitySet="client_or_supplier" />
       <End Role="order" EntitySet="order" />
-    </AssociationSet>
-    <AssociationSet Name="FK_expense_date" Association="Database1Model.FK_expense_date">
-      <End Role="date" EntitySet="date" />
-      <End Role="expense" EntitySet="expense" />
-    </AssociationSet>
-    <AssociationSet Name="FK_shift_date" Association="Database1Model.FK_shift_date">
-      <End Role="date" EntitySet="date" />
-      <End Role="shift" EntitySet="shift" />
     </AssociationSet>
     <AssociationSet Name="FK_employee_deleted" Association="Database1Model.FK_employee_deleted">
       <End Role="deleted" EntitySet="deleted" />
@@ -49,6 +49,10 @@
       <End Role="employee" EntitySet="employee" />
       <End Role="expense" EntitySet="expense" />
     </AssociationSet>
+    <AssociationSet Name="FK_order_employee" Association="Database1Model.FK_order_employee">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
     <AssociationSet Name="FK_shift_employee" Association="Database1Model.FK_shift_employee">
       <End Role="employee" EntitySet="employee" />
       <End Role="shift" EntitySet="shift" />
@@ -61,8 +65,8 @@
       <End Role="kind_product" EntitySet="kind_product" />
       <End Role="list_product" EntitySet="list_product" />
     </AssociationSet>
-    <AssociationSet Name="FK_order_products" Association="Database1Model.FK_order_products">
-      <End Role="products" EntitySet="products" />
+    <AssociationSet Name="FK_order_order_details" Association="Database1Model.FK_order_order_details">
+      <End Role="order_details" EntitySet="order_details" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
     <AssociationSet Name="FK_shift_shift_day" Association="Database1Model.FK_shift_shift_day">
@@ -74,6 +78,18 @@
       <End Role="shift" EntitySet="shift" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="client_details">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="postal_code_id" Type="Int32" />
+    <NavigationProperty Name="postal_code" Relationship="Database1Model.FK_client_postal_code" FromRole="client_details" ToRole="postal_code" />
+    <NavigationProperty Name="order" Relationship="Database1Model.FK_order_client_details" FromRole="client_details" ToRole="order" />
+  </EntityType>
   <EntityType Name="client_or_supplier">
     <Key>
       <PropertyRef Name="Id" />
@@ -81,17 +97,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="identity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="order" Relationship="Database1Model.FK_order_client_or_supplier" FromRole="client_or_supplier" ToRole="order" />
-  </EntityType>
-  <EntityType Name="date">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="year" Type="Int32" />
-    <Property Name="month" Type="Int32" />
-    <Property Name="day" Type="Int32" />
-    <NavigationProperty Name="expense" Relationship="Database1Model.FK_expense_date" FromRole="date" ToRole="expense" />
-    <NavigationProperty Name="shift" Relationship="Database1Model.FK_shift_date" FromRole="date" ToRole="shift" />
   </EntityType>
   <EntityType Name="deleted">
     <Key>
@@ -120,6 +125,7 @@
     <NavigationProperty Name="postal_code" Relationship="Database1Model.FK_employee_postal_code" FromRole="employee" ToRole="postal_code" />
     <NavigationProperty Name="y_or_n" Relationship="Database1Model.FK_employee_y_or_n" FromRole="employee" ToRole="y_or_n" />
     <NavigationProperty Name="expense" Relationship="Database1Model.FK_expense_employee" FromRole="employee" ToRole="expense" />
+    <NavigationProperty Name="order" Relationship="Database1Model.FK_order_employee" FromRole="employee" ToRole="order" />
     <NavigationProperty Name="shift" Relationship="Database1Model.FK_shift_employee" FromRole="employee" ToRole="shift" />
   </EntityType>
   <EntityType Name="employee_type">
@@ -136,13 +142,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="price" Type="Int32" Nullable="false" />
-    <Property Name="pay_method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pay_method" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="employee_id" Type="Int32" />
-    <Property Name="date_id" Type="Int32" />
-    <Property Name="employee_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="date" Relationship="Database1Model.FK_expense_date" FromRole="expense" ToRole="date" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="employee" Relationship="Database1Model.FK_expense_employee" FromRole="expense" ToRole="employee" />
   </EntityType>
   <EntityType Name="final_price">
@@ -178,15 +182,31 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="final_price_id" Type="Int32" Nullable="false" />
     <Property Name="final_price_s_price_id" Type="Int32" Nullable="false" />
     <Property Name="c_or_s_id" Type="Int32" Nullable="false" />
-    <Property Name="products_id" Type="Int32" />
+    <Property Name="order_details_id" Type="Int32" />
+    <Property Name="employee_id" Type="Int32" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="client_details_id" Type="Int32" />
+    <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="client_details" Relationship="Database1Model.FK_order_client_details" FromRole="order" ToRole="client_details" />
     <NavigationProperty Name="client_or_supplier" Relationship="Database1Model.FK_order_client_or_supplier" FromRole="order" ToRole="client_or_supplier" />
+    <NavigationProperty Name="employee" Relationship="Database1Model.FK_order_employee" FromRole="order" ToRole="employee" />
     <NavigationProperty Name="final_price" Relationship="Database1Model.FK_order_final_price" FromRole="order" ToRole="final_price" />
-    <NavigationProperty Name="products" Relationship="Database1Model.FK_order_products" FromRole="order" ToRole="products" />
+    <NavigationProperty Name="order_details" Relationship="Database1Model.FK_order_order_details" FromRole="order" ToRole="order_details" />
+  </EntityType>
+  <EntityType Name="order_details">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="order" Relationship="Database1Model.FK_order_order_details" FromRole="order_details" ToRole="order" />
   </EntityType>
   <EntityType Name="postal_code">
     <Key>
@@ -196,18 +216,8 @@
     <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="street" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="house_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="client_details" Relationship="Database1Model.FK_client_postal_code" FromRole="postal_code" ToRole="client_details" />
     <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_postal_code" FromRole="postal_code" ToRole="employee" />
-  </EntityType>
-  <EntityType Name="products">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="price" Type="Int32" Nullable="false" />
-    <Property Name="quantity" Type="Int32" Nullable="false" />
-    <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="order" Relationship="Database1Model.FK_order_products" FromRole="products" ToRole="order" />
   </EntityType>
   <EntityType Name="shift">
     <Key>
@@ -216,10 +226,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="shift_time_id" Type="Int32" Nullable="false" />
     <Property Name="shift_day_id" Type="Int32" Nullable="false" />
-    <Property Name="date_id" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="employee_id" Type="Int32" Nullable="false" />
     <Property Name="hours_of_working" Type="Int32" />
-    <NavigationProperty Name="date" Relationship="Database1Model.FK_shift_date" FromRole="shift" ToRole="date" />
     <NavigationProperty Name="employee" Relationship="Database1Model.FK_shift_employee" FromRole="shift" ToRole="employee" />
     <NavigationProperty Name="shift_day" Relationship="Database1Model.FK_shift_shift_day" FromRole="shift" ToRole="shift_day" />
     <NavigationProperty Name="shift_time" Relationship="Database1Model.FK_shift_shift_time" FromRole="shift" ToRole="shift_time" />
@@ -250,6 +259,30 @@
     <Property Name="situation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_y_or_n" FromRole="y_or_n" ToRole="employee" />
   </EntityType>
+  <Association Name="FK_client_postal_code">
+    <End Type="Database1Model.postal_code" Role="postal_code" Multiplicity="0..1" />
+    <End Type="Database1Model.client_details" Role="client_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="postal_code">
+        <PropertyRef Name="postal_c" />
+      </Principal>
+      <Dependent Role="client_details">
+        <PropertyRef Name="postal_code_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_client_details">
+    <End Type="Database1Model.client_details" Role="client_details" Multiplicity="0..1" />
+    <End Type="Database1Model.order" Role="order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client_details">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="client_details_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_order_client_or_supplier">
     <End Type="Database1Model.client_or_supplier" Role="client_or_supplier" Multiplicity="1" />
     <End Type="Database1Model.order" Role="order" Multiplicity="*" />
@@ -259,30 +292,6 @@
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="c_or_s_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_expense_date">
-    <End Type="Database1Model.date" Role="date" Multiplicity="0..1" />
-    <End Type="Database1Model.expense" Role="expense" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="date">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="expense">
-        <PropertyRef Name="date_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_shift_date">
-    <End Type="Database1Model.date" Role="date" Multiplicity="1" />
-    <End Type="Database1Model.shift" Role="shift" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="date">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="shift">
-        <PropertyRef Name="date_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -346,6 +355,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_order_employee">
+    <End Type="Database1Model.employee" Role="employee" Multiplicity="0..1" />
+    <End Type="Database1Model.order" Role="order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_shift_employee">
     <End Type="Database1Model.employee" Role="employee" Multiplicity="1" />
     <End Type="Database1Model.shift" Role="shift" Multiplicity="*" />
@@ -384,15 +405,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_order_products">
-    <End Type="Database1Model.products" Role="products" Multiplicity="0..1" />
+  <Association Name="FK_order_order_details">
+    <End Type="Database1Model.order_details" Role="order_details" Multiplicity="0..1" />
     <End Type="Database1Model.order" Role="order" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="products">
+      <Principal Role="order_details">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="order">
-        <PropertyRef Name="products_id" />
+        <PropertyRef Name="order_details_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

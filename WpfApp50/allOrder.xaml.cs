@@ -29,7 +29,6 @@ namespace WpfApp50
             ordr_dtgrid.ItemsSource = db1.order.ToList();
             price_dtgrid.ItemsSource = db1.final_price.ToList();
             expense_dtgrid.ItemsSource = db1.expense.ToList();
-            date_dtgrid.ItemsSource = db1.date.ToList();
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -44,10 +43,6 @@ namespace WpfApp50
                 ////price_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
                 ////price_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                 ////price_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
-            }
-            if (date_dtgrid.Columns.Count > 0)
-            {
-                ////date_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
             }
             if (expense_dtgrid.Columns.Count > 0)
             {

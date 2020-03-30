@@ -66,11 +66,11 @@ namespace WpfApp50
 
         private void ordr_supplier_btn_Click(object sender, RoutedEventArgs e)
         {
-            List<products> lst_p;
-            lst_p = db1.products.ToList();
-            foreach (products p in lst_p)
+            List<order_details> lst_p;
+            lst_p = db1.order_details.ToList();
+            foreach (order_details p in lst_p)
             {
-                db1.products.Remove(p);
+                db1.order_details.Remove(p);
                 db1.SaveChanges();
             }
             orderSupplier op = new orderSupplier(db1);

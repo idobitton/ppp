@@ -15,15 +15,20 @@ namespace WpfApp50
     public partial class order
     {
         public int Id { get; set; }
-        public string name { get; set; }
         public string notes { get; set; }
         public int final_price_id { get; set; }
         public int final_price_s_price_id { get; set; }
         public int c_or_s_id { get; set; }
-        public Nullable<int> products_id { get; set; }
+        public Nullable<int> order_details_id { get; set; }
+        public Nullable<int> employee_id { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
+        public Nullable<int> client_details_id { get; set; }
+        public string company_name { get; set; }
     
+        public virtual client_details client_details { get; set; }
         public virtual client_or_supplier client_or_supplier { get; set; }
+        public virtual employee employee { get; set; }
         public virtual final_price final_price { get; set; }
-        public virtual products products { get; set; }
+        public virtual order_details order_details { get; set; }
     }
 }

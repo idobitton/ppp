@@ -20,18 +20,18 @@ namespace WpfApp50
     public partial class invoice : Window
     {
         Database1Entities db1 = new Database1Entities();
-        employee emp = new employee();
         order ordr;
         int discount;
         bool flg;
-        public invoice(Database1Entities db1, DataGrid order_dtgrid,employee emp,order ordr, string discount)
+        bool delivery;
+        public invoice(Database1Entities db1, DataGrid order_dtgrid,order ordr, string discount, bool delivery)
         {
             this.product_dtgrid = order_dtgrid;
             this.db1 = db1;
-            this.emp = emp;
             this.discount = Int32.Parse(discount);
             this.ordr = ordr;
             this.flg = true;
+            this.delivery = delivery;
             InitializeComponent();
         }
 
@@ -41,24 +41,29 @@ namespace WpfApp50
             {
                 if (discount > 100)
                     discount = 100;
-                int sp = 0;
-                client_name_lbl.Content += ordr.name;
-                worker_name_lbl.Content += emp.first_name +" " + emp.last_name;
+                double sp = 0;
+                client_name_lbl.Content += ordr.client_details.first_name + " " + ordr.client_details.last_name;
+                worker_name_lbl.Content += ordr.employee.first_name +" " + ordr.employee.last_name;
                 notes_lbl.Content += ordr.notes;
-                product_dtgrid.ItemsSource = db1.products.ToList();
+                product_dtgrid.ItemsSource = db1.order_details.ToList();
                 ////product_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
                 ////product_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                List<products> lstp = db1.products.ToList();
-                foreach (products p in lstp)
+                List<order_details> lstp = db1.order_details.ToList();
+                foreach (order_details p in lstp)
                 {
                     sp += (p.price * p.quantity);
                 }
-                int f_price = sp - (sp * discount) / 100;
+                if (delivery)
+                {
+                    dlvr_lbl.Visibility = Visibility.Visible;
+                    sp *= 1.15;
+                }
+                int f_price = Convert.ToInt32(sp - (sp * discount) / 100);
                 payment_name_lbl.Content += f_price.ToString()+ "₪";
                 dscnt_lbl.Content += discount.ToString() + "%";
-                final_price fp = new final_price { s_price = sp, f_price = f_price };
+                final_price fp = new final_price { s_price = Convert.ToInt32(sp), f_price = f_price };
                 ordr.final_price = db1.final_price.Add(fp);
-                ordr.final_price_s_price_id = sp;
+                ordr.final_price_s_price_id =Convert.ToInt32(sp);
                 db1.order.Add(ordr);
                 db1.SaveChanges();
                 fprice_dtgrid.ItemsSource = db1.final_price.ToList();
