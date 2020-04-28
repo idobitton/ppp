@@ -28,17 +28,17 @@
         <Label  Content="Kind:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="3"/>
         <Label  Content="Name:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="1"/>
         <Label  Content="Price:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="2"/>
-        <TextBox x:Name="name_chnge_product" Grid.Row="1" Grid.Column="3"/>
-        <TextBox x:Name="price_chnge_product" Grid.Row="2" Grid.Column="3"/>
-        <TextBox x:Name="name_add_product" Grid.Row="1" Grid.Column="1"/>
-        <TextBox x:Name="price_add_product" Grid.Row="2" Grid.Column="1"/>
-        <ComboBox x:Name="kind_add_product" Grid.Row="3" Grid.Column="1">
-            <ComboBoxItem Content="Food" FontSize="20" FontWeight="ExtraBold"/>
-            <ComboBoxItem Content="Beverage" FontSize="20" FontWeight="ExtraBold"/>
-            <ComboBoxItem Content="Extra" FontSize="20" FontWeight="ExtraBold"/>
+        <TextBox x:Name="name_chnge_product" Grid.Row="1" Grid.Column="3"  FontSize="20" FontWeight="ExtraBold"/>
+        <TextBox x:Name="price_chnge_product" Grid.Row="2" Grid.Column="3" FontSize="20" FontWeight="ExtraBold" KeyUp="price_chnge_product_KeyUp"/>
+        <TextBox x:Name="name_add_product" Grid.Row="1" Grid.Column="1"    FontSize="20" FontWeight="ExtraBold"/>
+        <TextBox x:Name="price_add_product" Grid.Row="2" Grid.Column="1"   FontSize="20" FontWeight="ExtraBold" KeyUp="price_add_product_KeyUp"/>
+        <ComboBox x:Name="kind_add_product" Grid.Row="3" Grid.Column="1" FontSize="20" FontWeight="ExtraBold">
+            <ComboBoxItem Content="Food"/>
+            <ComboBoxItem Content="Beverage"/>
+            <ComboBoxItem Content="Extra"/>
         </ComboBox>
         <Button x:Name="product_change_btn" Content="Apply" Grid.Column="3" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="product_change_btn_Click"/>
         <Button x:Name="add_product_btn" Content="Apply" Grid.Column="1" Grid.Row="4" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="add_product_btn_Click_1"/>
-        <DataGrid x:Name="product_dtgrid" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" SelectionChanged="product_dtgrid_SelectionChanged"/>
+        <DataGrid x:Name="product_dtgrid" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" SelectionChanged="product_dtgrid_SelectionChanged" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
 </Window>

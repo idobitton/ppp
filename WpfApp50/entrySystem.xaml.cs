@@ -31,7 +31,7 @@ namespace WpfApp50
         {
             if (MessageBox.Show("Do you want to put in " + emp.first_name + " " + emp.last_name + " to the system?", "Enter?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                emp.is_working_now_id = 1;
+                emp.is_working_now = "at shift";
                 db1.SaveChanges();
                 this.Close();
             }
@@ -57,7 +57,7 @@ namespace WpfApp50
             lst_e = db1.employee.ToList();
             foreach (employee emp in lst_e)
             {
-                if (emp.is_working_now_id == 2 && emp.deleted_id ==1)
+                if (emp.is_working_now == "not at shift" && emp.deleted =="exist")
                 {
                     employees.Add(emp);
                 }

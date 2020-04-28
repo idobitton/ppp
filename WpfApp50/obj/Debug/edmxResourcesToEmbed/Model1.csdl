@@ -3,20 +3,18 @@
   <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="client_details" EntityType="Database1Model.client_details" />
     <EntitySet Name="client_or_supplier" EntityType="Database1Model.client_or_supplier" />
-    <EntitySet Name="deleted" EntityType="Database1Model.deleted" />
     <EntitySet Name="employee" EntityType="Database1Model.employee" />
     <EntitySet Name="employee_type" EntityType="Database1Model.employee_type" />
     <EntitySet Name="expense" EntityType="Database1Model.expense" />
     <EntitySet Name="final_price" EntityType="Database1Model.final_price" />
     <EntitySet Name="kind_product" EntityType="Database1Model.kind_product" />
-    <EntitySet Name="list_product" EntityType="Database1Model.list_product" />
     <EntitySet Name="order" EntityType="Database1Model.order" />
     <EntitySet Name="order_details" EntityType="Database1Model.order_details" />
     <EntitySet Name="postal_code" EntityType="Database1Model.postal_code" />
+    <EntitySet Name="products" EntityType="Database1Model.products" />
     <EntitySet Name="shift" EntityType="Database1Model.shift" />
     <EntitySet Name="shift_day" EntityType="Database1Model.shift_day" />
     <EntitySet Name="shift_time" EntityType="Database1Model.shift_time" />
-    <EntitySet Name="y_or_n" EntityType="Database1Model.y_or_n" />
     <AssociationSet Name="FK_client_postal_code" Association="Database1Model.FK_client_postal_code">
       <End Role="postal_code" EntitySet="postal_code" />
       <End Role="client_details" EntitySet="client_details" />
@@ -29,20 +27,12 @@
       <End Role="client_or_supplier" EntitySet="client_or_supplier" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
-    <AssociationSet Name="FK_employee_deleted" Association="Database1Model.FK_employee_deleted">
-      <End Role="deleted" EntitySet="deleted" />
-      <End Role="employee" EntitySet="employee" />
-    </AssociationSet>
     <AssociationSet Name="FK_employee_employee_type" Association="Database1Model.FK_employee_employee_type">
       <End Role="employee_type" EntitySet="employee_type" />
       <End Role="employee" EntitySet="employee" />
     </AssociationSet>
     <AssociationSet Name="FK_employee_postal_code" Association="Database1Model.FK_employee_postal_code">
       <End Role="postal_code" EntitySet="postal_code" />
-      <End Role="employee" EntitySet="employee" />
-    </AssociationSet>
-    <AssociationSet Name="FK_employee_y_or_n" Association="Database1Model.FK_employee_y_or_n">
-      <End Role="y_or_n" EntitySet="y_or_n" />
       <End Role="employee" EntitySet="employee" />
     </AssociationSet>
     <AssociationSet Name="FK_expense_employee" Association="Database1Model.FK_expense_employee">
@@ -61,9 +51,9 @@
       <End Role="final_price" EntitySet="final_price" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
-    <AssociationSet Name="FK_list_product_kind_product" Association="Database1Model.FK_list_product_kind_product">
+    <AssociationSet Name="FK_products_kind_product" Association="Database1Model.FK_products_kind_product">
       <End Role="kind_product" EntitySet="kind_product" />
-      <End Role="list_product" EntitySet="list_product" />
+      <End Role="products" EntitySet="products" />
     </AssociationSet>
     <AssociationSet Name="FK_order_order_details" Association="Database1Model.FK_order_order_details">
       <End Role="order_details" EntitySet="order_details" />
@@ -98,14 +88,6 @@
     <Property Name="identity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="order" Relationship="Database1Model.FK_order_client_or_supplier" FromRole="client_or_supplier" ToRole="order" />
   </EntityType>
-  <EntityType Name="deleted">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="remove" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_deleted" FromRole="deleted" ToRole="employee" />
-  </EntityType>
   <EntityType Name="employee">
     <Key>
       <PropertyRef Name="Id" />
@@ -117,13 +99,11 @@
     <Property Name="phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="employee_type_id" Type="Int32" Nullable="false" />
-    <Property Name="postal_code_id" Type="Int32" />
-    <Property Name="deleted_id" Type="Int32" Nullable="false" />
-    <Property Name="is_working_now_id" Type="Int32" />
-    <NavigationProperty Name="deleted" Relationship="Database1Model.FK_employee_deleted" FromRole="employee" ToRole="deleted" />
+    <Property Name="postal_code_postal_c" Type="Int32" />
+    <Property Name="deleted" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="is_working_now" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="employee_type" Relationship="Database1Model.FK_employee_employee_type" FromRole="employee" ToRole="employee_type" />
     <NavigationProperty Name="postal_code" Relationship="Database1Model.FK_employee_postal_code" FromRole="employee" ToRole="postal_code" />
-    <NavigationProperty Name="y_or_n" Relationship="Database1Model.FK_employee_y_or_n" FromRole="employee" ToRole="y_or_n" />
     <NavigationProperty Name="expense" Relationship="Database1Model.FK_expense_employee" FromRole="employee" ToRole="expense" />
     <NavigationProperty Name="order" Relationship="Database1Model.FK_order_employee" FromRole="employee" ToRole="order" />
     <NavigationProperty Name="shift" Relationship="Database1Model.FK_shift_employee" FromRole="employee" ToRole="shift" />
@@ -134,7 +114,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="salaryperhour" Type="Int32" Nullable="false" />
+    <Property Name="salary_per_hour" Type="Int32" Nullable="false" />
     <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_employee_type" FromRole="employee_type" ToRole="employee" />
   </EntityType>
   <EntityType Name="expense">
@@ -165,17 +145,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="kind" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="list_product" Relationship="Database1Model.FK_list_product_kind_product" FromRole="kind_product" ToRole="list_product" />
-  </EntityType>
-  <EntityType Name="list_product">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="price" Type="Int32" Nullable="false" />
-    <Property Name="kind_product_id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="kind_product" Relationship="Database1Model.FK_list_product_kind_product" FromRole="list_product" ToRole="kind_product" />
+    <NavigationProperty Name="products" Relationship="Database1Model.FK_products_kind_product" FromRole="kind_product" ToRole="products" />
   </EntityType>
   <EntityType Name="order">
     <Key>
@@ -184,7 +154,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="final_price_id" Type="Int32" Nullable="false" />
-    <Property Name="final_price_s_price_id" Type="Int32" Nullable="false" />
+    <Property Name="final_price_s_price" Type="Int32" Nullable="false" />
     <Property Name="c_or_s_id" Type="Int32" Nullable="false" />
     <Property Name="order_details_id" Type="Int32" />
     <Property Name="employee_id" Type="Int32" />
@@ -215,9 +185,19 @@
     <Property Name="postal_c" Type="Int32" Nullable="false" />
     <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="street" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="house_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="house_number" Type="Int32" Nullable="false" />
     <NavigationProperty Name="client_details" Relationship="Database1Model.FK_client_postal_code" FromRole="postal_code" ToRole="client_details" />
     <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_postal_code" FromRole="postal_code" ToRole="employee" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="kind_product_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="kind_product" Relationship="Database1Model.FK_products_kind_product" FromRole="products" ToRole="kind_product" />
   </EntityType>
   <EntityType Name="shift">
     <Key>
@@ -250,14 +230,6 @@
     <Property Name="entry_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="checkout_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="shift" Relationship="Database1Model.FK_shift_shift_time" FromRole="shift_time" ToRole="shift" />
-  </EntityType>
-  <EntityType Name="y_or_n">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="situation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="employee" Relationship="Database1Model.FK_employee_y_or_n" FromRole="y_or_n" ToRole="employee" />
   </EntityType>
   <Association Name="FK_client_postal_code">
     <End Type="Database1Model.postal_code" Role="postal_code" Multiplicity="0..1" />
@@ -295,18 +267,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_employee_deleted">
-    <End Type="Database1Model.deleted" Role="deleted" Multiplicity="1" />
-    <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="deleted">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="employee">
-        <PropertyRef Name="deleted_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_employee_employee_type">
     <End Type="Database1Model.employee_type" Role="employee_type" Multiplicity="1" />
     <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
@@ -327,19 +287,7 @@
         <PropertyRef Name="postal_c" />
       </Principal>
       <Dependent Role="employee">
-        <PropertyRef Name="postal_code_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_employee_y_or_n">
-    <End Type="Database1Model.y_or_n" Role="y_or_n" Multiplicity="0..1" />
-    <End Type="Database1Model.employee" Role="employee" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="y_or_n">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="employee">
-        <PropertyRef Name="is_working_now_id" />
+        <PropertyRef Name="postal_code_postal_c" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -389,18 +337,18 @@
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="final_price_id" />
-        <PropertyRef Name="final_price_s_price_id" />
+        <PropertyRef Name="final_price_s_price" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_list_product_kind_product">
+  <Association Name="FK_products_kind_product">
     <End Type="Database1Model.kind_product" Role="kind_product" Multiplicity="1" />
-    <End Type="Database1Model.list_product" Role="list_product" Multiplicity="*" />
+    <End Type="Database1Model.products" Role="products" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="kind_product">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="list_product">
+      <Dependent Role="products">
         <PropertyRef Name="kind_product_id" />
       </Dependent>
     </ReferentialConstraint>

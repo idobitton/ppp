@@ -29,14 +29,12 @@ namespace WpfApp50
         public string phone { get; set; }
         public string gender { get; set; }
         public int employee_type_id { get; set; }
-        public Nullable<int> postal_code_id { get; set; }
-        public int deleted_id { get; set; }
-        public Nullable<int> is_working_now_id { get; set; }
+        public Nullable<int> postal_code_postal_c { get; set; }
+        public string deleted { get; set; }
+        public string is_working_now { get; set; }
     
-        public virtual deleted deleted { get; set; }
         public virtual employee_type employee_type { get; set; }
         public virtual postal_code postal_code { get; set; }
-        public virtual y_or_n y_or_n { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<expense> expense { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

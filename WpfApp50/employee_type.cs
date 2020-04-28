@@ -22,7 +22,7 @@ namespace WpfApp50
     
         public int Id { get; set; }
         public string type { get; set; }
-        public int salaryperhour { get; set; }
+        public int salary_per_hour { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<employee> employee { get; set; }

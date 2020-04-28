@@ -31,37 +31,37 @@ namespace WpfApp50
             expense_dtgrid.ItemsSource = db1.expense.ToList();
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ordr_dtgrid.Columns.Count > 0)
-            {
-                ////ordr_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
-                ////ordr_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            }
-            if (price_dtgrid.Columns.Count > 0)
-            {
-                ////price_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
-                ////price_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                ////price_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
-            }
-            if (expense_dtgrid.Columns.Count > 0)
-            {
-                ////expense_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-                ////expense_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                ////expense_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
-                ////expense_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
-            }
+            //if (ordr_dtgrid.Columns.Count > 0)
+            //{
+            //    ordr_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            //    ordr_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            //}
+            //if (price_dtgrid.Columns.Count > 0)
+            //{
+            //    price_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            //    price_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            //    price_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            //}
+            //if (expense_dtgrid.Columns.Count > 0)
+            //{
+            //    expense_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            //    expense_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            //    expense_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            //    expense_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
+            //}
             List<order> lst_o = new List<order>();
             lst_o = db1.order.ToList();
             List<final_price> lst_fp = new List<final_price>();
             lst_fp = db1.final_price.ToList();
             foreach (order o in lst_o)
             {
-                if(o.c_or_s_id == 2)
+                if (o.c_or_s_id == 2)
                 {
-                    foreach(final_price fp in lst_fp)
+                    foreach (final_price fp in lst_fp)
                     {
-                        if(o.Id == fp.Id)
+                        if (o.Id == fp.Id)
                         {
                             sum -= fp.f_price;
                         }

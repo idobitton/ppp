@@ -17,13 +17,13 @@ namespace WpfApp50
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public kind_product()
         {
-            this.list_product = new HashSet<list_product>();
+            this.products = new HashSet<products>();
         }
     
         public int Id { get; set; }
         public string kind { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<list_product> list_product { get; set; }
+        public virtual ICollection<products> products { get; set; }
     }
 }

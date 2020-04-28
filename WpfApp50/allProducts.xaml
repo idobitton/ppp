@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp50"
         mc:Ignorable="d"
-        Title="allProducts" Height="800" Width="800" WindowStartupLocation="CenterScreen" Activated="Window_Activated" WindowState="Maximized" >
+        Title="allProducts" Height="800" Width="800" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" WindowState="Maximized" >
     <Grid>
-        <DataGrid x:Name="prod_dtgrid"/>
+        <DataGrid x:Name="prod_dtgrid" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
 </Window>

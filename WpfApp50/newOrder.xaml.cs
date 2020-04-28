@@ -35,40 +35,58 @@ namespace WpfApp50
             List<order_details> lstp = db1.order_details.ToList();
             order_dtgrid.ItemsSource = lstp;
             string nm = food_cmbbx.Text;
-            int qn = qnty_cmbbx.SelectedIndex + 1;
             int prc = 0;
-            if (nm != "")
+            if (nm != ""&& qnty_txb.Text !="")
             {
+                qnty_lbl.Foreground = Brushes.Black;
+                food_lbl.Foreground = Brushes.Black;
+                int qn = Convert.ToInt32(qnty_txb.Text);
+
                 if (nm.Contains("Pizza"))
                 {
                     if (dgh_type_cmbbx.Text != "")
                     {
-                    List<list_product> lst_p = db1.list_product.ToList();
-                    foreach (list_product lp in lst_p)
-                    {
-                        if (lp.name == nm)
+                        List<products> lst_p = db1.products.ToList();
+                        foreach (products prod in lst_p)
                         {
-                            prc = lp.price;
-                            break;
+                            if (prod.name == nm)
+                            {
+                                prc = prod.price;
+                                break;
+                            }
                         }
+                        order_details order_details = new order_details { name = nm, price = prc, quantity = qn, details = dgh_type_cmbbx.Text + ", " + notes_txb.Text };
+                        db1.order_details.Add(order_details);
+                        db1.SaveChanges();
+                        Pizza pz = new Pizza(qn, db1, order_dtgrid);
+                        pz.ShowDialog();
+                        order_dtgrid.ItemsSource = db1.order_details.ToList();
+                        ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                        //איפוס
+                        dgh_type_cmbbx.Visibility = Visibility.Collapsed;
+                        dgh_type_cmbbx.SelectedIndex = -1;
+                        dgh_type_lbl.Visibility = Visibility.Collapsed;
+                        food_cmbbx.SelectedIndex = -1;
+                        qnty_txb.Clear();
+                        notes_txb.Text = "";
+                        dgh_type_lbl.Foreground = Brushes.Black;
+                        qnty_lbl.Visibility = Visibility.Collapsed;
+                        qnty_txb.Visibility = Visibility.Collapsed;
                     }
-                    order_details order_details = new order_details { name = nm, price = prc, quantity = qn, details = dgh_type_cmbbx.Text + ", " + notes_txb.Text };
-                    db1.order_details.Add(order_details);
-                    db1.SaveChanges();
-                    Pizza pz = new Pizza(qn, db1, order_dtgrid);
-                    pz.ShowDialog();
-                    order_dtgrid.ItemsSource = db1.order_details.ToList();
-                           ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                    else
+                    {
+                        dgh_type_lbl.Foreground = Brushes.Red;
+                        
                     }
                 }
                 else
                 {
-                    List<list_product> lst_p = db1.list_product.ToList();
-                    foreach (list_product lp in lst_p) 
+                    List<products> lst_p = db1.products.ToList();
+                    foreach (products prod in lst_p) 
                     {
-                        if (lp.name == nm)
+                        if (prod.name == nm)
                         {
-                            prc = lp.price;
+                            prc = prod.price;
                             break;
                         }
                     }
@@ -76,20 +94,44 @@ namespace WpfApp50
                     db1.order_details.Add(p);
                     db1.SaveChanges();
                     order_dtgrid.ItemsSource = db1.order_details.ToList();
-                        ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                    ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                    //איפוס
+                    dgh_type_cmbbx.Visibility = Visibility.Collapsed;
+                    dgh_type_cmbbx.SelectedIndex = -1;
+                    dgh_type_lbl.Visibility = Visibility.Collapsed;
+                    food_cmbbx.SelectedIndex = -1;
+                    qnty_txb.Clear();
+                    notes_txb.Text = "";
+                    dgh_type_lbl.Foreground = Brushes.Black;
+                    qnty_lbl.Visibility = Visibility.Collapsed;
+                    qnty_txb.Visibility = Visibility.Collapsed;
                 }
             }
-            dgh_type_cmbbx.Visibility = Visibility.Hidden;
-            dgh_type_cmbbx.SelectedIndex = -1;
-            dgh_type_lbl.Visibility = Visibility.Hidden;
-            food_cmbbx.SelectedIndex = -1;
-            qnty_cmbbx.SelectedIndex = 0;
-            notes_txb.Text = "";
+            else
+            {
+                if (nm != "")
+                {
+                    food_lbl.Foreground = Brushes.Black;
+                    qnty_lbl.Foreground = Brushes.Red;
+                    if (nm.Contains("Pizza"))
+                    {
+                        if (dgh_type_cmbbx.SelectedIndex == -1)
+                            dgh_type_lbl.Foreground = Brushes.Red;
+                        else
+                            dgh_type_lbl.Foreground = Brushes.Black;
+                    }
+                }
+                else
+                    food_lbl.Foreground = Brushes.Red;
+            }
         }
 
         private void food_cmbbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(food_cmbbx.SelectedIndex != -1)
+            qnty_lbl.Visibility = Visibility.Visible;
+            qnty_txb.Visibility = Visibility.Visible;
+            qnty_lbl.Foreground = Brushes.Black;
+            if (food_cmbbx.SelectedIndex != -1)
             {
                 if (food_cmbbx.SelectedItem.ToString().Contains("Pizza"))
                 {
@@ -98,8 +140,8 @@ namespace WpfApp50
                 }
                 else
                 {
-                    dgh_type_cmbbx.Visibility = Visibility.Hidden;
-                    dgh_type_lbl.Visibility = Visibility.Hidden;
+                    dgh_type_cmbbx.Visibility = Visibility.Collapsed;
+                    dgh_type_lbl.Visibility = Visibility.Collapsed;
                 }
             }
         }
@@ -107,16 +149,16 @@ namespace WpfApp50
         private void bvg_aply_btn_Click(object sender, RoutedEventArgs e)
         {
             string nm = beverage_cmbbx.Text;
-            if (nm != "")
+            if (nm != "" && qnty_txb.Text !="")
             {
-                int qn = qnty_cmbbx.SelectedIndex + 1;
+                int qn = Convert.ToInt32(qnty_txb.Text);
                 int prc = 0;
-                List<list_product> lst_p = db1.list_product.ToList();
-                foreach (list_product lp in lst_p)
+                List<products> lst_p = db1.products.ToList();
+                foreach (products prod in lst_p)
                 {
-                    if (lp.name == nm)
+                    if (prod.name == nm)
                     {
-                        prc = lp.price;
+                        prc = prod.price;
                         break;
                     }
                 }
@@ -125,22 +167,47 @@ namespace WpfApp50
                 db1.SaveChanges();
                 order_dtgrid.ItemsSource = db1.order_details.ToList();
                 ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                //איפוס
+                beverage_cmbbx.SelectedIndex = -1;
+                qnty_txb.Clear();
+                notes_txb.Text = "";
+                qnty_lbl.Foreground = Brushes.Black;
+                beverage_lbl.Foreground = Brushes.Black;
+                qnty_lbl.Visibility = Visibility.Collapsed;
+                qnty_txb.Visibility = Visibility.Collapsed;
             }
-            beverage_cmbbx.SelectedIndex = -1;
-            qnty_cmbbx.SelectedIndex = 0;
-            notes_txb.Text = "";
+            else
+            {
+                if (nm != "")
+                    qnty_lbl.Foreground = Brushes.Red;
+                else
+                    beverage_lbl.Foreground = Brushes.Red;
+            }
         }
 
         private void order_aply_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (discount_txb.Text != "")
+            int sp = 0;
+            List<order_details> lstp = db1.order_details.ToList();
+            foreach (order_details p in lstp)
             {
-                string discount = discount_txb.Text;
-                string notes = notes_txb.Text;
-                ordr.notes = notes;
-                ordr.date = DateTime.Now;
-                invoice invc = new invoice(db1, order_dtgrid, ordr, discount,delivery);
-                invc.ShowDialog();
+                sp += (p.price * p.quantity);
+            }
+            if (sp == 0)
+            {
+                MessageBox.Show("you have not choose any product", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                if (discount_txb.Text != "")
+                {
+                    string discount = discount_txb.Text;
+                    string notes = notes_txb.Text;
+                    ordr.notes = notes;
+                    ordr.date = DateTime.Now;
+                    invoice invc = new invoice(db1, order_dtgrid, ordr, discount, delivery);
+                    invc.ShowDialog();
+                }
             }
         }
 
@@ -171,8 +238,8 @@ namespace WpfApp50
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<list_product> lsp = new List<list_product>();
-            lsp = db1.list_product.ToList();
+            List<products> lsp = new List<products>();
+            lsp = db1.products.ToList();
             for (int i = 0; i < lsp.Count; i++)
             {
                 if (lsp[i].kind_product_id == 1)
@@ -187,6 +254,19 @@ namespace WpfApp50
                    beverage_cmbbx.Items.Add(lsp[i].name);
                }
             }
+        }
+        //בדיקה שרק מספרים יכללו בתיבת הכתיבה
+        private void qnty_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(qnty_txb.Text, out a))
+                qnty_txb.Clear();
+        }
+
+        private void beverage_cmbbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            qnty_txb.Visibility = Visibility.Visible;
+            qnty_lbl.Visibility = Visibility.Visible;
         }
     }
 }

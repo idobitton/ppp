@@ -20,20 +20,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="deleted">
-      <EntityTypeMapping TypeName="Database1Model.deleted">
-        <MappingFragment StoreEntitySet="deleted">
-          <ScalarProperty Name="remove" ColumnName="remove" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="employee">
       <EntityTypeMapping TypeName="Database1Model.employee">
         <MappingFragment StoreEntitySet="employee">
-          <ScalarProperty Name="is_working_now_id" ColumnName="is_working_now_id" />
-          <ScalarProperty Name="deleted_id" ColumnName="deleted_id" />
-          <ScalarProperty Name="postal_code_id" ColumnName="postal_code_id" />
+          <ScalarProperty Name="is_working_now" ColumnName="is_working_now" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="postal_code_postal_c" ColumnName="postal_code_postal_c" />
           <ScalarProperty Name="employee_type_id" ColumnName="employee_type_id" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="phone" ColumnName="phone" />
@@ -47,7 +39,7 @@
     <EntitySetMapping Name="employee_type">
       <EntityTypeMapping TypeName="Database1Model.employee_type">
         <MappingFragment StoreEntitySet="employee_type">
-          <ScalarProperty Name="salaryperhour" ColumnName="salaryperhour" />
+          <ScalarProperty Name="salary_per_hour" ColumnName="salary_per_hour" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -82,16 +74,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="list_product">
-      <EntityTypeMapping TypeName="Database1Model.list_product">
-        <MappingFragment StoreEntitySet="list_product">
-          <ScalarProperty Name="kind_product_id" ColumnName="kind_product_id" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="order">
       <EntityTypeMapping TypeName="Database1Model.order">
         <MappingFragment StoreEntitySet="order">
@@ -101,7 +83,7 @@
           <ScalarProperty Name="employee_id" ColumnName="employee_id" />
           <ScalarProperty Name="order_details_id" ColumnName="order_details_id" />
           <ScalarProperty Name="c_or_s_id" ColumnName="c_or_s_id" />
-          <ScalarProperty Name="final_price_s_price_id" ColumnName="final_price_s_price_id" />
+          <ScalarProperty Name="final_price_s_price" ColumnName="final_price_s_price" />
           <ScalarProperty Name="final_price_id" ColumnName="final_price_id" />
           <ScalarProperty Name="notes" ColumnName="notes" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -129,6 +111,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="Database1Model.products">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="kind_product_id" ColumnName="kind_product_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="shift">
       <EntityTypeMapping TypeName="Database1Model.shift">
         <MappingFragment StoreEntitySet="shift">
@@ -152,17 +144,9 @@
     <EntitySetMapping Name="shift_time">
       <EntityTypeMapping TypeName="Database1Model.shift_time">
         <MappingFragment StoreEntitySet="shift_time">
-          <ScalarProperty Name="checkout_time" ColumnName="checkout time" />
-          <ScalarProperty Name="entry_time" ColumnName="entry time" />
+          <ScalarProperty Name="checkout_time" ColumnName="checkout_time" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
           <ScalarProperty Name="time" ColumnName="time" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="y_or_n">
-      <EntityTypeMapping TypeName="Database1Model.y_or_n">
-        <MappingFragment StoreEntitySet="y_or_n">
-          <ScalarProperty Name="situation" ColumnName="situation" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

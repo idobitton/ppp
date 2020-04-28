@@ -59,27 +59,6 @@ namespace WpfApp50
                 lst_p = db1.order_details.ToList();
             }
         }
-        private void load_table_Click(object sender, RoutedEventArgs e)
-        {
-            emp_dtgrid.ItemsSource = db1.employee.ToList();
-            List<employee> lst_e = new List<employee>();
-            List<employee> employees = new List<employee>();
-            lst_e = db1.employee.ToList();
-            foreach (employee emp in lst_e)
-            {
-                if(emp.deleted_id== 1 && emp.is_working_now_id == 1)
-                {
-                    employees.Add(emp);
-                }
-            }
-            emp_dtgrid.ItemsSource = employees;
-            ////emp_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[9].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
-        }
 
         private void emp_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -91,6 +70,22 @@ namespace WpfApp50
             {
                 MessageBox.Show("you selected a non-existent employee","Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            emp_dtgrid.ItemsSource = db1.employee.ToList();
+            List<employee> lst_e = new List<employee>();
+            List<employee> employees = new List<employee>();
+            lst_e = db1.employee.ToList();
+            foreach (employee emp in lst_e)
+            {
+                if (emp.deleted == "exist" && emp.is_working_now == "at shift")
+                {
+                    employees.Add(emp);
+                }
+            }
+            emp_dtgrid.ItemsSource = employees;
         }
     }
 }

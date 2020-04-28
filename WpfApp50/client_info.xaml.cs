@@ -43,7 +43,7 @@ namespace WpfApp50
             else
             {
                 cd.phone = phne_txb.Text;
-                postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text };
+                postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = Convert.ToInt32(house_num_txb.Text) };
                 this.Close();
                 if (Checking_postal_code(postal_Code))
                 {
@@ -77,6 +77,26 @@ namespace WpfApp50
                 return true;
             }
              return false;
+        }
+
+        private void p_code_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(p_code_txb.Text, out a))
+                p_code_txb.Clear();
+        }
+        private void house_num_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(house_num_txb.Text, out a))
+                house_num_txb.Clear();
+        }
+
+        private void phne_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(phne_txb.Text, out a))
+                phne_txb.Clear();
         }
     }
 }

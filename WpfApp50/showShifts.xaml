@@ -23,16 +23,16 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Year:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="1"/>
-        <Label Content="Week(of month):" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="5"/>
-        <Button Content="Apply" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="7" Click="Button_Click"/>
-        <Label Content="Morning:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="2"/>
-        <Label Content="Evening:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="3"/>
-        <Label x:Name="sunday_lbl" Content="Sunday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="1"/>
-        <Label x:Name="monday_lbl" Content="Monday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="2"/>
-        <Label x:Name="tuesday_lbl" Content="Tuesday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="3"/>
-        <Label x:Name="wednesday_lbl" Content="Wednesday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="4"/>
-        <Label x:Name="thursday_lbl" Content="Thursday:" FontSize="25" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="5"/>
+        <Label Content="Year:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Week(of month):" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="5"/>
+        <Button Content="Apply" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="7" Click="Button_Click"/>
+        <Label Content="Morning:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="2"/>
+        <Label Content="Evening:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="3"/>
+        <Label x:Name="sunday_lbl" Content="Sunday:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="1"/>
+        <Label x:Name="monday_lbl" Content="Monday:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="2"/>
+        <Label x:Name="tuesday_lbl" Content="Tuesday:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="3"/>
+        <Label x:Name="wednesday_lbl" Content="Wednesday:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="4"/>
+        <Label x:Name="thursday_lbl" Content="Thursday:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="5"/>
         <ListBox x:Name="sun_mor_lsb" Grid.Row="2" Grid.Column="1" FontSize="20" FontWeight="ExtraBold"/>
         <ListBox x:Name="sun_eve_lsb" Grid.Row="3" Grid.Column="1" FontSize="20" FontWeight="ExtraBold" />
         <ListBox x:Name="mon_mor_lsb" Grid.Row="2" Grid.Column="2" FontSize="20" FontWeight="ExtraBold"/>

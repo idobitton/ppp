@@ -38,7 +38,7 @@ namespace WpfApp50
                 return 1 + CalculatingDigits(num / 10);
             return 1;
         }
-        private int CalculatingDiscount(int price, int quantity)//...
+        private int CalculatingDiscount(int price, int quantity)// חישוב הנחה פרוגרסיבית
         {
             int digits = CalculatingDigits(price);
             int r_num=1;
@@ -50,7 +50,14 @@ namespace WpfApp50
             num_return = price - ((price * (quantity - 1) / r_num)*10);
             return num_return;
         }
-        private void Window_Activated(object sender, EventArgs e)
+
+        private void payment_btn_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (flg)
             {
@@ -69,43 +76,36 @@ namespace WpfApp50
                     sum_qnty += p.quantity;
                 }
                 int f_price = CalculatingDiscount(sp, sum_qnty);
-                discount = 100 -((100 *f_price) /sp) ;
-                if(discount>20)
+                discount = 100 - ((100 * f_price) / sp);
+                if (discount > 20)
                 {
                     discount = 20;
-                    f_price = sp - (sp * discount)/100;
+                    f_price = sp - (sp * discount) / 100;
                 }
                 payment_name_lbl.Content += f_price.ToString() + "₪";
                 dscnt_lbl.Content += discount.ToString() + "%";
                 final_price fp = new final_price { s_price = sp, f_price = f_price };
                 ordr.final_price = db1.final_price.Add(fp);
-                ordr.final_price_s_price_id = sp;
+                ordr.final_price_s_price = sp;
                 db1.order.Add(ordr);
                 db1.SaveChanges();
-                fprice_dtgrid.ItemsSource = db1.final_price.ToList();
+
                 object row = new object();
-                for (int i = 0; i < fprice_dtgrid.Items.Count - 1; i++)
+                for (int i = 0; i < db1.final_price.ToList().Count; i++)
                 {
-                    row = fprice_dtgrid.ItemContainerGenerator.Items[i];
+                    row = db1.final_price.ToArray()[i];
                 }
                 List<object> lstrow = new List<object>
                 {
                     row
                 };
-                fprice_dtgrid1.ItemsSource = lstrow;
+                fprice_dtgrid.ItemsSource = lstrow;
                 ////fprice_dtgrid1.Columns[0].Visibility = Visibility.Collapsed;
                 ////fprice_dtgrid1.Columns[3].Visibility = Visibility.Collapsed;
                 ////fprice_dtgrid1.Columns[5].Visibility = Visibility.Collapsed;
                 ////fprice_dtgrid1.Columns[6].Visibility = Visibility.Collapsed;
-                fprice_dtgrid.Visibility = Visibility.Collapsed;
                 flg = false;
             }
-        }
-
-        private void payment_btn_Click(object sender, RoutedEventArgs e)
-        {
-            
-
         }
     }
 }

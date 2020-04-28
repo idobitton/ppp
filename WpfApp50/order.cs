@@ -17,7 +17,7 @@ namespace WpfApp50
         public int Id { get; set; }
         public string notes { get; set; }
         public int final_price_id { get; set; }
-        public int final_price_s_price_id { get; set; }
+        public int final_price_s_price { get; set; }
         public int c_or_s_id { get; set; }
         public Nullable<int> order_details_id { get; set; }
         public Nullable<int> employee_id { get; set; }

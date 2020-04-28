@@ -17,13 +17,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="identity" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="deleted">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="remove" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
   <EntityType Name="employee">
     <Key>
       <PropertyRef Name="Id" />
@@ -35,9 +28,9 @@
     <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="gender" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="employee_type_id" Type="int" Nullable="false" />
-    <Property Name="postal_code_id" Type="int" />
-    <Property Name="deleted_id" Type="int" Nullable="false" />
-    <Property Name="is_working_now_id" Type="int" />
+    <Property Name="postal_code_postal_c" Type="int" />
+    <Property Name="deleted" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_working_now" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="employee_type">
     <Key>
@@ -45,7 +38,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="salaryperhour" Type="int" Nullable="false" />
+    <Property Name="salary_per_hour" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="expense">
     <Key>
@@ -74,15 +67,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="kind" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="list_product">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" />
-    <Property Name="price" Type="int" Nullable="false" />
-    <Property Name="kind_product_id" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="order">
     <Key>
       <PropertyRef Name="Id" />
@@ -90,7 +74,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="notes" Type="nvarchar(max)" />
     <Property Name="final_price_id" Type="int" Nullable="false" />
-    <Property Name="final_price_s_price_id" Type="int" Nullable="false" />
+    <Property Name="final_price_s_price" Type="int" Nullable="false" />
     <Property Name="c_or_s_id" Type="int" Nullable="false" />
     <Property Name="order_details_id" Type="int" />
     <Property Name="employee_id" Type="int" />
@@ -115,7 +99,16 @@
     <Property Name="postal_c" Type="int" Nullable="false" />
     <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="street" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="house_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="house_number" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="kind_product_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="shift">
     <Key>
@@ -141,15 +134,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="time" Type="nvarchar" MaxLength="50" />
-    <Property Name="entry time" Type="nvarchar" MaxLength="50" />
-    <Property Name="checkout time" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="y_or_n">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="situation" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="entry_time" Type="nvarchar" MaxLength="50" />
+    <Property Name="checkout_time" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_client_postal_code">
     <End Role="postal_code" Type="Self.postal_code" Multiplicity="0..1" />
@@ -160,18 +146,6 @@
       </Principal>
       <Dependent Role="client_details">
         <PropertyRef Name="postal_code_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_employee_deleted">
-    <End Role="deleted" Type="Self.deleted" Multiplicity="1" />
-    <End Role="employee" Type="Self.employee" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="deleted">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="employee">
-        <PropertyRef Name="deleted_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -195,19 +169,7 @@
         <PropertyRef Name="postal_c" />
       </Principal>
       <Dependent Role="employee">
-        <PropertyRef Name="postal_code_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_employee_y_or_n">
-    <End Role="y_or_n" Type="Self.y_or_n" Multiplicity="0..1" />
-    <End Role="employee" Type="Self.employee" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="y_or_n">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="employee">
-        <PropertyRef Name="is_working_now_id" />
+        <PropertyRef Name="postal_code_postal_c" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -220,18 +182,6 @@
       </Principal>
       <Dependent Role="expense">
         <PropertyRef Name="employee_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_list_product_kind_product">
-    <End Role="kind_product" Type="Self.kind_product" Multiplicity="1" />
-    <End Role="list_product" Type="Self.list_product" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="kind_product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="list_product">
-        <PropertyRef Name="kind_product_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -281,7 +231,7 @@
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="final_price_id" />
-        <PropertyRef Name="final_price_s_price_id" />
+        <PropertyRef Name="final_price_s_price" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -294,6 +244,18 @@
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="order_details_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_kind_product">
+    <End Role="kind_product" Type="Self.kind_product" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kind_product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="kind_product_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -336,27 +298,21 @@
   <EntityContainer Name="Database1ModelStoreContainer">
     <EntitySet Name="client_details" EntityType="Self.client_details" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client_or_supplier" EntityType="Self.client_or_supplier" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="deleted" EntityType="Self.deleted" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employee_type" EntityType="Self.employee_type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="expense" EntityType="Self.expense" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="final_price" EntityType="Self.final_price" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="kind_product" EntityType="Self.kind_product" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="list_product" EntityType="Self.list_product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="order_details" EntityType="Self.order_details" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="postal_code" EntityType="Self.postal_code" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift" EntityType="Self.shift" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift_day" EntityType="Self.shift_day" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift_time" EntityType="Self.shift_time" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="y_or_n" EntityType="Self.y_or_n" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_client_postal_code" Association="Self.FK_client_postal_code">
       <End Role="postal_code" EntitySet="postal_code" />
       <End Role="client_details" EntitySet="client_details" />
-    </AssociationSet>
-    <AssociationSet Name="FK_employee_deleted" Association="Self.FK_employee_deleted">
-      <End Role="deleted" EntitySet="deleted" />
-      <End Role="employee" EntitySet="employee" />
     </AssociationSet>
     <AssociationSet Name="FK_employee_employee_type" Association="Self.FK_employee_employee_type">
       <End Role="employee_type" EntitySet="employee_type" />
@@ -366,17 +322,9 @@
       <End Role="postal_code" EntitySet="postal_code" />
       <End Role="employee" EntitySet="employee" />
     </AssociationSet>
-    <AssociationSet Name="FK_employee_y_or_n" Association="Self.FK_employee_y_or_n">
-      <End Role="y_or_n" EntitySet="y_or_n" />
-      <End Role="employee" EntitySet="employee" />
-    </AssociationSet>
     <AssociationSet Name="FK_expense_employee" Association="Self.FK_expense_employee">
       <End Role="employee" EntitySet="employee" />
       <End Role="expense" EntitySet="expense" />
-    </AssociationSet>
-    <AssociationSet Name="FK_list_product_kind_product" Association="Self.FK_list_product_kind_product">
-      <End Role="kind_product" EntitySet="kind_product" />
-      <End Role="list_product" EntitySet="list_product" />
     </AssociationSet>
     <AssociationSet Name="FK_order_client_details" Association="Self.FK_order_client_details">
       <End Role="client_details" EntitySet="client_details" />
@@ -397,6 +345,10 @@
     <AssociationSet Name="FK_order_order_details" Association="Self.FK_order_order_details">
       <End Role="order_details" EntitySet="order_details" />
       <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_kind_product" Association="Self.FK_products_kind_product">
+      <End Role="kind_product" EntitySet="kind_product" />
+      <End Role="products" EntitySet="products" />
     </AssociationSet>
     <AssociationSet Name="FK_shift_employee" Association="Self.FK_shift_employee">
       <End Role="employee" EntitySet="employee" />

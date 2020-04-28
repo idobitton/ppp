@@ -43,8 +43,8 @@ namespace WpfApp50
             {
                 if (name == "Nothing")
                     price = 0;
-                List<list_product> lst_p = db1.list_product.ToList();
-                foreach (list_product lp in lst_p)
+                List<products> lst_p = db1.products.ToList();
+                foreach (products lp in lst_p)
                 {
                     if (lp.name == name)
                     {
@@ -58,6 +58,23 @@ namespace WpfApp50
                 db1.SaveChanges();
                 this.Close();
             }
+            else
+            {
+                if (name == "")
+                {
+                    extra_lbl.Foreground = Brushes.Red;
+                    if (details == "")
+                        location_lbl.Foreground = Brushes.Red;
+                    else
+                        location_lbl.Foreground = Brushes.Black;
+                }
+                else
+                {
+                    extra_lbl.Foreground = Brushes.Black;
+                    if (details == "")
+                        location_lbl.Foreground = Brushes.Red;
+                }
+            }
         }
 
         private void add_extra_Click(object sender, RoutedEventArgs e)
@@ -68,8 +85,8 @@ namespace WpfApp50
             {
                 if (name == "Nothing")
                     price = 0;
-                List<list_product> lst_p = db1.list_product.ToList();
-                foreach (list_product lp in lst_p)
+                List<products> lst_p = db1.products.ToList();
+                foreach (products lp in lst_p)
                 {
                     if (lp.name == name)
                     {
@@ -77,21 +94,40 @@ namespace WpfApp50
                         break;
                     }
                 }
-                order_details order_details = new order_details { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text};
+                order_details order_details = new order_details { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text };
                 db1.order_details.Add(order_details);
                 dataGrid.ItemsSource = db1.order_details.ToList();
                 db1.SaveChanges();
+                MessageBox.Show("The Extra was added", "Added", MessageBoxButton.OK, MessageBoxImage.Information);
+                extra_cmbbx.SelectedIndex = -1;
+                location_cmbbx.SelectedIndex = -1;
+                notes_txb.Text = "";
+                extra_lbl.Foreground = Brushes.Black;
+                location_lbl.Foreground = Brushes.Black;
             }
-            extra_cmbbx.SelectedIndex = -1;
-            location_cmbbx.SelectedIndex = -1;
-            notes_txb.Text = "";
-            MessageBox.Show("The Extra was added", "Added", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                if (name == "")
+                {
+                    extra_lbl.Foreground = Brushes.Red;
+                    if (details == "")
+                        location_lbl.Foreground = Brushes.Red;
+                    else
+                        location_lbl.Foreground = Brushes.Black;
+                }
+                else
+                {
+                    extra_lbl.Foreground = Brushes.Black;
+                    if (details == "")
+                        location_lbl.Foreground = Brushes.Red;
+                }
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<list_product> lsp = new List<list_product>();
-            lsp = db1.list_product.ToList();
+            List<products> lsp = new List<products>();
+            lsp = db1.products.ToList();
                 for (int i = 1; i < lsp.Count; i++)
                 {
                     if (lsp[i].kind_product_id == 3)

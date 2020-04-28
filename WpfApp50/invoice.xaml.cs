@@ -35,7 +35,19 @@ namespace WpfApp50
             InitializeComponent();
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void cash_btn_Click(object sender, RoutedEventArgs e)
+        {
+            cash c = new cash();
+            c.ShowDialog();
+        }
+
+        private void credit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            credit cr = new credit();
+            cr.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (flg)
             {
@@ -43,7 +55,7 @@ namespace WpfApp50
                     discount = 100;
                 double sp = 0;
                 client_name_lbl.Content += ordr.client_details.first_name + " " + ordr.client_details.last_name;
-                worker_name_lbl.Content += ordr.employee.first_name +" " + ordr.employee.last_name;
+                worker_name_lbl.Content += ordr.employee.first_name + " " + ordr.employee.last_name;
                 notes_lbl.Content += ordr.notes;
                 product_dtgrid.ItemsSource = db1.order_details.ToList();
                 ////product_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
@@ -59,42 +71,40 @@ namespace WpfApp50
                     sp *= 1.15;
                 }
                 int f_price = Convert.ToInt32(sp - (sp * discount) / 100);
-                payment_name_lbl.Content += f_price.ToString()+ "₪";
+                payment_name_lbl.Content += f_price.ToString() + "₪";
                 dscnt_lbl.Content += discount.ToString() + "%";
                 final_price fp = new final_price { s_price = Convert.ToInt32(sp), f_price = f_price };
                 ordr.final_price = db1.final_price.Add(fp);
-                ordr.final_price_s_price_id =Convert.ToInt32(sp);
+                ordr.final_price_s_price = Convert.ToInt32(sp);
                 db1.order.Add(ordr);
                 db1.SaveChanges();
-                fprice_dtgrid.ItemsSource = db1.final_price.ToList();
+                //הצגה של השורה האחרונה הכוללת מחיר התחלתי ומחיר סופי בטבלה של final_price
+                // fprice_dtgrid.ItemsSource = db1.final_price.ToList();
+                ////object row = new object();
+                ////for (int i = 0; i < fprice_dtgrid.Items.Count-1; i++)
+                ////{
+                ////    row = fprice_dtgrid.ItemContainerGenerator.Items[i];
+                ////}
+                ////List<object> lstrow = new List<object>();
+                ////lstrow.Add(row);
+                ////fprice_dtgrid1.ItemsSource = lstrow;
                 object row = new object();
-                for (int i = 0; i < fprice_dtgrid.Items.Count-1; i++)
+                for (int i = 0; i < db1.final_price.ToList().Count; i++)
                 {
-                    row = fprice_dtgrid.ItemContainerGenerator.Items[i];
+                    row = db1.final_price.ToArray()[i];
                 }
-                List<object> lstrow = new List<object>();
-                lstrow.Add(row);
-                fprice_dtgrid1.ItemsSource = lstrow;
+                List<object> lstrow = new List<object>
+                {
+                    row
+                };
+                fprice_dtgrid.ItemsSource = lstrow;
                 ////fprice_dtgrid1.Columns[0].Visibility = Visibility.Collapsed;
                 ////fprice_dtgrid1.Columns[3].Visibility = Visibility.Collapsed;
                 ////fprice_dtgrid1.Columns[5].Visibility = Visibility.Collapsed;
                 ////fprice_dtgrid1.Columns[6].Visibility = Visibility.Collapsed;
-                fprice_dtgrid.Visibility = Visibility.Collapsed;
+                //  fprice_dtgrid.Visibility = Visibility.Collapsed;
                 flg = false;
             }
-
-        }
-
-        private void cash_btn_Click(object sender, RoutedEventArgs e)
-        {
-            cash c = new cash();
-            c.ShowDialog();
-        }
-
-        private void credit_btn_Click(object sender, RoutedEventArgs e)
-        {
-            credit cr = new credit();
-            cr.ShowDialog();
         }
     }
 }

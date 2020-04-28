@@ -5,34 +5,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e5fb18db906a483cbeb57b1d1ee101b7" Name="Diagram1" ZoomLevel="82" >
-        <EntityTypeShape EntityType="Database1Model.client_details" Width="1.5" PointX="3" PointY="10.5" />
-        <EntityTypeShape EntityType="Database1Model.client_or_supplier" Width="1.5" PointX="3" PointY="17.125" />
-        <EntityTypeShape EntityType="Database1Model.deleted" Width="1.5" PointX="0.75" PointY="2.375" />
-        <EntityTypeShape EntityType="Database1Model.employee" Width="1.5" PointX="3" PointY="4.5" />
-        <EntityTypeShape EntityType="Database1Model.employee_type" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="Database1Model.expense" Width="1.5" PointX="5.25" PointY="11.875" />
-        <EntityTypeShape EntityType="Database1Model.final_price" Width="1.5" PointX="3" PointY="19.5" />
-        <EntityTypeShape EntityType="Database1Model.kind_product" Width="1.5" PointX="7.75" PointY="1.125" />
-        <EntityTypeShape EntityType="Database1Model.list_product" Width="1.5" PointX="10" PointY="0.875" />
-        <EntityTypeShape EntityType="Database1Model.order" Width="1.5" PointX="5.25" PointY="6.75" />
-        <EntityTypeShape EntityType="Database1Model.order_details" Width="1.5" PointX="3" PointY="23" />
-        <EntityTypeShape EntityType="Database1Model.postal_code" Width="1.5" PointX="0.75" PointY="5.5" />
-        <EntityTypeShape EntityType="Database1Model.shift" Width="1.5" PointX="5.25" PointY="2.25" />
-        <EntityTypeShape EntityType="Database1Model.shift_day" Width="1.5" PointX="3" PointY="1.5" />
-        <EntityTypeShape EntityType="Database1Model.shift_time" Width="1.5" PointX="3" PointY="13.75" />
-        <EntityTypeShape EntityType="Database1Model.y_or_n" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="Database1Model.client_details" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="Database1Model.client_or_supplier" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="Database1Model.employee" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="Database1Model.employee_type" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="Database1Model.expense" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="Database1Model.final_price" Width="1.5" PointX="3" PointY="13.625" />
+        <EntityTypeShape EntityType="Database1Model.kind_product" Width="1.5" PointX="8.75" PointY="1.375" />
+        <EntityTypeShape EntityType="Database1Model.order" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="Database1Model.order_details" Width="1.5" PointX="3" PointY="16.25" />
+        <EntityTypeShape EntityType="Database1Model.postal_code" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="Database1Model.products" Width="1.5" PointX="11" PointY="1.25" />
+        <EntityTypeShape EntityType="Database1Model.shift" Width="1.5" PointX="8.25" PointY="5.5" />
+        <EntityTypeShape EntityType="Database1Model.shift_day" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="Database1Model.shift_time" Width="1.5" PointX="6" PointY="12.125" />
         <AssociationConnector Association="Database1Model.FK_client_postal_code" />
         <AssociationConnector Association="Database1Model.FK_order_client_details" />
         <AssociationConnector Association="Database1Model.FK_order_client_or_supplier" />
-        <AssociationConnector Association="Database1Model.FK_employee_deleted" />
         <AssociationConnector Association="Database1Model.FK_employee_employee_type" />
         <AssociationConnector Association="Database1Model.FK_employee_postal_code" />
-        <AssociationConnector Association="Database1Model.FK_employee_y_or_n" />
         <AssociationConnector Association="Database1Model.FK_expense_employee" />
         <AssociationConnector Association="Database1Model.FK_order_employee" />
         <AssociationConnector Association="Database1Model.FK_shift_employee" />
         <AssociationConnector Association="Database1Model.FK_order_final_price" />
-        <AssociationConnector Association="Database1Model.FK_list_product_kind_product" />
+        <AssociationConnector Association="Database1Model.FK_products_kind_product" />
         <AssociationConnector Association="Database1Model.FK_order_order_details" />
         <AssociationConnector Association="Database1Model.FK_shift_shift_day" />
         <AssociationConnector Association="Database1Model.FK_shift_shift_time" />

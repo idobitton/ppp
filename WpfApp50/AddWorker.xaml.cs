@@ -57,9 +57,13 @@ namespace WpfApp50
                     else
                         gndr = "female";
                     employee_type employee_Type = db1.employee_type.ToArray()[emp_cmbbx.SelectedIndex];
-                postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = house_num_txb.Text };
-                deleted dlt = db1.deleted.ToArray()[0];
-                employee employ = new employee {is_working_now_id =2 ,deleted = dlt, deleted_id = 1, id_number = num_id_txb.Text, first_name = f_name_txb.Text, last_name = l_name_txb.Text, phone = phne_txb.Text, gender = gndr, employee_type_id = emp_cmbbx.SelectedIndex + 1, employee_type = employee_Type };
+                postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = Convert.ToInt32(house_num_txb.Text)};
+                int number_id = 0;
+                if(IsNumId(num_id_txb.Text))
+                        number_id = Convert.ToInt32(num_id_txb.Text);
+                else
+                        MessageBox.Show("Failure! the number id of the worker is not correct check it again", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                employee employ = new employee {is_working_now = "not at shift" , deleted = "exist" , id_number = num_id_txb.Text, first_name = f_name_txb.Text, last_name = l_name_txb.Text, phone = phne_txb.Text, gender = gndr, employee_type_id = emp_cmbbx.SelectedIndex + 1, employee_type = employee_Type };
                 db1.employee.Add(employ);
                 employ.Id = Organize_employee_id();
                 if (Checking_postal_code(postal_Code))
@@ -70,7 +74,7 @@ namespace WpfApp50
                     {
                         if (p.postal_c == postal_Code.postal_c)
                         {
-                            employ.postal_code_id = p.postal_c;
+                            employ.postal_code_postal_c = p.postal_c;
                             employ.postal_code = p;
                         }
                     }
@@ -79,7 +83,7 @@ namespace WpfApp50
                 {
                     db1.postal_code.Add(postal_Code);
                     employ.postal_code = postal_Code;
-                    employ.postal_code_id = Int32.Parse(p_code_txb.Text);
+                    employ.postal_code_postal_c = Int32.Parse(p_code_txb.Text);
                 }
                 this.db1.SaveChanges();
                 this.Close();
@@ -90,6 +94,11 @@ namespace WpfApp50
                 MessageBox.Show("Failure! the number id of the worker is already existent in the system", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 this.Close();
             }
+        }
+
+        private bool IsNumId(string text)
+        {
+            return true;
         }
 
         private bool Checking_postal_code(postal_code postal_Code)
@@ -116,5 +125,33 @@ namespace WpfApp50
             }
             return id;
         }
+        //בדיקה שרק מספרים יכללו בתיבת הכתיבה
+        private void phne_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+                long a;
+                if (!long.TryParse(phne_txb.Text, out a))
+                    phne_txb.Clear();
+        }
+
+        private void p_code_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(p_code_txb.Text, out a))
+                p_code_txb.Clear();
+        }
+        private void house_num_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(house_num_txb.Text, out a))
+                house_num_txb.Clear();
+        }
+
+        private void num_id_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(num_id_txb.Text, out a))
+                num_id_txb.Clear();
+        }
     }
 }
+

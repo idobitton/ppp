@@ -66,7 +66,7 @@ namespace WpfApp50
             lst_e = db1.employee.ToList();
             foreach (employee emp in lst_e)
             {
-                if (emp.deleted_id == 1)
+                if (emp.deleted == "exist" && emp.is_working_now == "at shift")
                 {
                     employees.Add(emp);
                 }
@@ -90,6 +90,13 @@ namespace WpfApp50
             {
                 MessageBox.Show("you selected a non-existent employee", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void price_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+            long a;
+            if (!long.TryParse(price_txb.Text, out a))
+                price_txb.Clear();
         }
     }
 }

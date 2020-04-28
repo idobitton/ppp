@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp50"
         mc:Ignorable="d"
-        Title="allWindow" Height="1000" Width="1000" Activated="Window_Activated" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
+        Title="allWindow" Height="1000" Width="1000" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
@@ -15,9 +15,9 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="ordr_dtgrid"/>
-        <DataGrid x:Name="price_dtgrid" Grid.Column="2"/>
-        <DataGrid x:Name="expense_dtgrid" Grid.Column="4"/>
-        <Label x:Name="ac_bc_lbl" Content="Account balance:" FontSize="20" FontWeight="ExtraBold" HorizontalAlignment="Left" Margin="550,480,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="250" Grid.Column="4"/>
+        <DataGrid x:Name="ordr_dtgrid" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="price_dtgrid" Grid.Column="2" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="expense_dtgrid" Grid.Column="4" FontSize="20" FontWeight="ExtraBold"/>
+        <Label x:Name="ac_bc_lbl" Content="Account balance:" FontSize="20" FontWeight="ExtraBold" HorizontalAlignment="Left" Margin="550,480,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="500" Grid.Column="4"/>
     </Grid>
 </Window>

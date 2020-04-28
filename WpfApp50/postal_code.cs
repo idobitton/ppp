@@ -24,7 +24,7 @@ namespace WpfApp50
         public int postal_c { get; set; }
         public string city { get; set; }
         public string street { get; set; }
-        public string house_number { get; set; }
+        public int house_number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<client_details> client_details { get; set; }

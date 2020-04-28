@@ -95,7 +95,7 @@ namespace WpfApp50
             lst_e = db1.employee.ToList();
             foreach (employee emp in lst_e)
             {
-                if (emp.deleted_id == 1)
+                if (emp.deleted == "exist")
                 {
                     employees.Add(emp);
                 }

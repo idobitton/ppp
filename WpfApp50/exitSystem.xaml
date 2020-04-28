@@ -22,6 +22,6 @@
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Button x:Name="exit_btn" Content="Exit" Grid.Column="3" Grid.Row="4" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="exit_btn_Click"/>
-        <DataGrid x:Name="emp_dtgrid" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="4" SelectionChanged="emp_dtgrid_SelectionChanged"/>
+        <DataGrid x:Name="emp_dtgrid" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="4" SelectionChanged="emp_dtgrid_SelectionChanged" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
 </Window>

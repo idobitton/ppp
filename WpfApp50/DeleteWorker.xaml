@@ -21,9 +21,9 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="id_deleted" Content="Enter the id of the worker you want to delete:" FontSize="20" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
+        <Label x:Name="id_deleted" Content="Enter the id of the worker you want to delete:" FontSize="20" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
         <Button x:Name="dlt_worker" Content="Delete this worker" FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" FontStyle="Italic" Click="dlt_worker_Click"/>
-        <TextBox x:Name="deleted_id_txb" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Red"/>
+        <TextBox x:Name="deleted_id_txb" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Red" FontSize="20" FontWeight="ExtraBold"/>
         <ListBox x:Name="lstb" Grid.Row="4" Grid.ColumnSpan="5" Foreground="red" BorderBrush="Red" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
 </Window>

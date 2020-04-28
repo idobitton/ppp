@@ -39,7 +39,7 @@ namespace WpfApp50
                     if (employee.id_number == deleted_id_txb.Text)
                     {
                         dlt_wrkr = employee;
-                        if(employee.deleted_id==1)
+                        if(employee.deleted =="exist")
                             flg = true;
                     }
                     
@@ -52,11 +52,8 @@ namespace WpfApp50
                     {
                         if (employee.id_number == deleted_id_txb.Text)
                         {
-                            deleted dlt = db1.deleted.ToArray()[1];
-                            employee.deleted = dlt;
-                            employee.deleted_id = 2;
-                            employee.is_working_now_id = null;
-                            employee.y_or_n = null;
+                            employee.deleted = "not exist";
+                            employee.is_working_now ="not at shift";
                             db1.SaveChanges();
                             this.Close();
                         }

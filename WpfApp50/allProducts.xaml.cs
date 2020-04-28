@@ -26,9 +26,9 @@ namespace WpfApp50
             InitializeComponent();
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            prod_dtgrid.ItemsSource = db1.list_product.ToList();
+            prod_dtgrid.ItemsSource = db1.products.ToList();
         }
     }
 }
