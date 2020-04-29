@@ -95,8 +95,7 @@
         <MappingFragment StoreEntitySet="order_details">
           <ScalarProperty Name="details" ColumnName="details" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="products_id" ColumnName="products_id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -114,6 +113,8 @@
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="Database1Model.products">
         <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="pack" ColumnName="pack" />
+          <ScalarProperty Name="c_or_s_id" ColumnName="c_or_s_id" />
           <ScalarProperty Name="kind_product_id" ColumnName="kind_product_id" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="name" ColumnName="name" />

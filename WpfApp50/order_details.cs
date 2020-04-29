@@ -21,12 +21,12 @@ namespace WpfApp50
         }
     
         public int Id { get; set; }
-        public string name { get; set; }
-        public int price { get; set; }
+        public Nullable<int> products_id { get; set; }
         public int quantity { get; set; }
         public string details { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> order { get; set; }
+        public virtual products products { get; set; }
     }
 }

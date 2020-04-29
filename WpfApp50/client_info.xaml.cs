@@ -43,7 +43,7 @@ namespace WpfApp50
             else
             {
                 cd.phone = phne_txb.Text;
-                postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = Convert.ToInt32(house_num_txb.Text) };
+                postal_code postal_Code = new postal_code { postal_c = Convert.ToInt32(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = Convert.ToInt32(house_num_txb.Text) };
                 this.Close();
                 if (Checking_postal_code(postal_Code))
                 {
@@ -62,7 +62,7 @@ namespace WpfApp50
                 {
                     db1.postal_code.Add(postal_Code);
                     cd.postal_code = postal_Code;
-                    cd.postal_code_id = Int32.Parse(p_code_txb.Text);
+                    cd.postal_code_id = Convert.ToInt32(p_code_txb.Text);
                 }
                 this.db1.SaveChanges();
             }

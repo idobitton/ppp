@@ -35,7 +35,7 @@ namespace WpfApp50
             {
                 sh = (shift)shift_dtgrid.SelectedItem;
 
-                calendar.SelectedDate = new DateTime(Int32.Parse(sh.date.ToString().Substring(7,4)),Int32.Parse(sh.date.ToString().Substring(3,2)),Int32.Parse(sh.date.ToString().Substring(0,2)));
+                calendar.SelectedDate = new DateTime(Convert.ToInt32(sh.date.ToString().Substring(7,4)),Convert.ToInt32(sh.date.ToString().Substring(3,2)),Convert.ToInt32(sh.date.ToString().Substring(0,2)));
                 no_lsb.IsSelected = true;
                 id_num_txb.Text = sh.employee.id_number;
                 name_txb.Text = sh.employee.first_name +" "+ sh.employee.last_name;

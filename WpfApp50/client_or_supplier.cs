@@ -18,6 +18,7 @@ namespace WpfApp50
         public client_or_supplier()
         {
             this.order = new HashSet<order>();
+            this.products = new HashSet<products>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace WpfApp50
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order> order { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<products> products { get; set; }
     }
 }

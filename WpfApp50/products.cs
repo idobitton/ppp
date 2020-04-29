@@ -14,11 +14,22 @@ namespace WpfApp50
     
     public partial class products
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public products()
+        {
+            this.order_details = new HashSet<order_details>();
+        }
+    
         public int Id { get; set; }
         public string name { get; set; }
         public int price { get; set; }
         public int kind_product_id { get; set; }
+        public int c_or_s_id { get; set; }
+        public string pack { get; set; }
     
+        public virtual client_or_supplier client_or_supplier { get; set; }
         public virtual kind_product kind_product { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<order_details> order_details { get; set; }
     }
 }

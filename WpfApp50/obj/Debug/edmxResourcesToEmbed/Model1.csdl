@@ -27,6 +27,10 @@
       <End Role="client_or_supplier" EntitySet="client_or_supplier" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
+    <AssociationSet Name="FK_products_client_or_supplier" Association="Database1Model.FK_products_client_or_supplier">
+      <End Role="client_or_supplier" EntitySet="client_or_supplier" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
     <AssociationSet Name="FK_employee_employee_type" Association="Database1Model.FK_employee_employee_type">
       <End Role="employee_type" EntitySet="employee_type" />
       <End Role="employee" EntitySet="employee" />
@@ -59,6 +63,10 @@
       <End Role="order_details" EntitySet="order_details" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
+    <AssociationSet Name="FK_order_details_products" Association="Database1Model.FK_order_details_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="order_details" EntitySet="order_details" />
+    </AssociationSet>
     <AssociationSet Name="FK_shift_shift_day" Association="Database1Model.FK_shift_shift_day">
       <End Role="shift_day" EntitySet="shift_day" />
       <End Role="shift" EntitySet="shift" />
@@ -87,6 +95,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="identity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="order" Relationship="Database1Model.FK_order_client_or_supplier" FromRole="client_or_supplier" ToRole="order" />
+    <NavigationProperty Name="products" Relationship="Database1Model.FK_products_client_or_supplier" FromRole="client_or_supplier" ToRole="products" />
   </EntityType>
   <EntityType Name="employee">
     <Key>
@@ -172,11 +181,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="products_id" Type="Int32" />
     <Property Name="quantity" Type="Int32" Nullable="false" />
     <Property Name="details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="order" Relationship="Database1Model.FK_order_order_details" FromRole="order_details" ToRole="order" />
+    <NavigationProperty Name="products" Relationship="Database1Model.FK_order_details_products" FromRole="order_details" ToRole="products" />
   </EntityType>
   <EntityType Name="postal_code">
     <Key>
@@ -197,7 +206,11 @@
     <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="kind_product_id" Type="Int32" Nullable="false" />
+    <Property Name="c_or_s_id" Type="Int32" Nullable="false" />
+    <Property Name="pack" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="client_or_supplier" Relationship="Database1Model.FK_products_client_or_supplier" FromRole="products" ToRole="client_or_supplier" />
     <NavigationProperty Name="kind_product" Relationship="Database1Model.FK_products_kind_product" FromRole="products" ToRole="kind_product" />
+    <NavigationProperty Name="order_details" Relationship="Database1Model.FK_order_details_products" FromRole="products" ToRole="order_details" />
   </EntityType>
   <EntityType Name="shift">
     <Key>
@@ -263,6 +276,18 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="order">
+        <PropertyRef Name="c_or_s_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_client_or_supplier">
+    <End Type="Database1Model.client_or_supplier" Role="client_or_supplier" Multiplicity="1" />
+    <End Type="Database1Model.products" Role="products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client_or_supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="products">
         <PropertyRef Name="c_or_s_id" />
       </Dependent>
     </ReferentialConstraint>
@@ -362,6 +387,18 @@
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="order_details_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_details_products">
+    <End Type="Database1Model.products" Role="products" Multiplicity="0..1" />
+    <End Type="Database1Model.order_details" Role="order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order_details">
+        <PropertyRef Name="products_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

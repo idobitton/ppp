@@ -118,7 +118,7 @@ namespace WpfApp50
                             gndr = "male";
                         else
                             gndr = "female";
-                        slryphour = Int32.Parse(slph_txb.Text);
+                        slryphour = Convert.ToInt32(slph_txb.Text);
                         //if (yes_lsb.IsSelected == true)
                         //{
                         //    deleted = 1;
@@ -128,7 +128,7 @@ namespace WpfApp50
                         emp.last_name = l_name_txb.Text;
                         emp.phone = phne_txb.Text;
                         emp.gender = gndr;
-                        postal_code postal_Code = new postal_code { postal_c = Int32.Parse(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = Convert.ToInt32(house_num_txb.Text)};
+                        postal_code postal_Code = new postal_code { postal_c = Convert.ToInt32(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = Convert.ToInt32(house_num_txb.Text)};
                         if (Checking_postal_code(postal_Code))
                         {
                             List<postal_code> pc = new List<postal_code>();
@@ -146,7 +146,7 @@ namespace WpfApp50
                         {
                             db1.postal_code.Add(postal_Code);
                             emp.postal_code = postal_Code;
-                            emp.postal_code_postal_c = Int32.Parse(p_code_txb.Text);
+                            emp.postal_code_postal_c = Convert.ToInt32(p_code_txb.Text);
                         }
                         if (slryphour != emp.employee_type.salary_per_hour)
                         {
@@ -179,9 +179,9 @@ namespace WpfApp50
                             emp.employee_type = db1.employee_type.ToArray()[emp_cmbbx.SelectedIndex];
                             emp.employee_type_id = emp_cmbbx.SelectedIndex + 1;
                         }
-                        if (emp.postal_code_postal_c != Int32.Parse(p_code_txb.Text))
+                        if (emp.postal_code_postal_c != Convert.ToInt32(p_code_txb.Text))
                         {
-                            emp.postal_code_postal_c = Int32.Parse(p_code_txb.Text);
+                            emp.postal_code_postal_c = Convert.ToInt32(p_code_txb.Text);
                         }
                         try
                         {

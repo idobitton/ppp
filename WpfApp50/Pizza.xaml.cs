@@ -36,7 +36,7 @@ namespace WpfApp50
 
         private void finish_Click(object sender, RoutedEventArgs e)
         {
-
+            order_details details_order = new order_details();
             name = extra_cmbbx.Text;
             details = location_cmbbx.Text;
             if (name != "" && details != "")
@@ -48,12 +48,13 @@ namespace WpfApp50
                 {
                     if (lp.name == name)
                     {
-                        price = lp.price;
+                        details_order.products_id = lp.Id;
                         break;
                     }
                 }
-                order_details order_details = new order_details { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text };
-                db1.order_details.Add(order_details);
+                details_order.quantity = quantity;
+                details_order.details = details = details + ", " + notes_txb.Text;
+                db1.order_details.Add(details_order);
                 dataGrid.ItemsSource = db1.order_details.ToList();
                 db1.SaveChanges();
                 this.Close();
@@ -79,6 +80,7 @@ namespace WpfApp50
 
         private void add_extra_Click(object sender, RoutedEventArgs e)
         {
+            order_details details_order = new order_details();
             name = extra_cmbbx.Text;
             details = location_cmbbx.Text;
             if (name != "" && details != "")
@@ -90,12 +92,13 @@ namespace WpfApp50
                 {
                     if (lp.name == name)
                     {
-                        price = lp.price;
+                        details_order.products_id = lp.Id;
                         break;
                     }
                 }
-                order_details order_details = new order_details { name = name, price = price, quantity = quantity, details = details + ", " + notes_txb.Text };
-                db1.order_details.Add(order_details);
+                details_order.quantity = quantity;
+                details_order.details = details = details + ", " + notes_txb.Text;
+                db1.order_details.Add(details_order);
                 dataGrid.ItemsSource = db1.order_details.ToList();
                 db1.SaveChanges();
                 MessageBox.Show("The Extra was added", "Added", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -130,7 +133,7 @@ namespace WpfApp50
             lsp = db1.products.ToList();
                 for (int i = 1; i < lsp.Count; i++)
                 {
-                    if (lsp[i].kind_product_id == 3)
+                    if (lsp[i].kind_product_id == 3 && lsp[i].client_or_supplier.identity != "Supplier")
                     {
                         extra_cmbbx.Items.Add(lsp[i].name);
                     }

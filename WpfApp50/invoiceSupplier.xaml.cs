@@ -72,7 +72,7 @@ namespace WpfApp50
                 List<order_details> lstp = db1.order_details.ToList();
                 foreach (order_details p in lstp)
                 {
-                    sp += (p.price * p.quantity);
+                    sp += Convert.ToInt32(p.products.price/1.5 * p.quantity);
                     sum_qnty += p.quantity;
                 }
                 int f_price = CalculatingDiscount(sp, sum_qnty);

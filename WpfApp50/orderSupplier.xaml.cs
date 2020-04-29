@@ -27,89 +27,66 @@ namespace WpfApp50
             this.db1 = db1;
             InitializeComponent();
         }
-        private int Calculating_price(string name)
-        {
-            if (name.Contains("Pasta"))
-                return 30;
-            else if (name.Contains("Quiche"))
-                return 20;
-            else if (name.Contains("rings"))
-                return 10;
-            else if (name.Contains("Personal"))
-                return 15;
-            else if (name.Contains("Family"))
-                return 20;
-            else if (name.Contains("Ziva"))
-                return 15;
-            else if (name.Contains("B_"))
-                return 10;
-            else if (name.Contains("-"))
-                return 7;
-            else if (name.Contains("+"))
-                return 8;
-            else if (name.Contains("S_"))
-                return 5;
-            else if (name.Contains("E_"))
-                return 40;
-            else if (name.Contains("sauce"))
-                return 30;
-            else if (name.Contains("Egg"))
-              return 1;
-            else if (name.Contains("Lemon"))
-               return 5 ;
-            else if (name.Contains("Dough"))
-               return 45;
-            else if (name.Contains("oil"))
-                return 5;
-            else if (name.Contains("paste"))
-                return 20;
-            return 0;
-        }
         private void fd_aply_btn_Click(object sender, RoutedEventArgs e)
         {
             List<order_details> lstp = db1.order_details.ToList();
             order_dtgrid.ItemsSource = lstp;
             string nm = food_cmbbx.Text;
-            int qn=0;
+            string qnty = qnty_txb.Text;
+            int qn =0;
+            order_details details_order = new order_details();
             if (supplier_name_txb.Text != "")
             {
-                if (qnty_txb.Text != "")
+                supplier_name_lbl.Foreground = Brushes.Black;
+                if (nm!= "" && qnty_txb.Text != "")
                 {
+                    qnty_lbl.Foreground = Brushes.Black;
+                    food_lbl.Foreground = Brushes.Black;
+                    List<products> lst_p = db1.products.ToList();
+                    foreach (products prod in lst_p)
+                    {
+                        if (prod.name == nm)
+                        {
+                            details_order.products_id = prod.Id;
+                            details_order.products = prod;
+                            break;
+                        }
+                    }
                     qn = Convert.ToInt32(qnty_txb.Text);
-                    string qnty = (string)qnty_lbl.Content;
-                    if (qnty == "Quantity: (8 Units)")
+                    string quantity = details_order.products.pack.ToString();
+                    if (quantity == "8 units")
                         qn *= 8;
-                    else if (qnty == "Quantity: (crates of 30)")
+                    else if (quantity == "crates of 30")
                         qn *= 30;
-                    else if (qnty == "Quantity: (4 Units)")
+                    else if (quantity == "4 units")
                         qn *= 4;
                     else
                         qn *= 1;
-                    int prc = 0;
-                    if (nm != "")
-                    {
-                        prc += Calculating_price(nm);
-                        order_details p = new order_details { name = nm, quantity = qn, price = prc };
-                        db1.order_details.Add(p);
-                        db1.SaveChanges();
-                        order_dtgrid.ItemsSource = db1.order_details.ToList();
-                        ////order_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-                        ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                        //איפוס
-                        food_cmbbx.SelectedIndex = -1;
-                        qnty_txb.Clear();
-                        qnty_lbl.Content = "Quantity:";
-                        qnty_lbl.Foreground = Brushes.Black;
-                        beverage_lbl.Foreground = Brushes.Black;
-                        supplier_name_lbl.Foreground = Brushes.Black;
-                        qnty_lbl.Visibility = Visibility.Collapsed;
-                        qnty_txb.Visibility = Visibility.Collapsed;
-                    }
+                    int prc = Convert.ToInt32(details_order.products.price / 1.5);//// למצוא דרך ל הכניס את המחיר החדש
+                    details_order.details = notes_txb.Text;
+                    details_order.quantity = qn;
+                    db1.order_details.Add(details_order);
+                    db1.SaveChanges();
+                    order_dtgrid.ItemsSource = db1.order_details.ToList();
+                    ////order_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                    ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                    //איפוס
+                    food_cmbbx.SelectedIndex = -1;
+                    qnty_txb.Clear();
+                    qnty_lbl.Content = "Quantity:";
+                    qnty_lbl.Foreground = Brushes.Black;
+                    supplier_name_lbl.Foreground = Brushes.Black;
+                    qnty_lbl.Visibility = Visibility.Collapsed;
+                    qnty_txb.Visibility = Visibility.Collapsed;
+                    notes_txb.Text = "";
                 }
                 else
                 {
                     if (nm != "")
+                    {
                         qnty_lbl.Foreground = Brushes.Red;
+                        food_lbl.Foreground = Brushes.Black;
+                    }
                     else
                         food_lbl.Foreground = Brushes.Red;
                 }
@@ -117,6 +94,14 @@ namespace WpfApp50
             else
             {
                 supplier_name_lbl.Foreground = Brushes.Red;
+                if (nm == "")
+                    food_lbl.Foreground = Brushes.Red;
+                else
+                    food_lbl.Foreground = Brushes.Black;
+                if (qnty == "")
+                    qnty_lbl.Foreground = Brushes.Red;
+                else
+                    qnty_lbl.Foreground = Brushes.Black;
             }
         }
 
@@ -124,22 +109,49 @@ namespace WpfApp50
         {
             qnty_txb.Visibility = Visibility.Visible;
             qnty_lbl.Visibility = Visibility.Visible;
+            qnty_lbl.Content = "Quantity:";
+            qnty_lbl.Foreground = Brushes.Black;
+
             var fd = food_cmbbx.SelectedItem;
-            if(fd == z || fd == m_q || fd == b_q || fd == p_g_b || fd == f_g_b || fd == o_r)
-                qnty_lbl.Content = "Quantity: (8 Units)";
-            else if(fd== egg)
-                qnty_lbl.Content = "Quantity: (crates of 30)";
-            else if (fd == oil)
-                qnty_lbl.Content = "Quantity: (4 Units)";
-            else
-                qnty_lbl.Content = "Quantity: (Kilograms)";
+            order_details details_order = new order_details();
+            List<products> lst_p = db1.products.ToList();
+            if (fd != null)
+            {
+                foreach (products prod in lst_p)
+                {
+                    if (fd.ToString() == prod.name)
+                    {
+                        details_order.products_id = prod.Id;
+                        details_order.products = prod;
+                        qnty_lbl.Content += " " + details_order.products.pack;
+                        break;
+                    }
+                }
+            }
         }
 
         private void beverage_cmbbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            qnty_lbl.Content = "Quantity: (crates of 24)";
+            qnty_lbl.Content = "Quantity:";
+            qnty_lbl.Foreground = Brushes.Black;
             qnty_txb.Visibility = Visibility.Visible;
             qnty_lbl.Visibility = Visibility.Visible;
+            var bv = beverage_cmbbx.SelectedItem;
+            order_details details_order = new order_details();
+            List<products> lst_p = db1.products.ToList();
+            if (bv != null)
+            {
+                foreach (products prod in lst_p)
+                {
+                    if (bv.ToString() == prod.name)
+                    {
+                        details_order.products_id = prod.Id;
+                        details_order.products = prod;
+                        qnty_lbl.Content += " " + details_order.products.pack;
+                        break;
+                    }
+                }
+            }
         }
 
         private void bvg_aply_btn_Click(object sender, RoutedEventArgs e)
@@ -147,15 +159,30 @@ namespace WpfApp50
             List<order_details> lstp = db1.order_details.ToList();
             order_dtgrid.ItemsSource = lstp;
             string nm = beverage_cmbbx.Text;
+            string qnty = qnty_txb.Text;
+            order_details details_order = new order_details();
             if (supplier_name_txb.Text != "")
             {
+                supplier_name_lbl.Foreground = Brushes.Black;
                 if (nm != "" && qnty_txb.Text != "")
                 {
+                    qnty_lbl.Foreground = Brushes.Black;
+                    beverage_lbl.Foreground = Brushes.Black;
+                    List<products> lst_p = db1.products.ToList();
+                    foreach (products prod in lst_p)
+                    {
+                        if (prod.name == nm)
+                        {
+                            details_order.products_id = prod.Id;
+                            details_order.products = prod;
+                            break;
+                        }
+                    }
                     int qn = (Convert.ToInt32(qnty_txb.Text)) * 24;
-                    int prc = 0;
-                    prc += Calculating_price(nm);
-                    order_details p = new order_details { name = nm, quantity = qn, price = prc };
-                    db1.order_details.Add(p);
+                    int prc = Convert.ToInt32(details_order.products.price / 1.5);
+                    details_order.quantity = qn;
+                    details_order.details = notes_txb.Text;
+                    db1.order_details.Add(details_order);
                     db1.SaveChanges();
                     order_dtgrid.ItemsSource = db1.order_details.ToList();
                     ////order_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
@@ -169,11 +196,15 @@ namespace WpfApp50
                     supplier_name_lbl.Foreground = Brushes.Black;
                     qnty_lbl.Visibility = Visibility.Collapsed;
                     qnty_txb.Visibility = Visibility.Collapsed;
+                    notes_txb.Text = "";
                 }
                 else
                 {
                     if (nm != "")
+                    {
                         qnty_lbl.Foreground = Brushes.Red;
+                        beverage_lbl.Foreground = Brushes.Black;
+                    }
                     else
                         beverage_lbl.Foreground = Brushes.Red;
                 }
@@ -181,6 +212,14 @@ namespace WpfApp50
             else
             {
                 supplier_name_lbl.Foreground = Brushes.Red;
+                if (nm == "")
+                    beverage_lbl.Foreground = Brushes.Red;
+                else
+                    beverage_lbl.Foreground = Brushes.Black;
+                if (qnty == "")
+                    qnty_lbl.Foreground = Brushes.Red;
+                else
+                    qnty_lbl.Foreground = Brushes.Black;
             }
             
         }
@@ -191,7 +230,7 @@ namespace WpfApp50
             List<order_details> lstp = db1.order_details.ToList();
             foreach (order_details p in lstp)
             {
-                sp += (p.price * p.quantity);
+                sp += (p.products.price * p.quantity);
             }
             if (sp == 0)
             {
@@ -228,7 +267,7 @@ namespace WpfApp50
         {
             if (prod != null)
             {
-                if (prod.name != null)
+                if (prod.products.name != null)
                 {
                     db1.order_details.Remove(prod);
                     db1.SaveChanges();
@@ -243,14 +282,14 @@ namespace WpfApp50
             lsp = db1.products.ToList();
             for (int i = 0; i < lsp.Count; i++)
             {
-                if (lsp[i].kind_product_id != 2)
+                if (lsp[i].kind_product_id != 2 && lsp[i].client_or_supplier.identity != "Client")
                 {
                     food_cmbbx.Items.Add(lsp[i].name);
                 }
             }
             for (int i = 0; i < lsp.Count; i++)
             {
-                if (lsp[i].kind_product_id == 2)
+                if (lsp[i].kind_product_id == 2 && lsp[i].client_or_supplier.identity != "Client")
                 {
                     beverage_cmbbx.Items.Add(lsp[i].name);
                 }

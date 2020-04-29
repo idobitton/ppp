@@ -28,7 +28,7 @@ namespace WpfApp50
         {
             this.product_dtgrid = order_dtgrid;
             this.db1 = db1;
-            this.discount = Int32.Parse(discount);
+            this.discount = Convert.ToInt32(discount);
             this.ordr = ordr;
             this.flg = true;
             this.delivery = delivery;
@@ -63,7 +63,7 @@ namespace WpfApp50
                 List<order_details> lstp = db1.order_details.ToList();
                 foreach (order_details p in lstp)
                 {
-                    sp += (p.price * p.quantity);
+                    sp += (p.products.price * p.quantity);
                 }
                 if (delivery)
                 {

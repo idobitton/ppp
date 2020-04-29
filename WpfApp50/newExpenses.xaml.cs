@@ -46,7 +46,7 @@ namespace WpfApp50
                     p_method = "cash";
 
                 DateTime dt = DateTime.Now;
-                expense expnse = new expense { date = dt, employee= emp, name = name_txb.Text, pay_method = p_method, price = Int32.Parse(price_txb.Text)};
+                expense expnse = new expense { date = dt, employee= emp, name = name_txb.Text, pay_method = p_method, price = Convert.ToInt32(price_txb.Text)};
                 db1.expense.Add(expnse);
                 db1.SaveChanges();
                 expense_dtgrid.Visibility = Visibility.Visible;

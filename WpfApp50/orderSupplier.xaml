@@ -56,7 +56,7 @@
         <Label x:Name="food_lbl"  Content="Food:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"/>
         <Label x:Name="beverage_lbl"  Content="Beverages:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="3"/>
         <ComboBox x:Name="food_cmbbx" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" SelectionChanged="food_cmbbx_SelectionChanged">
-            <ComboBoxItem Content="Dough"/>
+            <!--<ComboBoxItem Content="Dough"/>
             <ComboBoxItem Content="tomatoes paste"/>
             <ComboBoxItem x:Name="oil" Content="oilve oil"/>
             <ComboBoxItem Content="E_green olives"/>
@@ -87,10 +87,10 @@
             <ComboBoxItem x:Name="o_r" Content="Onion rings"/>
             <ComboBoxItem x:Name="p_g_b"  Content="Personal garlic bread"/>
             <ComboBoxItem x:Name="f_g_b" Content="Family garlic bread"/>
-            <ComboBoxItem x:Name="z" Content="Ziva"/>
+            <ComboBoxItem x:Name="z" Content="Ziva"/>-->
         </ComboBox>
         <ComboBox x:Name="beverage_cmbbx" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="4" SelectionChanged="beverage_cmbbx_SelectionChanged">
-            <ComboBoxItem Content="Water+"/>
+            <!--<ComboBoxItem Content="Water+"/>
             <ComboBoxItem Content="Water-"/>
             <ComboBoxItem Content="B_Oranges"/>
             <ComboBoxItem Content="B_Grapes"/>
@@ -109,7 +109,7 @@
             <ComboBoxItem Content="Grapes-"/>
             <ComboBoxItem Content="Sprite-"/>
             <ComboBoxItem Content="Zero Sprite-"/>
-            <ComboBoxItem Content="Fuze Tea-"/>
+            <ComboBoxItem Content="Fuze Tea-"/>-->
         </ComboBox>
         <Button x:Name="dlt_btn"  Content="Select the product you want to delete" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="12" Grid.Row="1" Grid.ColumnSpan="4" Click="dlt_btn_Click"/>
         <Button x:Name="fd_aply_btn"  Content="Apply(Food)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="4" Click="fd_aply_btn_Click"/>

@@ -87,8 +87,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" />
-    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="products_id" Type="int" />
     <Property Name="quantity" Type="int" Nullable="false" />
     <Property Name="details" Type="nvarchar(max)" />
   </EntityType>
@@ -109,6 +108,8 @@
     <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
     <Property Name="kind_product_id" Type="int" Nullable="false" />
+    <Property Name="c_or_s_id" Type="int" Nullable="false" />
+    <Property Name="pack" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="shift">
     <Key>
@@ -209,6 +210,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_order_details_products">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order_details">
+        <PropertyRef Name="products_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_order_employee">
     <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
     <End Role="order" Type="Self.order" Multiplicity="*" />
@@ -244,6 +257,18 @@
       </Principal>
       <Dependent Role="order">
         <PropertyRef Name="order_details_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_client_or_supplier">
+    <End Role="client_or_supplier" Type="Self.client_or_supplier" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client_or_supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="c_or_s_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -334,6 +359,10 @@
       <End Role="client_or_supplier" EntitySet="client_or_supplier" />
       <End Role="order" EntitySet="order" />
     </AssociationSet>
+    <AssociationSet Name="FK_order_details_products" Association="Self.FK_order_details_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="order_details" EntitySet="order_details" />
+    </AssociationSet>
     <AssociationSet Name="FK_order_employee" Association="Self.FK_order_employee">
       <End Role="employee" EntitySet="employee" />
       <End Role="order" EntitySet="order" />
@@ -345,6 +374,10 @@
     <AssociationSet Name="FK_order_order_details" Association="Self.FK_order_order_details">
       <End Role="order_details" EntitySet="order_details" />
       <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_client_or_supplier" Association="Self.FK_products_client_or_supplier">
+      <End Role="client_or_supplier" EntitySet="client_or_supplier" />
+      <End Role="products" EntitySet="products" />
     </AssociationSet>
     <AssociationSet Name="FK_products_kind_product" Association="Self.FK_products_kind_product">
       <End Role="kind_product" EntitySet="kind_product" />

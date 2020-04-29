@@ -35,12 +35,12 @@ namespace WpfApp50
             List<order_details> lstp = db1.order_details.ToList();
             order_dtgrid.ItemsSource = lstp;
             string nm = food_cmbbx.Text;
-            int prc = 0;
             if (nm != ""&& qnty_txb.Text !="")
             {
                 qnty_lbl.Foreground = Brushes.Black;
                 food_lbl.Foreground = Brushes.Black;
                 int qn = Convert.ToInt32(qnty_txb.Text);
+                order_details details_order = new order_details();
 
                 if (nm.Contains("Pizza"))
                 {
@@ -51,12 +51,14 @@ namespace WpfApp50
                         {
                             if (prod.name == nm)
                             {
-                                prc = prod.price;
+                                details_order.products_id = prod.Id;
+                                details_order.products = prod;
                                 break;
                             }
                         }
-                        order_details order_details = new order_details { name = nm, price = prc, quantity = qn, details = dgh_type_cmbbx.Text + ", " + notes_txb.Text };
-                        db1.order_details.Add(order_details);
+                        details_order.quantity = qn;
+                        details_order.details= dgh_type_cmbbx.Text + ", " + notes_txb.Text;
+                        db1.order_details.Add(details_order);
                         db1.SaveChanges();
                         Pizza pz = new Pizza(qn, db1, order_dtgrid);
                         pz.ShowDialog();
@@ -86,12 +88,14 @@ namespace WpfApp50
                     {
                         if (prod.name == nm)
                         {
-                            prc = prod.price;
+                            details_order.products_id = prod.Id;
+                            details_order.products = prod;
                             break;
                         }
                     }
-                    order_details p = new order_details { name = nm, quantity = qn, price = prc };
-                    db1.order_details.Add(p);
+                    details_order.quantity = qn;
+                    details_order.details = notes_txb.Text;
+                    db1.order_details.Add(details_order);
                     db1.SaveChanges();
                     order_dtgrid.ItemsSource = db1.order_details.ToList();
                     ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
@@ -152,18 +156,19 @@ namespace WpfApp50
             if (nm != "" && qnty_txb.Text !="")
             {
                 int qn = Convert.ToInt32(qnty_txb.Text);
-                int prc = 0;
                 List<products> lst_p = db1.products.ToList();
+                order_details details_order = new order_details();
                 foreach (products prod in lst_p)
                 {
                     if (prod.name == nm)
                     {
-                        prc = prod.price;
+                        details_order.products_id = prod.Id;
                         break;
                     }
                 }
-                order_details p = new order_details { name = nm, quantity = qn, price = prc, details = notes_txb.Text };
-                db1.order_details.Add(p);
+                details_order.details = notes_txb.Text;
+                details_order.quantity = qn;
+                db1.order_details.Add(details_order);
                 db1.SaveChanges();
                 order_dtgrid.ItemsSource = db1.order_details.ToList();
                 ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
@@ -191,7 +196,7 @@ namespace WpfApp50
             List<order_details> lstp = db1.order_details.ToList();
             foreach (order_details p in lstp)
             {
-                sp += (p.price * p.quantity);
+                sp += (p.products.price * p.quantity);
             }
             if (sp == 0)
             {
@@ -228,12 +233,21 @@ namespace WpfApp50
         {
             if (prod != null)
             {
-                if (prod.name != null)
+                if (prod.products!= null && prod.products.name != null)
                 {
                     db1.order_details.Remove(prod);
                     db1.SaveChanges();
                     order_dtgrid.ItemsSource = db1.order_details.ToList();
                 }
+                else
+                {
+                    MessageBox.Show("you selected a non-existent product", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("you selected a non-existent product", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -242,14 +256,14 @@ namespace WpfApp50
             lsp = db1.products.ToList();
             for (int i = 0; i < lsp.Count; i++)
             {
-                if (lsp[i].kind_product_id == 1)
+                if (lsp[i].kind_product_id == 1 && lsp[i].client_or_supplier.identity != "Supplier" )
                 {
                     food_cmbbx.Items.Add(lsp[i].name);
                 }
             }
             for (int i = 0; i<lsp.Count; i++)
             {
-               if (lsp[i].kind_product_id == 2)
+               if (lsp[i].kind_product_id == 2 && lsp[i].client_or_supplier.identity != "Supplier")
                {
                    beverage_cmbbx.Items.Add(lsp[i].name);
                }
