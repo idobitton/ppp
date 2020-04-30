@@ -210,8 +210,8 @@ namespace WpfApp50
                     string notes = notes_txb.Text;
                     ordr.notes = notes;
                     ordr.date = DateTime.Now;
-                    invoice invc = new invoice(db1, order_dtgrid, ordr, discount, delivery);
-                    invc.ShowDialog();
+                    check chk = new check(db1, order_dtgrid, ordr, discount, delivery);
+                    chk.ShowDialog();
                 }
             }
         }

@@ -23,7 +23,6 @@ namespace WpfApp50
         DataGrid dataGrid = new DataGrid();
         private int quantity;
         private string name;
-        private int price = 10;
         private string details;
         List<ComboBoxItem> lcmbbxi = new List<ComboBoxItem>();
         public Pizza(int quantity, Database1Entities db1, DataGrid dataGrid)
@@ -41,8 +40,6 @@ namespace WpfApp50
             details = location_cmbbx.Text;
             if (name != "" && details != "")
             {
-                if (name == "Nothing")
-                    price = 0;
                 List<products> lst_p = db1.products.ToList();
                 foreach (products lp in lst_p)
                 {
@@ -85,8 +82,6 @@ namespace WpfApp50
             details = location_cmbbx.Text;
             if (name != "" && details != "")
             {
-                if (name == "Nothing")
-                    price = 0;
                 List<products> lst_p = db1.products.ToList();
                 foreach (products lp in lst_p)
                 {

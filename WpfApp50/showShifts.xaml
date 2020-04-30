@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp50"
         mc:Ignorable="d"
-        Title="showShifts" Height="800" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
+        Title="showShifts" Height="800" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid ShowGridLines="True" >
         <Grid.RowDefinitions>
             <RowDefinition Height="81*"/>
@@ -23,9 +23,9 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Year:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="1"/>
-        <Label Content="Week(of month):" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="5"/>
-        <Button Content="Apply" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="7" Click="Button_Click"/>
+        <Label Content="Enter the date of the requested week:(dd/mm/yyyy)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="date_txb" Grid.Column="5" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Foreground="White" Background="Blue" BorderBrush="Red" />
+        <Button x:Name="apply" Content="Apply" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="7" Click="apply_Click"/>
         <Label Content="Morning:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="2"/>
         <Label Content="Evening:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="3"/>
         <Label x:Name="sunday_lbl" Content="Sunday:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="1"/>

@@ -245,8 +245,8 @@ namespace WpfApp50
                 client_or_supplier client_Or_Supplier = db1.client_or_supplier.ToArray()[1];
                 ordr.c_or_s_id = 2;
                 ordr.client_or_supplier = client_Or_Supplier;
-                invoiceSupplier invc = new invoiceSupplier(db1, order_dtgrid, ordr);
-                invc.ShowDialog();
+                checkSupplier chk = new checkSupplier(db1, order_dtgrid, ordr);
+                chk.ShowDialog();
             }
         }
 

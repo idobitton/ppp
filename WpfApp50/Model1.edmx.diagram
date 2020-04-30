@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e5fb18db906a483cbeb57b1d1ee101b7" Name="Diagram1" ZoomLevel="82" >
-        <EntityTypeShape EntityType="Database1Model.client_details" Width="1.5" PointX="3" PointY="10.125" />
-        <EntityTypeShape EntityType="Database1Model.client_or_supplier" Width="1.5" PointX="3" PointY="16.625" />
-        <EntityTypeShape EntityType="Database1Model.employee" Width="1.5" PointX="3" PointY="4.625" />
-        <EntityTypeShape EntityType="Database1Model.employee_type" Width="1.5" PointX="0.75" PointY="2.75" />
-        <EntityTypeShape EntityType="Database1Model.expense" Width="1.5" PointX="5.25" PointY="11.875" />
-        <EntityTypeShape EntityType="Database1Model.final_price" Width="1.5" PointX="3" PointY="25.625" />
-        <EntityTypeShape EntityType="Database1Model.kind_product" Width="1.5" PointX="1.5" PointY="22.75" />
-        <EntityTypeShape EntityType="Database1Model.order" Width="1.5" PointX="5.25" PointY="6.625" />
-        <EntityTypeShape EntityType="Database1Model.order_details" Width="1.5" PointX="3" PointY="19.5" />
-        <EntityTypeShape EntityType="Database1Model.postal_code" Width="1.5" PointX="0.75" PointY="5.5" />
-        <EntityTypeShape EntityType="Database1Model.products" Width="1.5" PointX="0.75" PointY="19.125" />
-        <EntityTypeShape EntityType="Database1Model.shift" Width="1.5" PointX="5.25" PointY="2.25" />
-        <EntityTypeShape EntityType="Database1Model.shift_day" Width="1.5" PointX="3" PointY="1.5" />
-        <EntityTypeShape EntityType="Database1Model.shift_time" Width="1.5" PointX="3" PointY="13.75" />
+        <EntityTypeShape EntityType="Database1Model.client_details" Width="1.5" PointX="3" PointY="12.125" />
+        <EntityTypeShape EntityType="Database1Model.client_or_supplier" Width="1.5" PointX="3" PointY="18.25" />
+        <EntityTypeShape EntityType="Database1Model.employee" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="Database1Model.employee_type" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="Database1Model.expense" Width="1.5" PointX="5.25" PointY="5.5" />
+        <EntityTypeShape EntityType="Database1Model.final_price" Width="1.5" PointX="3" PointY="20.875" />
+        <EntityTypeShape EntityType="Database1Model.kind_product" Width="1.5" PointX="1.5" PointY="15.625" />
+        <EntityTypeShape EntityType="Database1Model.order" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="Database1Model.order_details" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="Database1Model.postal_code" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="Database1Model.products" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Database1Model.shift" Width="1.5" PointX="8.25" PointY="7.25" />
+        <EntityTypeShape EntityType="Database1Model.shift_day" Width="1.5" PointX="6" PointY="14.25" />
+        <EntityTypeShape EntityType="Database1Model.shift_time" Width="1.5" PointX="6" PointY="2.5" />
         <AssociationConnector Association="Database1Model.FK_client_postal_code" />
         <AssociationConnector Association="Database1Model.FK_order_client_details" />
         <AssociationConnector Association="Database1Model.FK_order_client_or_supplier" />

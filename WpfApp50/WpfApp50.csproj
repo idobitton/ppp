@@ -99,6 +99,12 @@
     <Compile Include="changeDetails.xaml.cs">
       <DependentUpon>changeDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="check.xaml.cs">
+      <DependentUpon>check.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="checkSupplier.xaml.cs">
+      <DependentUpon>checkSupplier.xaml</DependentUpon>
+    </Compile>
     <Compile Include="client_details.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -213,6 +219,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="changeDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="check.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="checkSupplier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

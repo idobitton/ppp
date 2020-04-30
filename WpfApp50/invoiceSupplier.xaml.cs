@@ -32,23 +32,29 @@ namespace WpfApp50
             this.discount = 0;
             InitializeComponent();
         }
-        private int CalculatingDigits(int num)
+        //private int CalculatingDigits(int num)
+        //{
+        //    if (num > 10)
+        //        return 1 + CalculatingDigits(num / 10);
+        //    return 1;
+        //}
+        private int CalculatingDiscount(int price)// חישוב הנחה פרוגרסיבית
         {
-            if (num > 10)
-                return 1 + CalculatingDigits(num / 10);
-            return 1;
-        }
-        private int CalculatingDiscount(int price, int quantity)// חישוב הנחה פרוגרסיבית
-        {
-            int digits = CalculatingDigits(price);
-            int r_num=1;
-            int num_return;
-            for (int i = 0; i < digits; i++)
+            //int digits = CalculatingDigits(price);
+            //int r_num=1;
+            //int num_return;
+            //for (int i = 0; i < digits; i++)
+            //{
+            //    r_num *= 10;
+            //}
+            //num_return = price - ((price * (quantity - 1) / r_num)*10);
+            //return num_return;
+            for (int i = 20000; i>0; i-=2000)
             {
-                r_num *= 10;
+                if (price > i)
+                    return i / 1000;
             }
-            num_return = price - ((price * (quantity - 1) / r_num)*10);
-            return num_return;
+            return 0;
         }
 
         private void payment_btn_Click(object sender, RoutedEventArgs e)
@@ -61,7 +67,6 @@ namespace WpfApp50
         {
             if (flg)
             {
-                int sum_qnty = 0;
                 int sp = 0;
                 supplier_name_lbl.Content += ordr.company_name;
                 notes_lbl.Content += ordr.notes;
@@ -73,15 +78,9 @@ namespace WpfApp50
                 foreach (order_details p in lstp)
                 {
                     sp += Convert.ToInt32(p.products.price/1.5 * p.quantity);
-                    sum_qnty += p.quantity;
                 }
-                int f_price = CalculatingDiscount(sp, sum_qnty);
-                discount = 100 - ((100 * f_price) / sp);
-                if (discount > 20)
-                {
-                    discount = 20;
-                    f_price = sp - (sp * discount) / 100;
-                }
+                discount = CalculatingDiscount(sp);
+                int f_price = sp - (sp * discount) / 100;
                 payment_name_lbl.Content += f_price.ToString() + "₪";
                 dscnt_lbl.Content += discount.ToString() + "%";
                 final_price fp = new final_price { s_price = sp, f_price = f_price };

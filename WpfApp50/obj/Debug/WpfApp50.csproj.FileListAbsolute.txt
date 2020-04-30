@@ -69,3 +69,7 @@ C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\deletePostalCode.baml
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\WpfApp50.csproj.CoreCompileInputs.cache
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\client_info.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\client_info.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\check.g.cs
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\checkSupplier.g.cs
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\check.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\checkSupplier.baml

@@ -26,6 +26,7 @@ namespace WpfApp50
         public int kind_product_id { get; set; }
         public int c_or_s_id { get; set; }
         public string pack { get; set; }
+        public decimal remain { get; set; }
     
         public virtual client_or_supplier client_or_supplier { get; set; }
         public virtual kind_product kind_product { get; set; }

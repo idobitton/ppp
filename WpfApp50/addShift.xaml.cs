@@ -43,9 +43,7 @@ namespace WpfApp50
         {
             int id_day;
             int id_time;
-            string day_of_week = calendar.SelectedDate.Value.DayOfWeek.ToString();
-            DateTime dt = calendar.SelectedDate.Value;
-            id_day = find_id_of_day(day_of_week);
+           
             if (calendar.SelectedDate == null)
                 msg_lsb.Items.Add("Failure! Enter the date");
             else if (calendar.SelectedDate.Value.DayOfWeek.ToString() == "Friday" || calendar.SelectedDate.Value.DayOfWeek.ToString() == "Saturday")
@@ -66,13 +64,35 @@ namespace WpfApp50
                     id_time = 2;
                     //dt.AddHours(16.00);
                 }
+                string day_of_week = calendar.SelectedDate.Value.DayOfWeek.ToString();
+                DateTime dt = calendar.SelectedDate.Value;
+                id_day = find_id_of_day(day_of_week);
                 shift_day shd = db1.shift_day.ToArray()[id_day-1];
                 shift_time sht = db1.shift_time.ToArray()[id_time-1];
                 shift shift_emp = new shift {shift_day=shd,shift_time =sht,  shift_day_id =id_day, shift_time_id = id_time, employee = emp, date = dt};
-                this.db1.shift.Add(shift_emp);
-                this.db1.SaveChanges();
-                this.Close();
+                if (!IsAlreadyShift(shift_emp))
+                {
+                    this.db1.shift.Add(shift_emp);
+                    this.db1.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("The shift you want to add is already exist in the system", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
+        }
+
+        private bool IsAlreadyShift(shift shift_emp)
+        {
+            List<shift> l_sh = new List<shift>();
+            l_sh = db1.shift.ToList();
+            foreach (shift sh in l_sh)
+            {
+                if (shift_emp.date == sh.date && shift_emp.employee  == sh.employee &&shift_emp.shift_time==sh.shift_time )
+                    return true;
+            }
+            return false;
         }
 
         private int find_id_of_day(string day_of_week)
