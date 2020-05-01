@@ -126,7 +126,7 @@
     <EntitySetMapping Name="shift">
       <EntityTypeMapping TypeName="Database1Model.shift">
         <MappingFragment StoreEntitySet="shift">
-          <ScalarProperty Name="hours_of_working" ColumnName="hours_of_working" />
+          <ScalarProperty Name="time_of_working" ColumnName="time_of_working" />
           <ScalarProperty Name="employee_id" ColumnName="employee_id" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="shift_day_id" ColumnName="shift_day_id" />

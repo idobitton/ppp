@@ -43,9 +43,48 @@ namespace WpfApp50
 
         private void tickEvent(object sender, EventArgs e)
         {
+            string time_now = DateTime.Now.ToString().Substring(DateTime.Now.ToString().IndexOf(" ") + 1);
+            if (time_now == "23:59:00")
+            {
+                List<employee> lst_e = new List<employee>();
+                lst_e = db1.employee.ToList();
+                foreach (employee emp in lst_e)
+                {
+                    emp.is_working_now = "not at shift";
+                    shift shift = findShift(emp);
+                    if (shift != null)
+                    {
+                        double time_of_working;
+                        shift.shift_time.checkout_time = "23:59:00";
+                        double entry_hour = Convert.ToInt32(shift.shift_time.entry_time.ToString().Substring(0, 2));
+                        double entry_minute = Convert.ToInt32(shift.shift_time.entry_time.ToString().Substring(3, 2));
+                        double exit_hour = Convert.ToInt32(shift.shift_time.checkout_time.ToString().Substring(0, 2));
+                        double exit_minute = Convert.ToInt32(shift.shift_time.checkout_time.ToString().Substring(3, 2));
+                        time_of_working = exit_hour - entry_hour;
+                        double total_minutes = exit_minute - entry_minute;
+                        time_of_working += total_minutes/60;
+                        shift.time_of_working += Convert.ToDecimal(time_of_working);
+                    }
+                    db1.SaveChanges();
+                }
+            }
             datetime_lbl.Content = DateTime.Now.ToString("MM/dd/yyyy , hh:mm:ss , dddd");
         }
-
+        private shift findShift(employee emp)
+        {
+            List<shift> lst_s = new List<shift>();
+            lst_s = db1.shift.ToList();
+            string today_date = DateTime.Now.ToString("dd/MM/yyyy");
+            foreach (shift sh in lst_s)
+            {
+                string shift_date = sh.date.ToString("dd/MM/yyyy");
+                if (today_date == shift_date && sh.employee == emp)
+                {
+                    return sh;
+                }
+            }
+            return null;
+        }
         private void new_ordr_btn_Click(object sender, RoutedEventArgs e)
         {
             names names = new names(emp_dtgrid, db1);
@@ -230,6 +269,5 @@ namespace WpfApp50
             emp_pcode_dtgrid.ItemsSource = db1.postal_code.ToList();
             emp_type_dtgrid.ItemsSource = db1.employee_type.ToList();
         }
-
     }
 }

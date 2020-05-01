@@ -19,7 +19,7 @@ namespace WpfApp50
         public int shift_day_id { get; set; }
         public System.DateTime date { get; set; }
         public int employee_id { get; set; }
-        public Nullable<int> hours_of_working { get; set; }
+        public Nullable<decimal> time_of_working { get; set; }
     
         public virtual employee employee { get; set; }
         public virtual shift_day shift_day { get; set; }

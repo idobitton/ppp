@@ -29,12 +29,36 @@ namespace WpfApp50
 
         private void entry_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Do you want to put in " + emp.first_name + " " + emp.last_name + " to the system?", "Enter?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (emp != null)
             {
-                emp.is_working_now = "at shift";
-                db1.SaveChanges();
-                this.Close();
+                if (MessageBox.Show("Do you want to put in " + emp.first_name + " " + emp.last_name + " to the system?", "Enter?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    emp.is_working_now = "at shift";
+                    shift shift = findShift(emp);
+                    string entry_time = DateTime.Now.ToString().Substring(DateTime.Now.ToString().IndexOf(" ") + 1);
+                    shift.shift_time.entry_time = entry_time;
+                    db1.SaveChanges();
+                }
             }
+            else
+                MessageBox.Show("you selected a non-existent employee", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            update();
+        }
+
+        private shift findShift(employee emp)
+        {
+            List<shift> lst_s = new List<shift>();
+            lst_s = db1.shift.ToList();
+            string today_date = DateTime.Now.ToString("dd/MM/yyyy");
+            foreach (shift sh in lst_s)
+            {
+                string shift_date = sh.date.ToString("dd/MM/yyyy");
+                if (today_date == shift_date && sh.employee == emp)
+                {
+                    return sh;
+                }
+            }
+            return null;
         }
 
         private void emp_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,15 +75,26 @@ namespace WpfApp50
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            update();
+        }
+
+        private void update()
+        {
             emp_dtgrid.ItemsSource = db1.employee.ToList();
             List<employee> lst_e = new List<employee>();
             List<employee> employees = new List<employee>();
             lst_e = db1.employee.ToList();
+            string today_date = DateTime.Now.ToString("dd/MM/yyyy");
             foreach (employee emp in lst_e)
             {
-                if (emp.is_working_now == "not at shift" && emp.deleted =="exist")
+                shift sh = findShift(emp);
+                if (sh != null)
                 {
-                    employees.Add(emp);
+                    string shift_date = sh.date.ToString("dd/MM/yyyy");
+                    if (emp.is_working_now == "not at shift" && emp.deleted == "exist" && today_date == shift_date)
+                    {
+                        employees.Add(emp);
+                    }
                 }
             }
             emp_dtgrid.ItemsSource = employees;

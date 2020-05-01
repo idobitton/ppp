@@ -186,6 +186,9 @@
     <Compile Include="products.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="salaryForWorkers.xaml.cs">
+      <DependentUpon>salaryForWorkers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="shift.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -313,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pizza.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="salaryForWorkers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -57,23 +57,22 @@ namespace WpfApp50
                 if (mornng_rdb.IsChecked == true)
                 {
                     id_time = 1;
-                    //dt.AddHours(8.00);
                 }
                 else
                 {
                     id_time = 2;
-                    //dt.AddHours(16.00);
                 }
                 string day_of_week = calendar.SelectedDate.Value.DayOfWeek.ToString();
                 DateTime dt = calendar.SelectedDate.Value;
                 id_day = find_id_of_day(day_of_week);
                 shift_day shd = db1.shift_day.ToArray()[id_day-1];
                 shift_time sht = db1.shift_time.ToArray()[id_time-1];
-                shift shift_emp = new shift {shift_day=shd,shift_time =sht,  shift_day_id =id_day, shift_time_id = id_time, employee = emp, date = dt};
+                shift shift_emp = new shift {shift_day=shd,shift_time =sht,  shift_day_id =id_day, shift_time_id = id_time, employee = emp, date = dt, time_of_working =Convert.ToDecimal(0.00)};
                 if (!IsAlreadyShift(shift_emp))
                 {
                     this.db1.shift.Add(shift_emp);
                     this.db1.SaveChanges();
+                    MessageBox.Show("The shift has been added", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
                 }
                 else

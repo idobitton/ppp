@@ -222,7 +222,7 @@
     <Property Name="shift_day_id" Type="Int32" Nullable="false" />
     <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="employee_id" Type="Int32" Nullable="false" />
-    <Property Name="hours_of_working" Type="Int32" />
+    <Property Name="time_of_working" Type="Decimal" Precision="18" Scale="2" />
     <NavigationProperty Name="employee" Relationship="Database1Model.FK_shift_employee" FromRole="shift" ToRole="employee" />
     <NavigationProperty Name="shift_day" Relationship="Database1Model.FK_shift_shift_day" FromRole="shift" ToRole="shift_day" />
     <NavigationProperty Name="shift_time" Relationship="Database1Model.FK_shift_shift_time" FromRole="shift" ToRole="shift_time" />

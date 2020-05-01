@@ -7,7 +7,6 @@ C:\Users\USER\source\repos\WpfApp50\WpfApp50\bin\Debug\EntityFramework.dll
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\bin\Debug\EntityFramework.xml
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\WpfApp50.csprojAssemblyReference.cache
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\MainWindow.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\App.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\WpfApp50_Content.g.cs
@@ -73,3 +72,6 @@ C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\check.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\checkSupplier.g.cs
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\check.baml
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\checkSupplier.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\salaryForWorkers.g.cs
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\salaryForWorkers.baml
+C:\Users\USER\source\repos\WpfApp50\WpfApp50\obj\Debug\WpfApp50.csprojAssemblyReference.cache

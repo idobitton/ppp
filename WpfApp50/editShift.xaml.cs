@@ -95,6 +95,7 @@ namespace WpfApp50
                     sh.shift_day_id = day_id;
                     sh.shift_time = sht;
                     sh.shift_time_id = time_id;
+                    MessageBox.Show("The shift has been changed", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                     db1.SaveChanges();
                     this.Close();
                 }

@@ -32,7 +32,7 @@
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="id_num_lbl" Content="Id Number:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1"/>
-        <TextBox x:Name="id_num_txb" FontSize="20" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="3" IsReadOnly="True"/>
+        <TextBox x:Name="id_num_txb" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="3" IsReadOnly="True"/>
         <Label x:Name="name_lbl" Content="Name:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1"/>
         <TextBox x:Name="name_txb" FontSize="20" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="3" IsReadOnly="True" FontWeight="ExtraBold"/>
         <Button x:Name="sbmt_btn" Content="Submit" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="7" Grid.Row="8" Grid.ColumnSpan="2" Click="sbmt_btn_Click"/>

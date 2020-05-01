@@ -121,7 +121,7 @@
     <Property Name="shift_day_id" Type="int" Nullable="false" />
     <Property Name="date" Type="date" Nullable="false" />
     <Property Name="employee_id" Type="int" Nullable="false" />
-    <Property Name="hours_of_working" Type="int" />
+    <Property Name="time_of_working" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="shift_day">
     <Key>
