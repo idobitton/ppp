@@ -23,9 +23,9 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Enter the date of the requested week:(dd/mm/yyyy)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label Content="Enter the date of the requested week:(dd/mm/yyyy)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="1" Grid.ColumnSpan="3"/>
         <TextBox x:Name="date_txb" Grid.Column="5" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Foreground="White" Background="Blue" BorderBrush="Red" />
-        <Button x:Name="apply" Content="Apply" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="0" Grid.Column="7" Click="apply_Click"/>
+        <Button x:Name="apply" Content="Apply" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="7" Click="apply_Click"/>
         <Label Content="Morning:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="2"/>
         <Label Content="Evening:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="3"/>
         <Label x:Name="sunday_lbl" Content="Sunday:" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Row="1" Grid.Column="1"/>
@@ -43,6 +43,5 @@
         <ListBox x:Name="wed_eve_lsb" Grid.Row="3" Grid.Column="4" FontSize="20" FontWeight="ExtraBold"/>
         <ListBox x:Name="thu_mor_lsb" Grid.Row="2" Grid.Column="5" FontSize="20" FontWeight="ExtraBold"/>
         <ListBox x:Name="thu_eve_lsb" Grid.Row="3" Grid.Column="5" FontSize="20" FontWeight="ExtraBold"/>
-        <!--<DataGrid x:Name="shifts_dtgrid"/>-->
     </Grid>
 </Window>

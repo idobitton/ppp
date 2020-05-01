@@ -12,18 +12,20 @@ namespace WpfApp50
     using System;
     using System.Collections.Generic;
     
-    public partial class shift_day
+    public partial class credit_card
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public shift_day()
+        public credit_card()
         {
-            this.shift = new HashSet<shift>();
+            this.client_details = new HashSet<client_details>();
         }
     
         public int Id { get; set; }
-        public string day { get; set; }
+        public string credit_card_number { get; set; }
+        public System.DateTime expiration_date { get; set; }
+        public int cvv { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<shift> shift { get; set; }
+        public virtual ICollection<client_details> client_details { get; set; }
     }
 }

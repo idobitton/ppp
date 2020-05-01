@@ -4,6 +4,7 @@
     <EntitySetMapping Name="client_details">
       <EntityTypeMapping TypeName="Database1Model.client_details">
         <MappingFragment StoreEntitySet="client_details">
+          <ScalarProperty Name="credit_card_id" ColumnName="credit_card_id" />
           <ScalarProperty Name="postal_code_id" ColumnName="postal_code_id" />
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="last_name" ColumnName="last_name" />
@@ -16,6 +17,16 @@
       <EntityTypeMapping TypeName="Database1Model.client_or_supplier">
         <MappingFragment StoreEntitySet="client_or_supplier">
           <ScalarProperty Name="identity" ColumnName="identity" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="credit_card">
+      <EntityTypeMapping TypeName="Database1Model.credit_card">
+        <MappingFragment StoreEntitySet="credit_card">
+          <ScalarProperty Name="cvv" ColumnName="cvv" />
+          <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
+          <ScalarProperty Name="credit_card_number" ColumnName="credit_card_number" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -129,16 +140,7 @@
           <ScalarProperty Name="time_of_working" ColumnName="time_of_working" />
           <ScalarProperty Name="employee_id" ColumnName="employee_id" />
           <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="shift_day_id" ColumnName="shift_day_id" />
           <ScalarProperty Name="shift_time_id" ColumnName="shift_time_id" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="shift_day">
-      <EntityTypeMapping TypeName="Database1Model.shift_day">
-        <MappingFragment StoreEntitySet="shift_day">
-          <ScalarProperty Name="day" ColumnName="day" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -32,8 +32,7 @@ namespace WpfApp50
             bool flg = false;
             if (deleted_id_txb.Text != "")
             {
-                List<employee> lst_emp = new List<employee>();
-                lst_emp = db1.employee.ToList();
+                List<employee> lst_emp = db1.employee.ToList();
                 foreach (employee employee in lst_emp)
                 {
                     if (employee.id_number == deleted_id_txb.Text)
@@ -55,6 +54,7 @@ namespace WpfApp50
                             employee.deleted = "not exist";
                             employee.is_working_now ="not at shift";
                             db1.SaveChanges();
+                            MessageBox.Show("The worker has been deleted", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                             this.Close();
                         }
                     }

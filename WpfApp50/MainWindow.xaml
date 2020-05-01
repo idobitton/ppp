@@ -35,7 +35,7 @@
             <ColumnDefinition Width="150*"/>
             <ColumnDefinition Width="150*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="datetime_lbl" Grid.Row="0" Grid.ColumnSpan="3" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic"/>
+        <Label x:Name="datetime_lbl" Grid.ColumnSpan="3" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic"/>
         <Button x:Name ="manage_workers_btn" Content="Manage workers" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="manage_workers_btn_Click"/>
         <Button x:Name ="entry_systm_btn" Content="Enter to the system" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="entry_systm_btn_Click"/>
         <Button x:Name ="new_ordr_btn" Content="New order" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="new_ordr_btn_Click"/>
@@ -50,5 +50,6 @@
         <DataGrid x:Name="emp_dtgrid" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="6" FontSize="20" FontWeight="ExtraBold"/>
         <DataGrid x:Name="emp_type_dtgrid" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" Grid.RowSpan="6" FontSize="20" FontWeight="ExtraBold"/>
         <DataGrid x:Name="emp_pcode_dtgrid" Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="6" FontSize="20" FontWeight="ExtraBold"/>
+        <Button x:Name ="all_clients_btn" Content="All the clients" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="12" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="all_clients_btn_Click"/>
     </Grid>
 </Window>

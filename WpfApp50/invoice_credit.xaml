@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfApp50.invoice_credit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp50"
+        mc:Ignorable="d"
+        Title="invoice_credit" Height="800" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="77*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="date_lbl" Content="Date: " FontSize="20" FontWeight="ExtraBold" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label x:Name="expr_date_lbl" Content="Expiration date:(the day doesn't matter)" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.Row="2" />
+        <Calendar x:Name="calendar" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Label x:Name="ccd_lbl" Content="Credit card number: " FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="ccd_txb" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.Row="1" KeyUp="ccd_txb_KeyUp"/>
+        <TextBox x:Name="cvv_txb" FontSize="20" FontWeight="ExtraBold" Grid.Row="5" Grid.Column="1" MaxLength="3" KeyUp="cvv_txb_KeyUp"/>
+        <Label x:Name="cvv_lbl" Content="CVV: " FontSize="20" FontWeight="ExtraBold" Grid.Row="5"/>
+        <Label x:Name="client_name_lbl" Content="Client name: " FontSize="20" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Label x:Name="final_price_lbl" Content="Final price: " FontSize="20" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <Label x:Name="vat_lbl" Content="VAT: + 17%" FontSize="20" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2"/>
+        <Label x:Name="after_vat_lbl" Content="Fixed price:" FontSize="20" FontWeight="ExtraBold" Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="2"/>
+        <Label x:Name="org_lbl" Content="origin:" FontSize="20" FontWeight="ExtraBold" Grid.Column="6" Grid.Row="1"/>
+        <Label x:Name="gdbye_lbl" Content="Goodbye! Have a nice day!☺☺☺" FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="6"/>
+        <DataGrid x:Name="product_dtgrid" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="fprice_dtgrid" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <Button x:Name="rtn_mw" Content="Return to the main window" FontSize="20" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="2" Click="rtn_mw_Click"/>
+        <Label x:Name="dscnt_lbl" Content="Discount: " FontSize="20" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Label x:Name="employee_name_lbl" Content="Employee name: " FontSize="20" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="pay" Content="Pay" FontSize="20" FontWeight="ExtraBold" Grid.Row="6" Grid.ColumnSpan="2" Click="pay_Click"/>
+        <Label x:Name="pymnt_method_lbl" Content="Payment method: Credit" FontSize="20" FontWeight="ExtraBold" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1"/>
+    </Grid>
+</Window>

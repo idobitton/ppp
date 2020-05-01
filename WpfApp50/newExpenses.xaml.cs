@@ -94,8 +94,7 @@ namespace WpfApp50
 
         private void price_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(price_txb.Text, out a))
+            if (!long.TryParse(price_txb.Text, out long a))
                 price_txb.Clear();
         }
     }

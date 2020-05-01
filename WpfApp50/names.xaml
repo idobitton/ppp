@@ -21,11 +21,11 @@
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Client Name:" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
-        <Label Content="Choose your name:" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="1"/>
-        <TextBox x:Name="client_name_txb" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Column="1"/>
+        <Label Content="Client Name:" FontSize="20" FontWeight="ExtraBold"/>
+        <Label Content="Choose your name:" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <TextBox x:Name="client_name_txb" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.Column="1"/>
         <DataGrid x:Name="emp_dtgrid"  Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="3" SelectionChanged="emp_dtgrid_SelectionChanged" FontSize="20" FontWeight="ExtraBold"/>
-        <Button x:Name="cntue" Content="Continue" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Column="4" Grid.Row="4" FontSize="20" FontWeight="ExtraBold" Click="cntue_Click"/>
+        <Button x:Name="cntue" Content="Continue" Grid.Column="4" Grid.Row="4" FontSize="20" FontWeight="ExtraBold" Click="cntue_Click"/>
         <RadioButton x:Name="dlvr" Content="delivery" FontSize="20" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="1"/>
         <RadioButton Content="not delivery" FontSize="20" FontWeight="ExtraBold" Grid.Column="4" Grid.Row="1"/>
     </Grid>

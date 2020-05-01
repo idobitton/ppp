@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\USER\source\repos\WpfApp50\WpfApp50\App.xaml
-281496499582
+28-468989481
 4-244276754
-49-351765424
+49-1676319336
 18-2097346260
-addShift.xaml;AddWorker.xaml;allOrder.xaml;allProducts.xaml;cash.xaml;changeDetails.xaml;check.xaml;checkSupplier.xaml;client_info.xaml;credit.xaml;deletePostalCode.xaml;DeleteWorker.xaml;editShift.xaml;entrySystem.xaml;exitSystem.xaml;invoice.xaml;invoiceSupplier.xaml;MainWindow.xaml;manageProducts.xaml;manageShifts.xaml;manageWorkers.xaml;names.xaml;newExpenses.xaml;newOrder.xaml;orderSupplier.xaml;Pizza.xaml;salaryForWorkers.xaml;showShifts.xaml;
+addShift.xaml;AddWorker.xaml;allClients.xaml;allOrder.xaml;allProducts.xaml;changeDetails.xaml;check.xaml;checkSupplier.xaml;client_info.xaml;deletePostalCode.xaml;DeleteWorker.xaml;editShift.xaml;entrySystem.xaml;exitSystem.xaml;invoice_cash.xaml;invoice_credit.xaml;MainWindow.xaml;manageProducts.xaml;manageShifts.xaml;manageWorkers.xaml;names.xaml;newExpenses.xaml;newOrder.xaml;orderSupplier.xaml;payment_invoice_supplier.xaml;Pizza.xaml;salaryForWorkers.xaml;showShifts.xaml;
 
 False
 

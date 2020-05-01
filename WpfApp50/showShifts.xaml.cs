@@ -108,7 +108,7 @@ namespace WpfApp50
                     case "Thursday":
                         try
                         {
-                            sunday_lbl.Content += " " + dt.AddDays(-4).ToString("dd/MM/yyyy"); 
+                            sunday_lbl.Content += " " + dt.AddDays(-4).ToString("dd/MM/yyyy");
                         }
                         catch
                         {
@@ -133,11 +133,11 @@ namespace WpfApp50
                 if (flg)
                 {
                     List<shift> lst_shift = db1.shift.ToList();
-                    string sunday_date = sunday_lbl.Content.ToString().Substring(sunday_lbl.Content.ToString().IndexOf(" ")+1);
-                    string monday_date = monday_lbl.Content.ToString().Substring(monday_lbl.Content.ToString().IndexOf(" ")+1);
-                    string tuesday_date = tuesday_lbl.Content.ToString().Substring(tuesday_lbl.Content.ToString().IndexOf(" ")+1);
-                    string wednesday_date = wednesday_lbl.Content.ToString().Substring(wednesday_lbl.Content.ToString().IndexOf(" ")+1);
-                    string thursday_date = thursday_lbl.Content.ToString().Substring(thursday_lbl.Content.ToString().IndexOf(" ")+1);
+                    string sunday_date = sunday_lbl.Content.ToString().Substring(sunday_lbl.Content.ToString().IndexOf(" ") + 1);
+                    string monday_date = monday_lbl.Content.ToString().Substring(monday_lbl.Content.ToString().IndexOf(" ") + 1);
+                    string tuesday_date = tuesday_lbl.Content.ToString().Substring(tuesday_lbl.Content.ToString().IndexOf(" ") + 1);
+                    string wednesday_date = wednesday_lbl.Content.ToString().Substring(wednesday_lbl.Content.ToString().IndexOf(" ") + 1);
+                    string thursday_date = thursday_lbl.Content.ToString().Substring(thursday_lbl.Content.ToString().IndexOf(" ") + 1);
                     foreach (shift sh in lst_shift)
                     {
                         string shift_date = sh.date.ToString("dd/MM/yyyy");

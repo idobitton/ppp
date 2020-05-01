@@ -33,7 +33,6 @@ namespace WpfApp50
             order_dtgrid.ItemsSource = lstp;
             string nm = food_cmbbx.Text;
             string qnty = qnty_txb.Text;
-            int qn =0;
             order_details details_order = new order_details();
             if (supplier_name_txb.Text != "")
             {
@@ -52,7 +51,7 @@ namespace WpfApp50
                             break;
                         }
                     }
-                    qn = Convert.ToInt32(qnty_txb.Text);
+                    int qn = Convert.ToInt32(qnty_txb.Text);
                     string quantity = details_order.products.pack.ToString();
                     if (quantity == "8 units")
                         qn *= 8;
@@ -62,7 +61,6 @@ namespace WpfApp50
                         qn *= 4;
                     else
                         qn *= 1;
-                    int prc = Convert.ToInt32(details_order.products.price / 1.5);//// למצוא דרך ל הכניס את המחיר החדש
                     details_order.details = notes_txb.Text;
                     details_order.quantity = qn;
                     db1.order_details.Add(details_order);
@@ -111,7 +109,6 @@ namespace WpfApp50
             qnty_lbl.Visibility = Visibility.Visible;
             qnty_lbl.Content = "Quantity:";
             qnty_lbl.Foreground = Brushes.Black;
-
             var fd = food_cmbbx.SelectedItem;
             order_details details_order = new order_details();
             List<products> lst_p = db1.products.ToList();
@@ -179,7 +176,6 @@ namespace WpfApp50
                         }
                     }
                     int qn = (Convert.ToInt32(qnty_txb.Text)) * 24;
-                    int prc = Convert.ToInt32(details_order.products.price / 1.5);
                     details_order.quantity = qn;
                     details_order.details = notes_txb.Text;
                     db1.order_details.Add(details_order);
@@ -245,6 +241,7 @@ namespace WpfApp50
                 client_or_supplier client_Or_Supplier = db1.client_or_supplier.ToArray()[1];
                 ordr.c_or_s_id = 2;
                 ordr.client_or_supplier = client_Or_Supplier;
+                this.Close();
                 checkSupplier chk = new checkSupplier(db1, order_dtgrid, ordr);
                 chk.ShowDialog();
             }
@@ -278,28 +275,22 @@ namespace WpfApp50
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<products> lsp = new List<products>();
-            lsp = db1.products.ToList();
+            List<products> lsp = db1.products.ToList();
             for (int i = 0; i < lsp.Count; i++)
             {
                 if (lsp[i].kind_product_id != 2 && lsp[i].client_or_supplier.identity != "Client")
-                {
                     food_cmbbx.Items.Add(lsp[i].name);
-                }
             }
             for (int i = 0; i < lsp.Count; i++)
             {
                 if (lsp[i].kind_product_id == 2 && lsp[i].client_or_supplier.identity != "Client")
-                {
                     beverage_cmbbx.Items.Add(lsp[i].name);
-                }
             }
         }
         //בדיקה שרק מספרים יכללו בתיבת הכתיבה
         private void qnty_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(qnty_txb.Text, out a))
+            if (!long.TryParse(qnty_txb.Text, out long a))
                 qnty_txb.Clear();
         }
 

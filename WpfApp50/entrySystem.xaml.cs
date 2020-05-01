@@ -47,8 +47,7 @@ namespace WpfApp50
 
         private shift findShift(employee emp)
         {
-            List<shift> lst_s = new List<shift>();
-            lst_s = db1.shift.ToList();
+            List<shift> lst_s = db1.shift.ToList();
             string today_date = DateTime.Now.ToString("dd/MM/yyyy");
             foreach (shift sh in lst_s)
             {
@@ -81,9 +80,8 @@ namespace WpfApp50
         private void update()
         {
             emp_dtgrid.ItemsSource = db1.employee.ToList();
-            List<employee> lst_e = new List<employee>();
+            List<employee> lst_e = db1.employee.ToList();
             List<employee> employees = new List<employee>();
-            lst_e = db1.employee.ToList();
             string today_date = DateTime.Now.ToString("dd/MM/yyyy");
             foreach (employee emp in lst_e)
             {

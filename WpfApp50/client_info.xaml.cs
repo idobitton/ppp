@@ -47,8 +47,7 @@ namespace WpfApp50
                 this.Close();
                 if (Checking_postal_code(postal_Code))
                 {
-                    List<postal_code> pc = new List<postal_code>();
-                    pc = db1.postal_code.ToList();
+                    List<postal_code> pc = db1.postal_code.ToList();
                     foreach (postal_code p in pc)
                     {
                         if (p.postal_c == postal_Code.postal_c)
@@ -69,8 +68,7 @@ namespace WpfApp50
         }
         private bool Checking_postal_code(postal_code postal_Code)
         {
-            List<postal_code> pc = new List<postal_code>();
-            pc = db1.postal_code.ToList();
+            List<postal_code> pc = db1.postal_code.ToList();
             foreach (postal_code p in pc)
             {
                 if (p.postal_c == postal_Code.postal_c)
@@ -81,21 +79,18 @@ namespace WpfApp50
 
         private void p_code_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(p_code_txb.Text, out a))
+            if (!long.TryParse(p_code_txb.Text, out long a))
                 p_code_txb.Clear();
         }
         private void house_num_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(house_num_txb.Text, out a))
+            if (!long.TryParse(house_num_txb.Text, out long a))
                 house_num_txb.Clear();
         }
 
         private void phne_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(phne_txb.Text, out a))
+            if (!long.TryParse(phne_txb.Text, out long a))
                 phne_txb.Clear();
         }
     }

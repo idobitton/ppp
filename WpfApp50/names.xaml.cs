@@ -33,11 +33,9 @@ namespace WpfApp50
 
         private void cntue_Click(object sender, RoutedEventArgs e)
         {
-           
             if (client_name_txb.Text != "" && emp.Id != 0)
             {
-                List<order_details> lst_p = new List<order_details>();
-                lst_p = db1.order_details.ToList();
+                List<order_details> lst_p = db1.order_details.ToList();
                 foreach (order_details p in lst_p)
                 {
                     db1.order_details.Remove(p);
@@ -51,6 +49,7 @@ namespace WpfApp50
                     client_info clinf = new client_info(db1,cd );
                     clinf.ShowDialog();
                 }
+                db1.SaveChanges();
                 client_or_supplier client_Or_Supplier = db1.client_or_supplier.ToArray()[0];
                 order ordr = new order {c_or_s_id = 1, client_or_supplier = client_Or_Supplier, employee=emp, client_details=cd};
                 newOrder newOrder = new newOrder(db1, ordr,dlvr.IsChecked==true );
@@ -75,9 +74,8 @@ namespace WpfApp50
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             emp_dtgrid.ItemsSource = db1.employee.ToList();
-            List<employee> lst_e = new List<employee>();
+            List<employee> lst_e = db1.employee.ToList();
             List<employee> employees = new List<employee>();
-            lst_e = db1.employee.ToList();
             foreach (employee emp in lst_e)
             {
                 if (emp.deleted == "exist" && emp.is_working_now == "at shift")

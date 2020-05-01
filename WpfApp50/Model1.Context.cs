@@ -27,6 +27,7 @@ namespace WpfApp50
     
         public virtual DbSet<client_details> client_details { get; set; }
         public virtual DbSet<client_or_supplier> client_or_supplier { get; set; }
+        public virtual DbSet<credit_card> credit_card { get; set; }
         public virtual DbSet<employee> employee { get; set; }
         public virtual DbSet<employee_type> employee_type { get; set; }
         public virtual DbSet<expense> expense { get; set; }
@@ -37,7 +38,6 @@ namespace WpfApp50
         public virtual DbSet<postal_code> postal_code { get; set; }
         public virtual DbSet<products> products { get; set; }
         public virtual DbSet<shift> shift { get; set; }
-        public virtual DbSet<shift_day> shift_day { get; set; }
         public virtual DbSet<shift_time> shift_time { get; set; }
     }
 }

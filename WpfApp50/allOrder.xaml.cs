@@ -51,10 +51,8 @@ namespace WpfApp50
             //    expense_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
             //    expense_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
             //}
-            List<order> lst_o = new List<order>();
-            lst_o = db1.order.ToList();
-            List<final_price> lst_fp = new List<final_price>();
-            lst_fp = db1.final_price.ToList();
+            List<order> lst_o = db1.order.ToList();
+            List<final_price> lst_fp = db1.final_price.ToList();
             foreach (order o in lst_o)
             {
                 if (o.c_or_s_id == 2)
@@ -78,8 +76,7 @@ namespace WpfApp50
                     }
                 }
             }
-            List<expense> lst_exp = new List<expense>();
-            lst_exp = db1.expense.ToList();
+            List<expense> lst_exp = db1.expense.ToList();
             foreach (expense exp in lst_exp)
             {
                 sum -= exp.price;

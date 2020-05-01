@@ -87,14 +87,14 @@
     <Compile Include="addShift.xaml.cs">
       <DependentUpon>addShift.xaml</DependentUpon>
     </Compile>
+    <Compile Include="allClients.xaml.cs">
+      <DependentUpon>allClients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="allOrder.xaml.cs">
       <DependentUpon>allOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="allProducts.xaml.cs">
       <DependentUpon>allProducts.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="cash.xaml.cs">
-      <DependentUpon>cash.xaml</DependentUpon>
     </Compile>
     <Compile Include="changeDetails.xaml.cs">
       <DependentUpon>changeDetails.xaml</DependentUpon>
@@ -114,8 +114,8 @@
     <Compile Include="client_or_supplier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="credit.xaml.cs">
-      <DependentUpon>credit.xaml</DependentUpon>
+    <Compile Include="credit_card.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="deletePostalCode.xaml.cs">
       <DependentUpon>deletePostalCode.xaml</DependentUpon>
@@ -141,11 +141,11 @@
     <Compile Include="final_price.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="invoice.xaml.cs">
-      <DependentUpon>invoice.xaml</DependentUpon>
+    <Compile Include="invoice_cash.xaml.cs">
+      <DependentUpon>invoice_cash.xaml</DependentUpon>
     </Compile>
-    <Compile Include="invoiceSupplier.xaml.cs">
-      <DependentUpon>invoiceSupplier.xaml</DependentUpon>
+    <Compile Include="invoice_credit.xaml.cs">
+      <DependentUpon>invoice_credit.xaml</DependentUpon>
     </Compile>
     <Compile Include="kind_product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -177,6 +177,9 @@
     <Compile Include="order_details.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="payment_invoice_supplier.xaml.cs">
+      <DependentUpon>payment_invoice_supplier.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pizza.xaml.cs">
       <DependentUpon>Pizza.xaml</DependentUpon>
     </Compile>
@@ -190,9 +193,6 @@
       <DependentUpon>salaryForWorkers.xaml</DependentUpon>
     </Compile>
     <Compile Include="shift.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="shift_day.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="shift_time.cs">
@@ -209,15 +209,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="allClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="allOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="allProducts.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="cash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,10 +234,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="client_info.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="credit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,11 +257,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="invoice.xaml">
+    <Page Include="invoice_cash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="invoiceSupplier.xaml">
+    <Page Include="invoice_credit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -312,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="orderSupplier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="payment_invoice_supplier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

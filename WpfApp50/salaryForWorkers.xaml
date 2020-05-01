@@ -35,8 +35,9 @@
         <Label Content="Select the worker:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="3" Grid.Row="2" Grid.Column="6"/>
         <Label x:Name="year_lbl" Content="Year:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1"/>
         <Label x:Name="month_lbl" Content="Month:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="1"/>
-        <TextBox x:Name="year_txb" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="3"/>
+        <TextBox x:Name="year_txb" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="3" KeyUp="year_txb_KeyUp"/>
         <ListBox x:Name="month_lsb" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="3"/>
         <DataGrid x:Name="emp_dtgrid" Foreground="red" BorderBrush="Red" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="4" Grid.RowSpan="4" FontSize="20" FontWeight="ExtraBold" SelectionChanged="emp_dtgrid_SelectionChanged"/>
+        <Label x:Name="slry_lbl" Content="Salary:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="4" Grid.Row="8" Grid.Column="1"/>
     </Grid>
 </Window>

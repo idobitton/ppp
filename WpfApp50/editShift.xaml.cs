@@ -53,11 +53,7 @@ namespace WpfApp50
         private void sbmt_btn_Click(object sender, RoutedEventArgs e)
         {
             int time_id;
-            int day_id;
-            string num_id;
-            string day_of_week = calendar.SelectedDate.Value.DayOfWeek.ToString();
             DateTime dt = calendar.SelectedDate.Value;
-            day_id = find_id_of_day(day_of_week);
             if (sh != null)
             {
                 if (yes_lsb.IsSelected == true)
@@ -75,24 +71,11 @@ namespace WpfApp50
                 else
                 {
                     if (mornng_rdb.IsChecked == true)
-                    {
-                        //if (dt.Hour != 8)
-                            //dt.AddHours(-8);
                         time_id = 1;
-
-                    }
                     else
-                    {
-                        //if (dt.Hour != 16)
-                            //dt.AddHours(8);
                         time_id = 2;
-                    }
-                    shift_day shd = db1.shift_day.ToArray()[day_id - 1];
                     shift_time sht = db1.shift_time.ToArray()[time_id - 1];
-                    num_id = id_num_txb.Text;
                     sh.date = dt;
-                    sh.shift_day = shd;
-                    sh.shift_day_id = day_id;
                     sh.shift_time = sht;
                     sh.shift_time_id = time_id;
                     MessageBox.Show("The shift has been changed", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -111,16 +94,6 @@ namespace WpfApp50
             shift_dtgrid.ItemsSource = db1.shift.ToList();
             ////shift_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
         }
-        private int find_id_of_day(string day_of_week)
-        {
-            List<shift_day> lst_shday = new List<shift_day>();
-            lst_shday = db1.shift_day.ToList();
-            foreach (shift_day shd in lst_shday)
-            {
-                if (shd.day == day_of_week)
-                    return shd.Id;
-            }
-            return 0;
-        }
+       
     }
 }

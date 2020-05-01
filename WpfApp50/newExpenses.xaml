@@ -36,19 +36,14 @@
                 <TextBox x:Name="name_txb" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="3"/>
         <Label x:Name="price_lbl" Content="Price:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1"/>
         <TextBox x:Name="price_txb" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="3" KeyUp="price_txb_KeyUp"/>
-        <!--<Label Content="Date:" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="1"/>-->
-        <!--<Calendar x:Name="calendar" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3"/>-->
-        <Label Content="Select the worker:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="6" Grid.Column="0"/>
+        <Label Content="Select the worker:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="6"  />
         <DataGrid x:Name="emp_dtgrid" Grid.Row="7" Grid.RowSpan="3" Grid.ColumnSpan="5" SelectionChanged="emp_dtgrid_SelectionChanged" FontSize="20" FontWeight="ExtraBold"/>
-                <Label x:Name="pay_mth_lbl" Content="Pyment method:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="5"/>
+                <Label x:Name="pay_mth_lbl" Content="Payment method:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="5"/>
                 <ComboBox x:Name="pay_mth_cmbbx" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="2" FontSize="20" FontWeight="ExtraBold">
                     <ComboBoxItem x:Name="cash" Content="Cash"/>
                     <ComboBoxItem x:Name="credit" Content="Credit"/>
                 </ComboBox>
         <ListBox x:Name="msg_lsb" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="4" Grid.RowSpan="4" FontSize="20" FontWeight="ExtraBold"/>
-        <DataGrid x:Name="expense_dtgrid" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="10" FontSize="20" FontWeight="ExtraBold"/>
-
-
+        <DataGrid x:Name="expense_dtgrid" Grid.RowSpan="10" Grid.ColumnSpan="10" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
-
 </Window>

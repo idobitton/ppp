@@ -29,7 +29,7 @@ namespace WpfApp50
 
         private void add_product_btn_Click_1(object sender, RoutedEventArgs e)
         {
-            int price=0;
+            int price;
             if (name_add_product.Text != "" && price_add_product.Text != "" && kind_add_product.SelectedItem != null && (add_sell.IsChecked == true || add_buy.IsChecked == true) && add_prd_pack_lsb.SelectedItem !=null)
             {
                 if (checking_name(name_add_product.Text))
@@ -76,11 +76,9 @@ namespace WpfApp50
                 MessageBox.Show("Fill all the fields", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
         private bool checking_name(string text)
         {
-            List<products> lst_p = new List<products>();
-            lst_p = db1.products.ToList();
+            List<products> lst_p = db1.products.ToList();
             foreach (products p in lst_p)
             {
                 if (text == p.name)
@@ -88,10 +86,9 @@ namespace WpfApp50
             }
             return true;
         }
-
         private void product_change_btn_Click(object sender, RoutedEventArgs e)
         {
-            int price = 0;
+            int price;
             if (pro!=null && name_chnge_product.Text != "" && price_chnge_product.Text != "" && kind_chnge_product.SelectedItem != null && (chnge_sell.IsChecked == true || chnge_buy.IsChecked == true) && change_prd_pack_lsb.SelectedItem != null)
             {
                 string name = name_chnge_product.Text;
@@ -127,8 +124,6 @@ namespace WpfApp50
                 pro.pack = change_prd_pack_lsb.SelectedItem.ToString().Substring(37);
                 pro.client_or_supplier = cl_or_sp;
                 pro.c_or_s_id = i + 1;
-                //products p = new products { name = name, price = price, kind_product = kp, kind_product_id = kind_chnge_product.SelectedIndex + 1, pack = change_prd_pack_lsb.SelectedItem.ToString().Substring(37), client_or_supplier = cl_or_sp, c_or_s_id = i + 1 };
-                //pro = p;
                 db1.SaveChanges();
                 MessageBox.Show("The product has been changed", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
@@ -186,15 +181,13 @@ namespace WpfApp50
 
         private void price_chnge_product_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(price_chnge_product.Text, out a))
+            if (!long.TryParse(price_chnge_product.Text, out long a))
                 price_chnge_product.Clear();
         }
 
         private void price_add_product_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(price_add_product.Text, out a))
+            if (!long.TryParse(price_add_product.Text, out long a))
                 price_add_product.Clear();
         }
     }

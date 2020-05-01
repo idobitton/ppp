@@ -9,6 +9,7 @@
     <Property Name="last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="phone" Type="nvarchar" MaxLength="50" />
     <Property Name="postal_code_id" Type="int" />
+    <Property Name="credit_card_id" Type="int" />
   </EntityType>
   <EntityType Name="client_or_supplier">
     <Key>
@@ -16,6 +17,15 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="identity" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="credit_card">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="credit_card_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="expiration_date" Type="date" Nullable="false" />
+    <Property Name="cvv" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="employee">
     <Key>
@@ -118,17 +128,9 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="shift_time_id" Type="int" Nullable="false" />
-    <Property Name="shift_day_id" Type="int" Nullable="false" />
     <Property Name="date" Type="date" Nullable="false" />
     <Property Name="employee_id" Type="int" Nullable="false" />
     <Property Name="time_of_working" Type="decimal" Precision="18" Scale="2" />
-  </EntityType>
-  <EntityType Name="shift_day">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="day" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="shift_time">
     <Key>
@@ -139,6 +141,18 @@
     <Property Name="entry_time" Type="nvarchar" MaxLength="50" />
     <Property Name="checkout_time" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_client_details_credit_card">
+    <End Role="credit_card" Type="Self.credit_card" Multiplicity="0..1" />
+    <End Role="client_details" Type="Self.client_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="credit_card">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="client_details">
+        <PropertyRef Name="credit_card_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_client_postal_code">
     <End Role="postal_code" Type="Self.postal_code" Multiplicity="0..1" />
     <End Role="client_details" Type="Self.client_details" Multiplicity="*" />
@@ -297,18 +311,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_shift_shift_day">
-    <End Role="shift_day" Type="Self.shift_day" Multiplicity="1" />
-    <End Role="shift" Type="Self.shift" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="shift_day">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="shift">
-        <PropertyRef Name="shift_day_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_shift_shift_time">
     <End Role="shift_time" Type="Self.shift_time" Multiplicity="1" />
     <End Role="shift" Type="Self.shift" Multiplicity="*" />
@@ -324,6 +326,7 @@
   <EntityContainer Name="Database1ModelStoreContainer">
     <EntitySet Name="client_details" EntityType="Self.client_details" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client_or_supplier" EntityType="Self.client_or_supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="credit_card" EntityType="Self.credit_card" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employee_type" EntityType="Self.employee_type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="expense" EntityType="Self.expense" Schema="dbo" store:Type="Tables" />
@@ -334,8 +337,11 @@
     <EntitySet Name="postal_code" EntityType="Self.postal_code" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift" EntityType="Self.shift" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="shift_day" EntityType="Self.shift_day" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="shift_time" EntityType="Self.shift_time" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_client_details_credit_card" Association="Self.FK_client_details_credit_card">
+      <End Role="credit_card" EntitySet="credit_card" />
+      <End Role="client_details" EntitySet="client_details" />
+    </AssociationSet>
     <AssociationSet Name="FK_client_postal_code" Association="Self.FK_client_postal_code">
       <End Role="postal_code" EntitySet="postal_code" />
       <End Role="client_details" EntitySet="client_details" />
@@ -386,10 +392,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_shift_employee" Association="Self.FK_shift_employee">
       <End Role="employee" EntitySet="employee" />
-      <End Role="shift" EntitySet="shift" />
-    </AssociationSet>
-    <AssociationSet Name="FK_shift_shift_day" Association="Self.FK_shift_shift_day">
-      <End Role="shift_day" EntitySet="shift_day" />
       <End Role="shift" EntitySet="shift" />
     </AssociationSet>
     <AssociationSet Name="FK_shift_shift_time" Association="Self.FK_shift_shift_time">

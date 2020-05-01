@@ -124,8 +124,7 @@ namespace WpfApp50
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<products> lsp = new List<products>();
-            lsp = db1.products.ToList();
+            List<products> lsp = db1.products.ToList();
                 for (int i = 1; i < lsp.Count; i++)
                 {
                     if (lsp[i].kind_product_id == 3 && lsp[i].client_or_supplier.identity != "Supplier")

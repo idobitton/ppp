@@ -41,7 +41,6 @@ namespace WpfApp50
                 food_lbl.Foreground = Brushes.Black;
                 int qn = Convert.ToInt32(qnty_txb.Text);
                 order_details details_order = new order_details();
-
                 if (nm.Contains("Pizza"))
                 {
                     if (dgh_type_cmbbx.Text != "")
@@ -126,7 +125,9 @@ namespace WpfApp50
                     }
                 }
                 else
+                {
                     food_lbl.Foreground = Brushes.Red;
+                }
             }
         }
 
@@ -210,6 +211,7 @@ namespace WpfApp50
                     string notes = notes_txb.Text;
                     ordr.notes = notes;
                     ordr.date = DateTime.Now;
+                    this.Close();
                     check chk = new check(db1, order_dtgrid, ordr, discount, delivery);
                     chk.ShowDialog();
                 }
@@ -252,8 +254,7 @@ namespace WpfApp50
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<products> lsp = new List<products>();
-            lsp = db1.products.ToList();
+            List<products> lsp = db1.products.ToList();
             for (int i = 0; i < lsp.Count; i++)
             {
                 if (lsp[i].kind_product_id == 1 && lsp[i].client_or_supplier.identity != "Supplier" )
@@ -269,11 +270,9 @@ namespace WpfApp50
                }
             }
         }
-        //בדיקה שרק מספרים יכללו בתיבת הכתיבה
         private void qnty_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(qnty_txb.Text, out a))
+            if (!long.TryParse(qnty_txb.Text, out long a))
                 qnty_txb.Clear();
         }
 
@@ -281,6 +280,12 @@ namespace WpfApp50
         {
             qnty_txb.Visibility = Visibility.Visible;
             qnty_lbl.Visibility = Visibility.Visible;
+        }
+
+        private void discount_txb_KeyUp(object sender, KeyEventArgs e)
+        {
+                if (!long.TryParse(discount_txb.Text, out long a))
+                   discount_txb.Clear();
         }
     }
 }

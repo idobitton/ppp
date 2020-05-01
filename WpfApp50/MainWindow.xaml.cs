@@ -46,8 +46,7 @@ namespace WpfApp50
             string time_now = DateTime.Now.ToString().Substring(DateTime.Now.ToString().IndexOf(" ") + 1);
             if (time_now == "23:59:00")
             {
-                List<employee> lst_e = new List<employee>();
-                lst_e = db1.employee.ToList();
+                List<employee> lst_e = db1.employee.ToList();
                 foreach (employee emp in lst_e)
                 {
                     emp.is_working_now = "not at shift";
@@ -72,8 +71,7 @@ namespace WpfApp50
         }
         private shift findShift(employee emp)
         {
-            List<shift> lst_s = new List<shift>();
-            lst_s = db1.shift.ToList();
+            List<shift> lst_s = db1.shift.ToList();
             string today_date = DateTime.Now.ToString("dd/MM/yyyy");
             foreach (shift sh in lst_s)
             {
@@ -148,20 +146,13 @@ namespace WpfApp50
 
         private void manage_workers_btn_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             manageWorkers mw = new manageWorkers(db1);
             mw.ShowDialog();
             Mw_update();
-            this.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            db1.shift_day.Add(new shift_day { day = "Sunday" });
-            db1.shift_day.Add(new shift_day { day = "Monday" });
-            db1.shift_day.Add(new shift_day { day = "Tuesday" });
-            db1.shift_day.Add(new shift_day { day = "Wednesday" });
-            db1.shift_day.Add(new shift_day { day = "Thursday" });
             db1.shift_time.Add(new shift_time { time = "Morning" });
             db1.shift_time.Add(new shift_time { time = "Evening" });
             db1.client_or_supplier.Add(new client_or_supplier { identity = "Client" });
@@ -237,17 +228,15 @@ namespace WpfApp50
             db1.products.Add(new products { name = "Lemon", price = 5, kind_product_id =1, c_or_s_id =2, pack = "1 kilogram", remain = 0});
             db1.products.Add(new products { name = "Egg", price = 1, kind_product_id =1, c_or_s_id =2, pack = "crates of 30", remain = 0});
             db1.products.Add(new products { name = "Nothing", price = 0, kind_product_id = 3, c_or_s_id = 1, pack = "not nessecary", remain = 0});
-
             db1.SaveChanges();
-            ////emp_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[9].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
-            ////emp_type_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
-            ////emp_type_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
-            ////emp_pcode_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
-            ////emp_pcode_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
+            emp_type_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            emp_pcode_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            emp_pcode_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
         }
 
         private void entry_systm_btn_Click(object sender, RoutedEventArgs e)
@@ -268,6 +257,21 @@ namespace WpfApp50
             emp_dtgrid.ItemsSource = db1.employee.ToList();
             emp_pcode_dtgrid.ItemsSource = db1.postal_code.ToList();
             emp_type_dtgrid.ItemsSource = db1.employee_type.ToList();
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
+            emp_type_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            emp_pcode_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            emp_pcode_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+        }
+
+        private void all_clients_btn_Click(object sender, RoutedEventArgs e)
+        {
+            allClients allc = new allClients(db1);
+            allc.ShowDialog();
+            Mw_update();
         }
     }
 }

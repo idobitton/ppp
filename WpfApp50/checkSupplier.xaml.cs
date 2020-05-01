@@ -32,23 +32,8 @@ namespace WpfApp50
             this.discount = 0;
             InitializeComponent();
         }
-        //private int CalculatingDigits(int num)
-        //{
-        //    if (num > 10)
-        //        return 1 + CalculatingDigits(num / 10);
-        //    return 1;
-        //}
-        private int CalculatingDiscount(int price)// חישוב הנחה פרוגרסיבית
+        private int CalculatingDiscount(int price)
         {
-            //int digits = CalculatingDigits(price);
-            //int r_num=1;
-            //int num_return;
-            //for (int i = 0; i < digits; i++)
-            //{
-            //    r_num *= 10;
-            //}
-            //num_return = price - ((price * (quantity - 1) / r_num)*10);
-            //return num_return;
             for (int i = 20000; i > 0; i -= 2000)
             {
                 if (price > i)
@@ -59,7 +44,9 @@ namespace WpfApp50
 
         private void payment_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
+            payment_invoice_supplier pis  = new payment_invoice_supplier(db1,ordr, discount);
+            pis.ShowDialog();
 
         }
 

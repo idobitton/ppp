@@ -41,7 +41,6 @@ namespace WpfApp50
 
         private void sbmt_btn_Click(object sender, RoutedEventArgs e)
         {
-            int id_day;
             int id_time;
            
             if (calendar.SelectedDate == null)
@@ -62,12 +61,9 @@ namespace WpfApp50
                 {
                     id_time = 2;
                 }
-                string day_of_week = calendar.SelectedDate.Value.DayOfWeek.ToString();
                 DateTime dt = calendar.SelectedDate.Value;
-                id_day = find_id_of_day(day_of_week);
-                shift_day shd = db1.shift_day.ToArray()[id_day-1];
                 shift_time sht = db1.shift_time.ToArray()[id_time-1];
-                shift shift_emp = new shift {shift_day=shd,shift_time =sht,  shift_day_id =id_day, shift_time_id = id_time, employee = emp, date = dt, time_of_working =Convert.ToDecimal(0.00)};
+                shift shift_emp = new shift {shift_time =sht, shift_time_id = id_time, employee = emp, date = dt, time_of_working =Convert.ToDecimal(0.00)};
                 if (!IsAlreadyShift(shift_emp))
                 {
                     this.db1.shift.Add(shift_emp);
@@ -84,34 +80,20 @@ namespace WpfApp50
 
         private bool IsAlreadyShift(shift shift_emp)
         {
-            List<shift> l_sh = new List<shift>();
-            l_sh = db1.shift.ToList();
+            List<shift> l_sh = db1.shift.ToList();
             foreach (shift sh in l_sh)
             {
-                if (shift_emp.date == sh.date && shift_emp.employee  == sh.employee &&shift_emp.shift_time==sh.shift_time )
+                if (shift_emp.date == sh.date && shift_emp.employee  == sh.employee &&shift_emp.shift_time==sh.shift_time)
                     return true;
             }
             return false;
         }
 
-        private int find_id_of_day(string day_of_week)
-        {
-            List<shift_day> lst_shday = new List<shift_day>();
-            lst_shday = db1.shift_day.ToList();
-            foreach (shift_day shd in lst_shday)
-            {
-                if (shd.day == day_of_week)
-                    return shd.Id;
-            }
-            return 0;
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             emp_dtgrid.ItemsSource = db1.employee.ToList();
-            List<employee> lst_e = new List<employee>();
-            List<employee> employees = new List<employee>();
-            lst_e = db1.employee.ToList();
+            List<employee> lst_e = db1.employee.ToList();
+            List <employee> employees = new List<employee>();
             foreach (employee emp in lst_e)
             {
                 if (emp.deleted == "exist")

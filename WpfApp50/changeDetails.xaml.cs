@@ -49,24 +49,10 @@ namespace WpfApp50
                 else
                     female_rdb.IsChecked = true;
                 emp_cmbbx.Text = emp.employee_type.type;
-                //if (emp.employee_type.type == "Manager")
-                //    emp_cmbbx.SelectedIndex = 0;
-                //else if (emp.employee_type.type == "Chef")
-                //    emp_cmbbx.SelectedIndex = 1;
-                //else if (emp.employee_type.type == "Shift manager")
-                //    emp_cmbbx.SelectedIndex = 2;
-                //else if (emp.employee_type.type == "Cashier")
-                //    emp_cmbbx.SelectedIndex = 3;
-                //else if (emp.employee_type.type == "Delivery person")
-                //    emp_cmbbx.SelectedIndex = 4;
-                //else
-                //    emp_cmbbx.SelectedItem = 5;
                 if (emp.deleted == "exist")
                     no_lsb.IsSelected = true;
                 else
                     yes_lsb.IsSelected = true;
-               
-
             }
             catch
             {
@@ -88,8 +74,8 @@ namespace WpfApp50
                 else
                 {
                     emp.deleted = "exist";
-                    int slryphour = 0;
-                    string gndr = "";
+                    int slryphour;
+                    string gndr;
                     if (num_id_txb.Text == "")
                         msg_lsb.Items.Add("Failure! Enter the id");
                     else if (f_name_txb.Text == "")
@@ -119,10 +105,6 @@ namespace WpfApp50
                         else
                             gndr = "female";
                         slryphour = Convert.ToInt32(slph_txb.Text);
-                        //if (yes_lsb.IsSelected == true)
-                        //{
-                        //    deleted = 1;
-                        //}
                         emp.id_number = num_id_txb.Text;
                         emp.first_name = f_name_txb.Text;
                         emp.last_name = l_name_txb.Text;
@@ -131,8 +113,7 @@ namespace WpfApp50
                         postal_code postal_Code = new postal_code { postal_c = Convert.ToInt32(p_code_txb.Text), city = city_txb.Text, street = strt_txb.Text, house_number = Convert.ToInt32(house_num_txb.Text)};
                         if (Checking_postal_code(postal_Code))
                         {
-                            List<postal_code> pc = new List<postal_code>();
-                            pc = db1.postal_code.ToList();
+                            List<postal_code> pc = db1.postal_code.ToList();
                             foreach (postal_code p in pc)
                             {
                                 if (p.postal_c == postal_Code.postal_c)
@@ -154,8 +135,7 @@ namespace WpfApp50
 
                             if (Checking_emp_t(emp_t))
                             {
-                                List<employee_type> l_ept = new List<employee_type>();
-                                l_ept = db1.employee_type.ToList();
+                                List<employee_type> l_ept = db1.employee_type.ToList();
                                 foreach (employee_type ept in l_ept)
                                 {
                                     if (ept.salary_per_hour == emp_t.salary_per_hour && ept.type == emp_t.type)
@@ -203,8 +183,7 @@ namespace WpfApp50
 
         private bool Checking_emp_t(employee_type emp_t)
         {
-            List<employee_type> l_ept = new List<employee_type>();
-            l_ept = db1.employee_type.ToList();
+            List<employee_type> l_ept = db1.employee_type.ToList();
             foreach (employee_type ept in l_ept)
             {
                 if (ept.salary_per_hour == emp_t.salary_per_hour && ept.type == emp_t.type)
@@ -215,8 +194,7 @@ namespace WpfApp50
 
         private bool Checking_postal_code(postal_code postal_Code)
         {
-            List<postal_code> pc = new List<postal_code>();
-            pc = db1.postal_code.ToList();
+            List<postal_code> pc = db1.postal_code.ToList();
             foreach (postal_code p in pc)
             {
                 if (p.postal_c == postal_Code.postal_c)
@@ -240,7 +218,6 @@ namespace WpfApp50
             pcode_dtgrid.ItemsSource = db1.postal_code.ToList();
             ////pcode_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
             ////pcode_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-
         }
         private void emp_cmbbx_DropDownClosed(object sender, EventArgs e)
         {
@@ -255,35 +232,30 @@ namespace WpfApp50
         }
         private void phne_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(phne_txb.Text, out a))
+            if (!long.TryParse(phne_txb.Text, out long a))
                 phne_txb.Clear();
         }
 
         private void p_code_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(p_code_txb.Text, out a))
+            if (!long.TryParse(p_code_txb.Text, out long a))
                 p_code_txb.Clear();
         }
         private void house_num_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(house_num_txb.Text, out a))
+            if (!long.TryParse(house_num_txb.Text, out long a))
                 house_num_txb.Clear();
         }
 
         private void num_id_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(num_id_txb.Text, out a))
+            if (!long.TryParse(num_id_txb.Text, out long a))
                 num_id_txb.Clear();
         }
 
         private void slph_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            long a;
-            if (!long.TryParse(slph_txb.Text, out a))
+            if (!long.TryParse(slph_txb.Text, out long a))
                 slph_txb.Clear();
         }
     }

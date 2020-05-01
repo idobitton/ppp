@@ -26,17 +26,17 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name ="chnge_pro_lbl" Content="Change product:" Grid.Column="4" Grid.Row="0"  Grid.ColumnSpan="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.RowSpan="1" />
-        <Label x:Name ="add_product_lbl" Content="Add product:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="0"/>
-        <Label  Content="Name:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="1"/>
-        <Label  Content="Price:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="2"/>
-        <Label  Content="Kind:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="3"/>
+        <Label x:Name ="chnge_pro_lbl" Content="Change product:" Grid.Column="4" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.RowSpan="1"/>
+        <Label x:Name ="add_product_lbl" Content="Add product:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="1"/>
+        <Label  Content="Name:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Row="1"/>
+        <Label  Content="Price:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Row="2"/>
+        <Label  Content="Kind:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Row="3"/>
         <Label  Content="Kind:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="3"/>
         <Label  Content="Name:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="1"/>
         <Label  Content="Price:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="2"/>
-        <Label  Content="Pack:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="6"/>
+        <Label  Content="Pack:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Row="6"/>
         <Label  Content="Pack:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="6"/>
-        <Label  Content="The use of this product:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="4" Grid.RowSpan="2"/>
+        <Label  Content="The use of this product:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Row="4" Grid.RowSpan="2"/>
         <Label  Content="The use of this product:" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="4" Grid.RowSpan="2"/>
         <TextBox x:Name="name_chnge_product" Grid.Row="1" Grid.Column="4"  FontSize="20" FontWeight="ExtraBold"/>
         <TextBox x:Name="price_chnge_product" Grid.Row="2" Grid.Column="4" FontSize="20" FontWeight="ExtraBold" KeyUp="price_chnge_product_KeyUp"/>
@@ -63,7 +63,6 @@
             <ListBoxItem Content="1 kilogram"/>
             <ListBoxItem Content="not nessecary"/>
         </ListBox>
-       
         <ListBox x:Name="change_prd_pack_lsb" Grid.Row="6" Grid.Column="4" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" >
             <ListBoxItem Content="8 units"/>
             <ListBoxItem Content="4 units"/>

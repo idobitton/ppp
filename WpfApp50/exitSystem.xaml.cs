@@ -37,7 +37,7 @@ namespace WpfApp50
                     shift shift = findShift(emp);
                     string checkout_time = DateTime.Now.ToString().Substring(DateTime.Now.ToString().IndexOf(" ") + 1);
                     shift.shift_time.checkout_time = checkout_time;
-                    double total_minutes = 0;
+                    double total_minutes;
                     double time_of_working=0;
                     double entry_hour = Convert.ToInt32(shift.shift_time.entry_time.ToString().Substring(0,2)); 
                     double entry_minute = Convert.ToInt32(shift.shift_time.entry_time.ToString().Substring(3,2)); 
@@ -84,9 +84,8 @@ namespace WpfApp50
         private void update()
         {
             emp_dtgrid.ItemsSource = db1.employee.ToList();
-            List<employee> lst_e = new List<employee>();
+            List<employee> lst_e = db1.employee.ToList();
             List<employee> employees = new List<employee>();
-            lst_e = db1.employee.ToList();
             foreach (employee emp in lst_e)
             {
                 if (emp.is_working_now == "at shift" && emp.deleted == "exist")
@@ -99,8 +98,7 @@ namespace WpfApp50
 
         private shift findShift(employee emp)
         {
-            List<shift> lst_s = new List<shift>();
-            lst_s = db1.shift.ToList();
+            List<shift> lst_s = db1.shift.ToList();
             string today_date = DateTime.Now.ToString("dd/MM/yyyy");
             foreach (shift sh in lst_s)
             {

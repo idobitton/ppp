@@ -36,14 +36,16 @@ namespace WpfApp50
         }
         private void cash_btn_Click(object sender, RoutedEventArgs e)
         {
-            cash c = new cash();
-            c.ShowDialog();
+            this.Close();
+            invoice_cash ic = new invoice_cash(db1,ordr,discount);
+            ic.ShowDialog();
         }
 
         private void credit_btn_Click(object sender, RoutedEventArgs e)
         {
-            credit cr = new credit();
-            cr.ShowDialog();
+            this.Close();
+            invoice_credit icr = new invoice_credit(db1, ordr, discount);
+            icr.ShowDialog();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -67,7 +69,7 @@ namespace WpfApp50
                 if (delivery)
                 {
                     dlvr_lbl.Visibility = Visibility.Visible;
-                    sp *= 1.15;
+                    sp *=1.2;
                 }
                 int f_price = Convert.ToInt32(sp - (sp * discount) / 100);
                 payment_name_lbl.Content += f_price.ToString() + "₪";
@@ -77,16 +79,6 @@ namespace WpfApp50
                 ordr.final_price_s_price = Convert.ToInt32(sp);
                 db1.order.Add(ordr);
                 db1.SaveChanges();
-                //הצגה של השורה האחרונה הכוללת מחיר התחלתי ומחיר סופי בטבלה של final_price
-                // fprice_dtgrid.ItemsSource = db1.final_price.ToList();
-                ////object row = new object();
-                ////for (int i = 0; i < fprice_dtgrid.Items.Count-1; i++)
-                ////{
-                ////    row = fprice_dtgrid.ItemContainerGenerator.Items[i];
-                ////}
-                ////List<object> lstrow = new List<object>();
-                ////lstrow.Add(row);
-                ////fprice_dtgrid1.ItemsSource = lstrow;
                 object row = new object();
                 for (int i = 0; i < db1.final_price.ToList().Count; i++)
                 {
