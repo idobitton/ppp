@@ -56,7 +56,7 @@ namespace WpfApp50
 
         private void salary_for_workers_btn_Click(object sender, RoutedEventArgs e)
         {
-
+/////////////////////////////////////////////////////////////////
             this.Hide();
             salaryForWorkers sfw = new salaryForWorkers(db1);
             sfw.ShowDialog();
