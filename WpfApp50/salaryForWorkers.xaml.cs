@@ -34,6 +34,11 @@ namespace WpfApp50
             {
                 month_lsb.Items.Add(i);
             }
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
         }
 
         private void clclte_btn_Click(object sender, RoutedEventArgs e)
@@ -70,7 +75,7 @@ namespace WpfApp50
 
         private void year_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(year_txb.Text, out long a))
+            if (!long.TryParse(year_txb.Text, out long _))
                 year_txb.Clear();
         }
     }

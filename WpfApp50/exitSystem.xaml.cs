@@ -94,6 +94,11 @@ namespace WpfApp50
                 }
             }
             emp_dtgrid.ItemsSource = employees;
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
         }
 
         private shift findShift(employee emp)

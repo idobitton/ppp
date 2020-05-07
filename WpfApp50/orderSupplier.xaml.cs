@@ -30,7 +30,10 @@ namespace WpfApp50
         private void fd_aply_btn_Click(object sender, RoutedEventArgs e)
         {
             List<order_details> lstp = db1.order_details.ToList();
-            order_dtgrid.ItemsSource = lstp;
+            order_details_dtgrid.ItemsSource = lstp;
+            order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
             string nm = food_cmbbx.Text;
             string qnty = qnty_txb.Text;
             order_details details_order = new order_details();
@@ -65,10 +68,10 @@ namespace WpfApp50
                     details_order.quantity = qn;
                     db1.order_details.Add(details_order);
                     db1.SaveChanges();
-                    order_dtgrid.ItemsSource = db1.order_details.ToList();
-                    ////order_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-                    ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                    //איפוס
+                    order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                    order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                     food_cmbbx.SelectedIndex = -1;
                     qnty_txb.Clear();
                     qnty_lbl.Content = "Quantity:";
@@ -154,7 +157,10 @@ namespace WpfApp50
         private void bvg_aply_btn_Click(object sender, RoutedEventArgs e)
         {
             List<order_details> lstp = db1.order_details.ToList();
-            order_dtgrid.ItemsSource = lstp;
+            order_details_dtgrid.ItemsSource = lstp;
+            order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
             string nm = beverage_cmbbx.Text;
             string qnty = qnty_txb.Text;
             order_details details_order = new order_details();
@@ -180,10 +186,10 @@ namespace WpfApp50
                     details_order.details = notes_txb.Text;
                     db1.order_details.Add(details_order);
                     db1.SaveChanges();
-                    order_dtgrid.ItemsSource = db1.order_details.ToList();
-                    ////order_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-                    ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                    //איפוס
+                    order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                    order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                     beverage_cmbbx.SelectedIndex = -1;
                     qnty_txb.Clear();
                     qnty_lbl.Content = "Quantity:";
@@ -242,21 +248,8 @@ namespace WpfApp50
                 ordr.c_or_s_id = 2;
                 ordr.client_or_supplier = client_Or_Supplier;
                 this.Close();
-                checkSupplier chk = new checkSupplier(db1, order_dtgrid, ordr);
+                checkSupplier chk = new checkSupplier(db1, order_details_dtgrid, ordr);
                 chk.ShowDialog();
-            }
-        }
-
-        private void order_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                prod = (order_details)order_dtgrid.SelectedItem;
-
-            }
-            catch
-            {
-                MessageBox.Show("you selected a non-existent product", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -268,7 +261,10 @@ namespace WpfApp50
                 {
                     db1.order_details.Remove(prod);
                     db1.SaveChanges();
-                    order_dtgrid.ItemsSource = db1.order_details.ToList();
+                    order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                    order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                 }
             }
         }
@@ -286,13 +282,31 @@ namespace WpfApp50
                 if (lsp[i].kind_product_id == 2 && lsp[i].client_or_supplier.identity != "Client")
                     beverage_cmbbx.Items.Add(lsp[i].name);
             }
+            products_dtgrid.ItemsSource = db1.products.ToList();
+            products_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
         }
-        //בדיקה שרק מספרים יכללו בתיבת הכתיבה
         private void qnty_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(qnty_txb.Text, out long a))
+            if (!long.TryParse(qnty_txb.Text, out _))
                 qnty_txb.Clear();
         }
 
+        private void order_details_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                prod = (order_details)order_details_dtgrid.SelectedItem;
+
+            }
+            catch
+            {
+                MessageBox.Show("you selected a non-existent product", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

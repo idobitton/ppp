@@ -71,8 +71,8 @@
             <ComboBoxItem x:Name="dishwasher" Content="Dishwasher"/>
         </ComboBox>
         <DataGrid x:Name="emp_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold" SelectionChanged="emp_dtgrid_SelectionChanged"/>
-        <DataGrid x:Name="pcode_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="4" Grid.Column="8" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
-        <DataGrid x:Name="emp_type_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="4" Grid.Column="9" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="pcode_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="4" Grid.Column="9" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="emp_type_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="4" Grid.Column="8" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
         <ListBox x:Name="msg_lsb" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="11" Grid.ColumnSpan="10" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
 </Window>

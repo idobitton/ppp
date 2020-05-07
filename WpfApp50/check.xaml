@@ -39,7 +39,8 @@
         <Label x:Name="dscnt_lbl" Content="Discount:" FontSize="20" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Margin="0,17,0,1" Grid.RowSpan="2"/>
         <Label x:Name="dlvr_lbl" Content="Delivery: +20%" FontSize="20" FontWeight="ExtraBold" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="2" Visibility="Collapsed"/>
         <DataGrid x:Name="fprice_dtgrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
-        <DataGrid x:Name="product_dtgrid" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6" FontSize="20" FontWeight="ExtraBold" />
+        <DataGrid x:Name="order_details_dtgrid" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="6" FontSize="20" FontWeight="ExtraBold" />
+        <DataGrid x:Name="products_dtgrid" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="6" FontSize="20" FontWeight="ExtraBold"/>
         <Button x:Name="credit_btn" Content="Credit" FontSize="20" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2" Click="credit_btn_Click" Grid.RowSpan="3"/>
         <Button x:Name="cash_btn" Content="Cash" FontSize="20" FontWeight="ExtraBold" Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="2" Click="cash_btn_Click" Grid.RowSpan="3"/>
     </Grid>

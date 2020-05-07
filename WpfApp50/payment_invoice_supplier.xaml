@@ -37,8 +37,9 @@
         <Label x:Name="after_vat_lbl" Content="Fixed price:" FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"/>
         <Label x:Name="org_lbl" Content="origin:" FontSize="20" FontWeight="ExtraBold" Grid.Column="6" Grid.Row="1"/>
         <Label x:Name="gdbye_lbl" Content="Goodbye! Have a nice day!☺☺☺" FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="6"/>
-        <DataGrid x:Name="product_dtgrid" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
-        <DataGrid x:Name="fprice_dtgrid" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="order_details_dtgrid" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="fprice_dtgrid" Grid.Row="2" Grid.Column="5" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="products_dtgrid" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
         <Button x:Name="rtn_mw" Content="Return to the main window" FontSize="20" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2" Click="rtn_mw_Click"/>
         <Label x:Name="dscnt_lbl" Content="Discount: " FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"/>
     </Grid>

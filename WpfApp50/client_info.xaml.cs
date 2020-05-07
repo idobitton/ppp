@@ -79,18 +79,18 @@ namespace WpfApp50
 
         private void p_code_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(p_code_txb.Text, out long a))
+            if (!long.TryParse(p_code_txb.Text, out long _))
                 p_code_txb.Clear();
         }
         private void house_num_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(house_num_txb.Text, out long a))
+            if (!long.TryParse(house_num_txb.Text, out long _))
                 house_num_txb.Clear();
         }
 
         private void phne_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(phne_txb.Text, out long a))
+            if (!long.TryParse(phne_txb.Text, out long _))
                 phne_txb.Clear();
         }
     }

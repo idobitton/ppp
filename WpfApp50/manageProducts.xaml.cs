@@ -137,6 +137,9 @@ namespace WpfApp50
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             product_dtgrid.ItemsSource = db1.products.ToList();
+            product_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            product_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            product_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
         }
 
         private void product_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -181,13 +184,13 @@ namespace WpfApp50
 
         private void price_chnge_product_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(price_chnge_product.Text, out long a))
+            if (!long.TryParse(price_chnge_product.Text, out long _))
                 price_chnge_product.Clear();
         }
 
         private void price_add_product_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(price_add_product.Text, out long a))
+            if (!long.TryParse(price_add_product.Text, out long _))
                 price_add_product.Clear();
         }
     }

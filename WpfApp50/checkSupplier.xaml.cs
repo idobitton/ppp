@@ -23,9 +23,9 @@ namespace WpfApp50
         order ordr;
         int discount;
         bool flg;
-        public checkSupplier(Database1Entities db1, DataGrid order_dtgrid, order ordr)
+        public checkSupplier(Database1Entities db1, DataGrid order_details_dtgrid, order ordr)
         {
-            this.product_dtgrid = order_dtgrid;
+            this.order_details_dtgrid = order_details_dtgrid;
             this.db1 = db1;
             this.ordr = ordr;
             this.flg = true;
@@ -57,10 +57,10 @@ namespace WpfApp50
                 int sp = 0;
                 supplier_name_lbl.Content += ordr.company_name;
                 notes_lbl.Content += ordr.notes;
-                product_dtgrid.ItemsSource = db1.order_details.ToList();
-                ////product_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
-                ////product_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-                ////product_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                 List<order_details> lstp = db1.order_details.ToList();
                 foreach (order_details p in lstp)
                 {
@@ -86,11 +86,30 @@ namespace WpfApp50
                     row
                 };
                 fprice_dtgrid.ItemsSource = lstrow;
-                ////fprice_dtgrid1.Columns[0].Visibility = Visibility.Collapsed;
-                ////fprice_dtgrid1.Columns[3].Visibility = Visibility.Collapsed;
-                ////fprice_dtgrid1.Columns[5].Visibility = Visibility.Collapsed;
-                ////fprice_dtgrid1.Columns[6].Visibility = Visibility.Collapsed;
+                fprice_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                fprice_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
                 flg = false;
+                List<products> lst_products = db1.products.ToList();
+                List<order_details> lst_order_details = db1.order_details.ToList();
+                List<products> lst_real_products = new List<products>();
+                foreach (order_details ord in lst_order_details)
+                {
+                    foreach (products product in lst_products)
+                    {
+                        if (ord.products_id == product.Id)
+                        {
+                            lst_real_products.Add(product);
+                            break;
+                        }
+                    }
+                }
+                products_dtgrid.ItemsSource = lst_real_products;
+                products_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+                products_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                products_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+                products_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+                products_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+                products_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
             }
         }
     }

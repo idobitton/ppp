@@ -24,7 +24,6 @@ namespace WpfApp50
         private int quantity;
         private string name;
         private string details;
-        List<ComboBoxItem> lcmbbxi = new List<ComboBoxItem>();
         public Pizza(int quantity, Database1Entities db1, DataGrid dataGrid)
         {
             this.dataGrid = dataGrid;

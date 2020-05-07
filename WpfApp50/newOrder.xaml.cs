@@ -33,7 +33,10 @@ namespace WpfApp50
         private void fd_aply_btn_Click(object sender, RoutedEventArgs e)
         {
             List<order_details> lstp = db1.order_details.ToList();
-            order_dtgrid.ItemsSource = lstp;
+            order_details_dtgrid.ItemsSource = lstp;
+            order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
             string nm = food_cmbbx.Text;
             if (nm != ""&& qnty_txb.Text !="")
             {
@@ -59,11 +62,12 @@ namespace WpfApp50
                         details_order.details= dgh_type_cmbbx.Text + ", " + notes_txb.Text;
                         db1.order_details.Add(details_order);
                         db1.SaveChanges();
-                        Pizza pz = new Pizza(qn, db1, order_dtgrid);
+                        Pizza pz = new Pizza(qn, db1, order_details_dtgrid);
                         pz.ShowDialog();
-                        order_dtgrid.ItemsSource = db1.order_details.ToList();
-                        ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                        //איפוס
+                        order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                        order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                        order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                        order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                         dgh_type_cmbbx.Visibility = Visibility.Collapsed;
                         dgh_type_cmbbx.SelectedIndex = -1;
                         dgh_type_lbl.Visibility = Visibility.Collapsed;
@@ -96,9 +100,10 @@ namespace WpfApp50
                     details_order.details = notes_txb.Text;
                     db1.order_details.Add(details_order);
                     db1.SaveChanges();
-                    order_dtgrid.ItemsSource = db1.order_details.ToList();
-                    ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                    //איפוס
+                    order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                    order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                     dgh_type_cmbbx.Visibility = Visibility.Collapsed;
                     dgh_type_cmbbx.SelectedIndex = -1;
                     dgh_type_lbl.Visibility = Visibility.Collapsed;
@@ -171,9 +176,10 @@ namespace WpfApp50
                 details_order.quantity = qn;
                 db1.order_details.Add(details_order);
                 db1.SaveChanges();
-                order_dtgrid.ItemsSource = db1.order_details.ToList();
-                ////order_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                //איפוס
+                order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                 beverage_cmbbx.SelectedIndex = -1;
                 qnty_txb.Clear();
                 notes_txb.Text = "";
@@ -212,17 +218,17 @@ namespace WpfApp50
                     ordr.notes = notes;
                     ordr.date = DateTime.Now;
                     this.Close();
-                    check chk = new check(db1, order_dtgrid, ordr, discount, delivery);
+                    check chk = new check(db1, order_details_dtgrid, ordr, discount, delivery);
                     chk.ShowDialog();
                 }
             }
         }
 
-        private void order_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void order_details_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                prod = (order_details)order_dtgrid.SelectedItem;
+                prod = (order_details)order_details_dtgrid.SelectedItem;
 
             }
             catch
@@ -239,7 +245,10 @@ namespace WpfApp50
                 {
                     db1.order_details.Remove(prod);
                     db1.SaveChanges();
-                    order_dtgrid.ItemsSource = db1.order_details.ToList();
+                    order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+                    order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+                    order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
                 }
                 else
                 {
@@ -269,10 +278,17 @@ namespace WpfApp50
                    beverage_cmbbx.Items.Add(lsp[i].name);
                }
             }
+            products_dtgrid.ItemsSource = db1.products.ToList();
+            products_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
         }
         private void qnty_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(qnty_txb.Text, out long a))
+            if (!long.TryParse(qnty_txb.Text, out long _))
                 qnty_txb.Clear();
         }
 
@@ -284,7 +300,7 @@ namespace WpfApp50
 
         private void discount_txb_KeyUp(object sender, KeyEventArgs e)
         {
-                if (!long.TryParse(discount_txb.Text, out long a))
+                if (!long.TryParse(discount_txb.Text, out long _))
                    discount_txb.Clear();
         }
     }

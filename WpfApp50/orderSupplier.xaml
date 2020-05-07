@@ -60,7 +60,8 @@
         <Button x:Name="dlt_btn"  Content="Select the product you want to delete" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="12" Grid.Row="1" Grid.ColumnSpan="4" Click="dlt_btn_Click"/>
         <Button x:Name="fd_aply_btn"  Content="Apply(Food)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="4" Click="fd_aply_btn_Click"/>
         <Button x:Name="bvg_aply_btn"  Content="Apply(Drink)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="7" Grid.Row="18" Grid.ColumnSpan="4" Click="bvg_aply_btn_Click"/>
-        <DataGrid x:Name="order_dtgrid" FontSize="20" FontWeight="ExtraBold" Grid.Row="2" Grid.Column="11" BorderBrush="red" Grid.ColumnSpan="7" Grid.RowSpan="14" SelectionChanged="order_dtgrid_SelectionChanged"/>
+        <DataGrid x:Name="order_details_dtgrid" FontSize="20" FontWeight="ExtraBold" Grid.Row="2" Grid.Column="11" BorderBrush="red" Grid.ColumnSpan="5" Grid.RowSpan="14" SelectionChanged="order_details_dtgrid_SelectionChanged"/>
+        <DataGrid x:Name="products_dtgrid" FontSize="20" FontWeight="ExtraBold" Grid.Row="2" Grid.Column="16" BorderBrush="red" Grid.ColumnSpan="4" Grid.RowSpan="14"/>
         <Button x:Name="order_aply_btn"  Content="Apply(Order)" FontSize="20" FontWeight="ExtraBold" FontStyle="Italic" Grid.Column="14" Grid.Row="18" Grid.ColumnSpan="4" Click="order_aply_btn_Click"/>
         <Label x:Name="qnty_lbl" Content="Quantity:" FontSize="20" FontWeight="ExtraBold" Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="7" Visibility="Collapsed"/>
         <TextBox x:Name="qnty_txb" FontSize="20" FontWeight="ExtraBold" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="2" KeyUp="qnty_txb_KeyUp" Visibility="Collapsed"/>

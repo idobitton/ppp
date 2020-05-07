@@ -32,7 +32,10 @@ namespace WpfApp50
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            product_dtgrid.ItemsSource = db1.order_details.ToList();
+            order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+            order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
             dscnt_lbl.Content = "Discount: " + discount + "%"; 
             date_lbl.Content = "Date: " + ordr.date;
             supplier_name_lbl.Content = "Supplier name: " + ordr.company_name;
@@ -48,6 +51,29 @@ namespace WpfApp50
                     fprice_dtgrid.ItemsSource = lstfp;
                 }
             }
+            fprice_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+            fprice_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            List<products> lst_products = db1.products.ToList();
+            List<order_details> lst_order_details = db1.order_details.ToList();
+            List<products> lst_real_products = new List<products>();
+            foreach (order_details ord in lst_order_details)
+            {
+                foreach (products product in lst_products)
+                {
+                    if (ord.products_id == product.Id)
+                    {
+                        lst_real_products.Add(product);
+                        break;
+                    }
+                }
+            }
+            products_dtgrid.ItemsSource = lst_real_products;
+            products_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
         }
 
         private void rtn_mw_Click(object sender, RoutedEventArgs e)

@@ -45,7 +45,8 @@ namespace WpfApp50
                 flg = true;
                 int change;
                 int payed = Convert.ToInt32(pyd_txb.Text);
-                int fixed_price = Convert.ToInt32(after_vat_lbl.Content.ToString().Substring(after_vat_lbl.Content.ToString().IndexOf(":") + 2));
+                string fixed_p = after_vat_lbl.Content.ToString().Substring(after_vat_lbl.Content.ToString().IndexOf(":") + 2);
+                int fixed_price = Convert.ToInt32(fixed_p.Remove(fixed_p.IndexOf(".")));
                 if (payed<fixed_price)
                 {
                     MessageBox.Show("The total is lower than the order's price", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -62,7 +63,10 @@ namespace WpfApp50
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            product_dtgrid.ItemsSource = db1.order_details.ToList();
+            order_details_dtgrid.ItemsSource = db1.order_details.ToList();
+            order_details_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            order_details_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
             dscnt_lbl.Content = "Discount: " + discount + "%";
             date_lbl.Content = "Date: " + ordr.date;
             client_name_lbl.Content = " Client name: " + ordr.client_details.first_name+ " " + ordr.client_details.last_name ;
@@ -79,11 +83,34 @@ namespace WpfApp50
                     fprice_dtgrid.ItemsSource = lstfp;
                 }
             }
+            fprice_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
+            fprice_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            List<products> lst_products = db1.products.ToList();
+            List<order_details> lst_order_details = db1.order_details.ToList();
+            List<products> lst_real_products = new List<products>();
+            foreach (order_details ord in lst_order_details)
+            {
+                foreach (products product in lst_products)
+                {
+                    if (ord.products_id == product.Id)
+                    {
+                        lst_real_products.Add(product);
+                        break;
+                    }
+                }
+            }
+            products_dtgrid.ItemsSource = lst_real_products;
+            products_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            products_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
         }
 
         private void pyd_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(pyd_txb.Text, out long a))
+            if (!long.TryParse(pyd_txb.Text, out long _))
                 pyd_txb.Clear();
         }
     }

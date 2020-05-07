@@ -29,6 +29,14 @@ namespace WpfApp50
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             prod_dtgrid.ItemsSource = db1.products.ToList();
+            kind_prod_dtgrid.ItemsSource = db1.kind_product.ToList();
+            c_or_s_dtgrid.ItemsSource = db1.client_or_supplier.ToList();
+            prod_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            prod_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            prod_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
+            kind_prod_dtgrid.Columns[2].Visibility = Visibility.Collapsed;
+            c_or_s_dtgrid.Columns[2].Visibility = Visibility.Collapsed;
+            c_or_s_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
         }
     }
 }

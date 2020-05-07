@@ -26,31 +26,38 @@ namespace WpfApp50
             this.db1 = db1;
             this.sum = 0;
             InitializeComponent();
-            ordr_dtgrid.ItemsSource = db1.order.ToList();
-            price_dtgrid.ItemsSource = db1.final_price.ToList();
-            expense_dtgrid.ItemsSource = db1.expense.ToList();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //if (ordr_dtgrid.Columns.Count > 0)
-            //{
-            //    ordr_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
-            //    ordr_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            //}
-            //if (price_dtgrid.Columns.Count > 0)
-            //{
-            //    price_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
-            //    price_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            //    price_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
-            //}
-            //if (expense_dtgrid.Columns.Count > 0)
-            //{
-            //    expense_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-            //    expense_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            //    expense_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
-            //    expense_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
-            //}
+            emp_dtgrid.ItemsSource = db1.employee.ToList();
+            c_or_s_dtgrid.ItemsSource = db1.client_or_supplier.ToList();
+            client_dtgrid.ItemsSource = db1.client_details.ToList();
+            ordr_dtgrid.ItemsSource = db1.order.ToList();
+            price_dtgrid.ItemsSource = db1.final_price.ToList();
+            expense_dtgrid.ItemsSource = db1.expense.ToList();
+            emp_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
+            price_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            c_or_s_dtgrid.Columns[2].Visibility = Visibility.Collapsed;
+            c_or_s_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            ordr_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            ordr_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            ordr_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            ordr_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            ordr_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            ordr_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
+            expense_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            client_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            client_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            client_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            client_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            client_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
             List<order> lst_o = db1.order.ToList();
             List<final_price> lst_fp = db1.final_price.ToList();
             foreach (order o in lst_o)

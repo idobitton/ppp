@@ -205,19 +205,17 @@ namespace WpfApp50
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            emp_dtgrid.ItemsSource = db1.employee.ToList();
-            ////emp_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[9].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.ItemsSource = db1.employee.ToList();          
             emp_type_dtgrid.ItemsSource = db1.employee_type.ToList();
-            ////emp_type_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
-            ////emp_type_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
             pcode_dtgrid.ItemsSource = db1.postal_code.ToList();
-            ////pcode_dtgrid.Columns[0].Visibility = Visibility.Collapsed;
-            ////pcode_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
+            emp_type_dtgrid.Columns[3].Visibility = Visibility.Collapsed;
+            pcode_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            pcode_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
         }
         private void emp_cmbbx_DropDownClosed(object sender, EventArgs e)
         {
@@ -232,30 +230,30 @@ namespace WpfApp50
         }
         private void phne_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(phne_txb.Text, out long a))
+            if (!long.TryParse(phne_txb.Text, out long _))
                 phne_txb.Clear();
         }
 
         private void p_code_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(p_code_txb.Text, out long a))
+            if (!long.TryParse(p_code_txb.Text, out long _))
                 p_code_txb.Clear();
         }
         private void house_num_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(house_num_txb.Text, out long a))
+            if (!long.TryParse(house_num_txb.Text, out long _))
                 house_num_txb.Clear();
         }
 
         private void num_id_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(num_id_txb.Text, out long a))
+            if (!long.TryParse(num_id_txb.Text, out long _))
                 num_id_txb.Clear();
         }
 
         private void slph_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(slph_txb.Text, out long a))
+            if (!long.TryParse(slph_txb.Text, out long _))
                 slph_txb.Clear();
         }
     }

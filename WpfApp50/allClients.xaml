@@ -10,8 +10,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="client_dtgrid" FontSize="20" FontWeight="ExtraBold"/>
         <DataGrid x:Name="credit_card_dtgrid" Grid.Column="1" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="postal_code_dtgrid" Grid.Column="2" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
 </Window>

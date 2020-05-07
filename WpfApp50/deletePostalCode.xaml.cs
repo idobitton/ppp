@@ -42,6 +42,8 @@ namespace WpfApp50
             db1.postal_code.Remove(pc);
             db1.SaveChanges();
             pc_dtgrid.ItemsSource = db1.postal_code.ToList();
+            pc_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            pc_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
         }
 
         private void pc_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,6 +61,8 @@ namespace WpfApp50
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             pc_dtgrid.ItemsSource = db1.postal_code.ToList();
+            pc_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            pc_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
         }
     }
 }

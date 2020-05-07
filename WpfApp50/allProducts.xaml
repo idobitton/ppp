@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="allProducts" Height="800" Width="800" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" WindowState="Maximized" >
     <Grid>
-        <DataGrid x:Name="prod_dtgrid" FontSize="20" FontWeight="ExtraBold"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="prod_dtgrid" FontSize="20" FontWeight="ExtraBold" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="kind_prod_dtgrid" FontSize="20" FontWeight="ExtraBold" Grid.Column="2"/>
+        <DataGrid x:Name="c_or_s_dtgrid" FontSize="20" FontWeight="ExtraBold" Grid.Column="3"/>
     </Grid>
 </Window>

@@ -28,7 +28,14 @@ namespace WpfApp50
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             client_dtgrid.ItemsSource = db1.client_details.ToList();
+            client_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            client_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
+            client_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
             credit_card_dtgrid.ItemsSource = db1.credit_card.ToList();
+            credit_card_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            postal_code_dtgrid.ItemsSource = db1.postal_code.ToList();
+            postal_code_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
+            postal_code_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
         }
     }
 }

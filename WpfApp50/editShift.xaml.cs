@@ -92,7 +92,14 @@ namespace WpfApp50
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             shift_dtgrid.ItemsSource = db1.shift.ToList();
-            ////shift_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            emp_dtgrid.ItemsSource = db1.employee.ToList();
+            shift_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
+            shift_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
         }
        
     }

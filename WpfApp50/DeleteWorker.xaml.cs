@@ -20,7 +20,6 @@ namespace WpfApp50
     public partial class DeleteWorker : Window
     {
         private Database1Entities db1 =  new Database1Entities();
-        private employee dlt_wrkr;
         public DeleteWorker( Database1Entities db1)
         {
             this.db1 = db1;
@@ -37,7 +36,6 @@ namespace WpfApp50
                 {
                     if (employee.id_number == deleted_id_txb.Text)
                     {
-                        dlt_wrkr = employee;
                         if(employee.deleted =="exist")
                             flg = true;
                     }

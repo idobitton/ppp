@@ -36,7 +36,7 @@
         <Label x:Name="name_lbl" Content="Name:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1"/>
         <TextBox x:Name="name_txb" FontSize="20" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="3" IsReadOnly="True" FontWeight="ExtraBold"/>
         <Button x:Name="sbmt_btn" Content="Submit" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Grid.Column="7" Grid.Row="8" Grid.ColumnSpan="2" Click="sbmt_btn_Click"/>
-        <Label Content="Select the shift:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="3" Grid.Row="2" Grid.Column="6"/>
+        <Label Content="Select the shift:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="3" Grid.Row="2" Grid.Column="5"/>
         <Label x:Name="time_lbl" Content="Time:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="1"/>
         <Label  Content="Date:" FontWeight="ExtraBold" FontSize="20" Grid.ColumnSpan="2" Grid.Row="5" Grid.Column="1"/>
         <Calendar x:Name="calendar" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="3" FontWeight="ExtraBold" FontSize="20" />
@@ -47,7 +47,8 @@
             <ListBoxItem x:Name="yes_lsb" Content="Yes"/>
             <ListBoxItem x:Name="no_lsb" Content="No"/>
         </ListBox>
-        <DataGrid x:Name="shift_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="4" Grid.RowSpan="4" FontSize="20" FontWeight="ExtraBold" SelectionChanged="emp_dtgrid_SelectionChanged"/>
+        <DataGrid x:Name="shift_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3" Grid.RowSpan="4" FontSize="20" FontWeight="ExtraBold" SelectionChanged="emp_dtgrid_SelectionChanged"/>
+        <DataGrid x:Name="emp_dtgrid" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="2" Grid.RowSpan="4" FontSize="20" FontWeight="ExtraBold" SelectionChanged="emp_dtgrid_SelectionChanged"/>
         <ListBox x:Name="msg_lsb" Background="Black" Foreground="red" BorderBrush="Red" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="10" FontSize="20" FontWeight="ExtraBold"/>
     </Grid>
 </Window>

@@ -51,10 +51,7 @@ namespace WpfApp50
                 db1.SaveChanges();
                 expense_dtgrid.Visibility = Visibility.Visible;
                 expense_dtgrid.ItemsSource = db1.expense.ToList();
-                ////expense_dtgrid.Columns[4].Visibility = Visibility.Collapsed;
-                ////expense_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-                ////expense_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
-                ////expense_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
+                expense_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -72,12 +69,11 @@ namespace WpfApp50
                 }
             }
             emp_dtgrid.ItemsSource = employees;
-            ////emp_dtgrid.Columns[5].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[6].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[7].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[8].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[9].Visibility = Visibility.Collapsed;
-            ////emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[10].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[11].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[12].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[13].Visibility = Visibility.Collapsed;
+            emp_dtgrid.Columns[14].Visibility = Visibility.Collapsed;
         }
         private void emp_dtgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -94,7 +90,7 @@ namespace WpfApp50
 
         private void price_txb_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!long.TryParse(price_txb.Text, out long a))
+            if (!long.TryParse(price_txb.Text, out long _))
                 price_txb.Clear();
         }
     }

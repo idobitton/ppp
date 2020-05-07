@@ -124,7 +124,6 @@
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="Database1Model.products">
         <MappingFragment StoreEntitySet="products">
-          <ScalarProperty Name="remain" ColumnName="remain" />
           <ScalarProperty Name="pack" ColumnName="pack" />
           <ScalarProperty Name="c_or_s_id" ColumnName="c_or_s_id" />
           <ScalarProperty Name="kind_product_id" ColumnName="kind_product_id" />

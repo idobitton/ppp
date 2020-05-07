@@ -54,7 +54,9 @@
         </ComboBox>
         <Button x:Name="product_change_btn" Content="Apply" Grid.Column="4" Grid.Row="7" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="product_change_btn_Click"/>
         <Button x:Name="add_product_btn" Content="Apply" Grid.Column="1" Grid.Row="7" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" Click="add_product_btn_Click_1"/>
-        <DataGrid x:Name="product_dtgrid" Grid.Row="1" Grid.Column="5" Grid.RowSpan="5" SelectionChanged="product_dtgrid_SelectionChanged" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="product_dtgrid" Grid.Row="1" Grid.Column="5" Grid.RowSpan="3" SelectionChanged="product_dtgrid_SelectionChanged" FontSize="20" FontWeight="ExtraBold"/>
+        <!--<DataGrid x:Name="kind_product_dtgrid" Grid.Row="4" Grid.Column="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="c_or_s_dtgrid" Grid.Row="" Grid.Column="5" Grid.RowSpan="3" FontSize="20" FontWeight="ExtraBold"/>-->
         <ListBox x:Name="add_prd_pack_lsb" Grid.Row="6" Grid.Column="1" FontSize="20" FontStyle="Italic" FontWeight="ExtraBold" >
             <ListBoxItem Content="8 units"/>
             <ListBoxItem Content="4 units"/>

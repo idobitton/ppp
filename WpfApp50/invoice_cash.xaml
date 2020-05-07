@@ -41,8 +41,9 @@
         <Label x:Name="pyd_lbl" Content="Payed:" FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="7"/>
         <Label x:Name="chnge_lbl" Content="Change:" FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2"/>
         <TextBox x:Name="pyd_txb" FontSize="20" FontWeight="ExtraBold" Grid.Column="2" Grid.Row="7" KeyUp="pyd_txb_KeyUp"/>
-        <DataGrid x:Name="product_dtgrid" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
-        <DataGrid x:Name="fprice_dtgrid" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="order_details_dtgrid" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="fprice_dtgrid" Grid.Row="2" Grid.Column="5" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
+        <DataGrid x:Name="products_dtgrid" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="5" FontSize="20" FontWeight="ExtraBold"/>
         <Button x:Name="rtn_mw" Content="Return to the main window" FontSize="20" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="2" Click="rtn_mw_Click"/>
         <Label x:Name="dscnt_lbl" Content="Discount: " FontSize="20" FontWeight="ExtraBold" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"/>
         <Button x:Name="pay" Content="Pay" FontSize="20" FontWeight="ExtraBold" Grid.Column="3" Grid.Row="7" Click="pay_Click"/>
